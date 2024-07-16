@@ -1,8 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invest_app_flutter_test/core/resource/color_manager.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_style.dart';
+import 'package:invest_app_flutter_test/utils/app_colors.dart';
 
 class CustomCard extends StatelessWidget {
   final Color color1;
@@ -46,7 +46,7 @@ class CustomCard extends StatelessWidget {
                 Text(
                   tile,
                   style: customContentTextStyle(
-                    color: ColorManager.white,
+                    color: AppColors.white,
                     fontSize: 17,
                   ),
                 ),
@@ -54,7 +54,7 @@ class CustomCard extends StatelessWidget {
                 Text(
                   content,
                   style: customContentTextStyle(
-                    color: ColorManager.white,
+                    color: AppColors.white,
                     fontSize: 13,
                   ),
                 ),

@@ -1,15 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:invest_app_flutter_test/core/routes/route_name.dart';
-import 'package:invest_app_flutter_test/helper/store/user_store.dart';
+import 'package:invest_app_flutter_test/ui/base/base_viewmodel.dart';
+import 'package:invest_app_flutter_test/utils/app_const.dart';
+import 'package:invest_app_flutter_test/utils/app_shared.dart';
+import 'package:provider/provider.dart';
 
-class SplashViewmodel {
+class SplashViewModel extends BaseViewModel {
+  SplashViewModel();
   Future onNextPage(BuildContext context) async {
-    UserStore _userStore = UserStore();
-    await _userStore.init();
-    if (_userStore.userName != null && _userStore.userName!.isNotEmpty) {
-      Navigator.pushReplacementNamed(context, RouteName.homePage);
-    } else {
-      Navigator.pushReplacementNamed(context, RouteName.signUpPage);
-    }
+    Future.delayed(
+      Duration(seconds: 3),
+      () async {
+        final appShared = Provider.of<AppShared>(context, listen: false);
+        await appShared.getSharedPreference().then((_) async {
+          await appShared.getString(STORAGE_USER_NAME).then(
+            (value) {
+              if (value != null && value.isNotEmpty) {
+                Navigator.pushReplacementNamed(
+                    context, RouteName.applicationPage);
+              } else {
+                Navigator.pushReplacementNamed(context, RouteName.signUpPage);
+              }
+            },
+          );
+        });
+      },
+    );
   }
 }

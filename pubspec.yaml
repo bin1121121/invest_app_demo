@@ -44,6 +44,14 @@ dependencies:
   path: ^1.9.0
   sqlite3_flutter_libs: ^0.5.24
   rx_shared_preferences: ^3.1.0
+  keyboard_dismisser: ^3.0.0
+  fluttertoast: ^8.2.6
+  image_picker: ^1.1.2
+  permission_handler: ^11.3.1
+  intl: ^0.19.0
+  equatable: ^2.0.5
+  uuid: ^4.4.2
+  flutter_slidable: ^3.1.1
 
 dev_dependencies:
   flutter_test:
@@ -93,7 +101,7 @@ flutter:
   #       - asset: fonts/Schyler-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
-    - family: DMSans
+    - family: DM Sans
       fonts:
         - asset: assets/fonts/dm_sans/DMSans-Bold.ttf
           weight: 700
@@ -101,7 +109,7 @@ flutter:
       fonts:
         - asset: assets/fonts/catamaran/Catamaran-Medium.ttf
           weight: 500
-    - family: SFProText
+    - family: SF Pro Text
       fonts:
         - asset: assets/fonts/sf_pro_text/SF-Pro-Text-Bold.otf
           weight: 700
@@ -111,7 +119,14 @@ flutter:
           weight: 500
         - asset: assets/fonts/sf_pro_text/SF-Pro-Text-Regular.otf
           weight: 400
-        
+    - family: SF Compact Display
+      fonts:
+        - asset: assets/fonts/sf_compact_display/SFCompactText-Semibold.otf
+          weight: 600
+    - family: Open Sans
+      fonts:
+        - asset: assets/fonts/open_sans/OpenSans-Regular.ttf
+          weight: 400
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

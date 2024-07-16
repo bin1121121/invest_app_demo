@@ -1,37 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:invest_app_flutter_test/core/resource/asset_img.dart';
+import 'package:invest_app_flutter_test/ui/base/base_widget.dart';
 import 'package:invest_app_flutter_test/ui/page/splash/splash_viewmodel.dart';
+import 'package:invest_app_flutter_test/utils/app_assets.dart';
 
-class SplashPage extends StatefulWidget {
+class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
 
   @override
-  State<SplashPage> createState() => _SplashPageState();
-}
-
-class _SplashPageState extends State<SplashPage> {
-  SplashViewmodel _splashViewmodel = SplashViewmodel();
-  @override
-  void initState() {
-    super.initState();
-    setTimeOut();
-  }
-
-  void setTimeOut() {
-    Future.delayed(const Duration(seconds: 3), () async {
-      await _splashViewmodel.onNextPage(context);
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Container(
-        child: Center(
-          child: Image.asset(AssetImg.img_logo_group),
-        ),
-      ),
+    return BaseWidget<SplashViewModel>(
+      viewModel: SplashViewModel(),
+      builder: (context, viewModel, child) {
+        viewModel.onNextPage(context);
+        return Scaffold(
+          body: Center(
+            child: Image.asset(
+              AppAssets.img_logo_group,
+              width: 200,
+              height: 200,
+            ),
+          ),
+        );
+      },
     );
   }
 }

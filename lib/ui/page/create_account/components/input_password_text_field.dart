@@ -1,41 +1,45 @@
 import 'package:flutter/material.dart';
-import 'package:invest_app_flutter_test/ui/page/create_account/create_account_viewmodel.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
-import 'package:invest_app_flutter_test/utils/app_string.dart';
 
 class InPutPasswordTextField extends StatelessWidget {
+  final TextEditingController _controller;
+  final String _labelText;
+  final bool _isVisible;
+  final Function _onChangeVisibility;
+  final Function(String?)? _validator;
+  final Function(String)? _onChangeTextField;
   const InPutPasswordTextField({
     super.key,
-    required this.passwordController,
-    required this.createAccountViewmodel,
-  });
-
-  final TextEditingController passwordController;
-  final CreateAccountViewModel createAccountViewmodel;
+    required TextEditingController texEditingController,
+    required bool isVisible,
+    required String labelText,
+    required Function onChangeVisibility,
+    required Function(String?)? validator,
+    required Function(String)? onChangeTextField,
+  })  : _controller = texEditingController,
+        _isVisible = isVisible,
+        _labelText = labelText,
+        _onChangeVisibility = onChangeVisibility,
+        _validator = validator,
+        _onChangeTextField = onChangeTextField;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      obscureText: createAccountViewmodel.isPasswordVisible,
-      controller: passwordController,
+      obscureText: _isVisible,
+      controller: _controller,
       decoration: InputDecoration(
-        labelText: AppString.password,
+        labelText: _labelText,
         suffixIcon: IconButton(
-          onPressed: () {
-            createAccountViewmodel.changePasswordVisibility();
-          },
+          onPressed: () => _onChangeVisibility(),
           icon: Icon(
-            createAccountViewmodel.isPasswordVisible
-                ? Icons.visibility
-                : Icons.visibility_off,
+            _isVisible ? Icons.visibility : Icons.visibility_off,
             color: AppColors.green,
           ),
         ),
       ),
-      validator: (value) => createAccountViewmodel.validPassword(value),
-      onChanged: (value) {
-        createAccountViewmodel.setPassword(value);
-      },
+      validator: (value) => _validator!(value),
+      onChanged: (value) => _onChangeTextField!(value),
     );
   }
 }

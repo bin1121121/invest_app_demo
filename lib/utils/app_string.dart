@@ -14,9 +14,12 @@ class AppString {
   static const String login = "Login";
   static const String createAnAccount = "Create an account";
   static const String investAndDouble = "Invest and double your income now";
-  static const String fullName = "Full Name";
+  static const String firstName = "First Name";
+  static const String lastName = "Last Name";
+  static const String gender = "Gender";
   static const String email = "Email";
   static const String password = "Password";
+  static const String confirmPassword = "Confirm Password";
   static const String alreadyHaveAnCount = "Already have an account?";
 
   //application page
@@ -41,11 +44,11 @@ class AppString {
   static const String bankAccountInfo = "Bank Account Info";
   static const String documentInfo = "Document Info";
   static const String settings = "Settings";
+  static const String logout = "Logout";
 
   //contact info page
   static const String name = "Name";
   static const String birthDate = "Birth Date";
-  static const String gender = "Gender";
   static const String phoneNumber = "Phone Number";
   static const String change = "Change";
   static const String save = "Save";
@@ -54,11 +57,15 @@ class AppString {
   static const String notification = "Notification";
 
   //error message
-  static const String userNameError =
-      "Username must be at least 10 characters long";
+  static const String firstNameError =
+      "First name must be at least 2 characters long";
+  static const String lastNameError =
+      "Last name must be at least 2 characters long";
   static const String emailError = "Invalid email";
   static const String passwordError =
       "Password must be at least 6 characters long and least one special character";
+  static const String confirmPasswordError =
+      "Confirm password must be same as password";
   static const String phoneNumberError = "Invalid phone number";
   static const String birthDateError = "Invalid birth date";
   static const String genderError = "Invalid gender";

@@ -9,14 +9,17 @@ class AccountCardWidget extends StatelessWidget {
   final String _preIcon;
   final String _title;
   final Function()? _onTap;
-  const AccountCardWidget({
+  final Color _color;
+  AccountCardWidget({
     super.key,
     required String preIcon,
     required String title,
     Function()? onTap,
+    Color? color,
   })  : _preIcon = preIcon,
         _title = title,
-        _onTap = onTap;
+        _onTap = onTap,
+        _color = color ?? AppColors.black1;
 
   @override
   Widget build(BuildContext context) {
@@ -32,19 +35,25 @@ class AccountCardWidget extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  SvgPicture.asset(_preIcon),
+                  SvgPicture.asset(
+                    _preIcon,
+                    colorFilter: ColorFilter.mode(_color, BlendMode.srcIn),
+                  ),
                   SizedBox(width: 35.w),
                   Text(
                     _title,
                     style: customContentTextStyle(
-                      color: AppColors.black1,
+                      color: _color,
                       fontSize: 17,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                 ],
               ),
-              SvgPicture.asset(AppAssets.ic_next),
+              SvgPicture.asset(
+                AppAssets.ic_next,
+                colorFilter: ColorFilter.mode(_color, BlendMode.srcIn),
+              ),
             ],
           ),
         ),

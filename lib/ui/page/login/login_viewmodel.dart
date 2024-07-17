@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:invest_app_flutter_test/core/local/app_database.dart';
+import 'package:dio/dio.dart';
+import 'package:invest_app_flutter_test/core/remote/services/app_services.dart';
+import 'package:invest_app_flutter_test/core/remote/services/error_handle.dart';
 import 'package:invest_app_flutter_test/core/routes/route_name.dart';
 import 'package:invest_app_flutter_test/ui/base/base_viewmodel.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_toast.dart';
@@ -20,12 +22,37 @@ class LoginViewModel extends BaseViewModel {
   }
 
   Future onSignIn() async {
-    // final AppShared appShared = Provider.of<AppShared>(context, listen: false);
-    // final String email = _emailController.text;
-    customToast(
-      message: AppString.loginSuccess,
-      backgroundColor: AppColors.green,
-    );
+    AppServices appServices = Provider.of<AppServices>(context, listen: false);
+    try {
+      await appServices
+          .login(
+        _emailController.text,
+        _passwordController.text,
+      )
+          .then((authenticationResponse) async {
+        AppShared appShared = Provider.of<AppShared>(context, listen: false);
+        await appShared.setString(
+            STORAGE_EMAIL, authenticationResponse.email ?? "");
+        await appShared.setString(
+            STORAGE_AVATAR, authenticationResponse.image ?? "");
+        await appShared.setString(STORAGE_USER_NAME,
+            "${authenticationResponse.firstName} ${authenticationResponse.lastName}");
+        await appShared.setString(
+            STORAGE_GENDER, authenticationResponse.gender ?? "");
+        customToast(
+          message: AppString.loginSuccess,
+          backgroundColor: AppColors.green,
+        );
+        Navigator.of(context).pushReplacementNamed(RouteName.applicationPage);
+      });
+    } catch (e) {
+      if (e is DioException) {
+        customToast(
+          message: ErrorHandler.dioException(error: e).getErrorMessage(),
+          backgroundColor: AppColors.red,
+        );
+      }
+    }
   }
 
   TextEditingController get emailController => _emailController;

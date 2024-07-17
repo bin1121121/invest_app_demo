@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:invest_app_flutter_test/core/routes/route_name.dart';
 import 'package:invest_app_flutter_test/ui/base/base_viewmodel.dart';
 import 'package:invest_app_flutter_test/utils/app_const.dart';
 import 'package:invest_app_flutter_test/utils/app_shared.dart';
@@ -14,9 +16,12 @@ class AccountViewModel extends BaseViewModel {
     _userStream = _appShared.rxSharedPreferences
         .getStringStream(STORAGE_USER_NAME)
         .asBroadcastStream();
-    _avatarStream = _appShared.rxSharedPreferences
-        .getStringStream(STORAGE_AVATAR)
-        .asBroadcastStream();
+    _avatarStream = _appShared.watchAvatar();
+  }
+
+  void logOut() {
+    _appShared.rxSharedPreferences.clear();
+    Navigator.of(context).pushReplacementNamed(RouteName.signUpPage);
   }
 
   Stream<String?> get avatarStream => _avatarStream;

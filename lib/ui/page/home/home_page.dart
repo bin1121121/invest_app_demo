@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
                 backgroundColor: AppColors.background,
                 pinned: true,
                 floating: true,
-                flexibleSpace: ManagerHeader(homeViewmodel: viewModel),
+                flexibleSpace: const ManagerHeader(),
                 automaticallyImplyLeading: false,
               ),
               SliverPadding(padding: EdgeInsets.only(top: 18.w)),

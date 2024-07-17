@@ -3,19 +3,12 @@ import 'dart:io';
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:invest_app_flutter_test/core/local/dao/notifications_dao.dart';
-import 'package:invest_app_flutter_test/core/local/dao/user_model_dao.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 import 'package:sqlite3/sqlite3.dart';
 import 'package:sqlite3_flutter_libs/sqlite3_flutter_libs.dart';
 
 part 'app_database.g.dart';
-
-class UserModel extends Table {
-  TextColumn get userName => text()();
-  TextColumn get email => text()();
-  TextColumn get password => text()();
-}
 
 class NotificationLocal extends Table {
   TextColumn get id => text()();
@@ -24,9 +17,7 @@ class NotificationLocal extends Table {
   DateTimeColumn get createdAt => dateTime()();
 }
 
-@DriftDatabase(
-    tables: [UserModel, NotificationLocal],
-    daos: [UserModelDao, NotificationLocalDao])
+@DriftDatabase(tables: [NotificationLocal], daos: [NotificationLocalDao])
 class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(_onpenConnection());
 

@@ -9,18 +9,18 @@ import 'package:invest_app_flutter_test/utils/app_string.dart';
 class ButtonCreate extends StatelessWidget {
   const ButtonCreate({
     super.key,
-    required CreateAccountViewModel createAccountViewmodel,
+    required CreateAccountViewModel viewModel,
     required GlobalKey<FormState> formKey,
-  })  : _createAccountViewmodel = createAccountViewmodel,
+  })  : _viewModel = viewModel,
         _formKey = formKey;
 
-  final CreateAccountViewModel _createAccountViewmodel;
+  final CreateAccountViewModel _viewModel;
   final GlobalKey<FormState> _formKey;
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<bool>(
-      stream: _createAccountViewmodel.isAllInputsValidStream,
+      stream: _viewModel.isAllInputsValidStream,
       builder: (context, snapshot) {
         return SizedBox(
           height: 60.w,
@@ -31,7 +31,7 @@ class ButtonCreate extends StatelessWidget {
             onPressed: snapshot.data == true
                 ? () {
                     if (_formKey.currentState!.validate()) {
-                      _createAccountViewmodel.onRegister(context);
+                      _viewModel.onRegister();
                     }
                   }
                 : () {},

@@ -25,13 +25,14 @@ class ContactInfoViewModel extends BaseViewModel {
   final TextEditingController _phoneNumberTextController =
       TextEditingController();
   late final AppShared _appShared;
+  late final Stream<String?> _avatarStream;
   File _image = File("");
 
   Future onInit() async {
     _formKey = GlobalKey<FormState>();
     _appShared = Provider.of<AppShared>(context, listen: false);
-
-    _image = File(await _appShared.getString(STORAGE_AVATAR) ?? "");
+    _avatarStream = _appShared.watchAvatar();
+    // _image = File(await _appShared.getString(STORAGE_AVATAR) ?? "");
     _userNameTextController.text =
         await _appShared.getString(STORAGE_USER_NAME) ?? "";
     _birthDateTextController.text =
@@ -41,7 +42,6 @@ class ContactInfoViewModel extends BaseViewModel {
     _emailTextController.text = await _appShared.getString(STORAGE_EMAIL) ?? "";
     _phoneNumberTextController.text =
         await _appShared.getString(STORAGE_PHONE_NUMBER) ?? "";
-    notifyListeners();
   }
 
   Future<bool> _requestPermission(ImageSource imageSource) async {
@@ -90,7 +90,7 @@ class ContactInfoViewModel extends BaseViewModel {
 
   String? validUserName(String? value) {
     if (!isUserNameValid(value ?? "")) {
-      return AppString.userNameError;
+      return AppString.firstNameError;
     }
     return null;
   }
@@ -125,7 +125,7 @@ class ContactInfoViewModel extends BaseViewModel {
 
   Future onSave() async {
     UserProfile oldUserProfile = UserProfile(
-      avatar: await _appShared.getString(STORAGE_AVATAR),
+      // avatar: await _appShared.getString(STORAGE_AVATAR),
       name: await _appShared.getString(STORAGE_USER_NAME),
       email: await _appShared.getString(STORAGE_EMAIL),
       birthDate: await _appShared.getString(STORAGE_BIRTH_DATE),
@@ -133,7 +133,7 @@ class ContactInfoViewModel extends BaseViewModel {
       phoneNumber: await _appShared.getString(STORAGE_PHONE_NUMBER),
     );
     UserProfile newUserProfile = UserProfile(
-      avatar: _image.path,
+      // avatar: _image.path,
       name: _userNameTextController.text,
       email: _emailTextController.text,
       birthDate: _birthDateTextController.text,
@@ -142,7 +142,7 @@ class ContactInfoViewModel extends BaseViewModel {
     );
     if (_formKey.currentState!.validate() &&
         (oldUserProfile != newUserProfile)) {
-      await _appShared.setString(STORAGE_AVATAR, _image.path);
+      // await _appShared.setString(STORAGE_AVATAR, _image.path);
       await _appShared.setString(STORAGE_USER_NAME, newUserProfile.name);
       await _appShared.setString(STORAGE_EMAIL, newUserProfile.email);
       await _appShared.setString(STORAGE_BIRTH_DATE, newUserProfile.birthDate);
@@ -162,6 +162,7 @@ class ContactInfoViewModel extends BaseViewModel {
   TextEditingController get emailTextController => _emailTextController;
   TextEditingController get phoneNumberTextController =>
       _phoneNumberTextController;
+  Stream<String?> get avatarStream => _avatarStream;
 
   File get image => _image;
 }

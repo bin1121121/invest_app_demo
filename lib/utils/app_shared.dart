@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:invest_app_flutter_test/utils/app_const.dart';
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
 class AppShared {
@@ -23,6 +26,10 @@ class AppShared {
 
   Future<void> remove(String key) async {
     await _rxPreferences.remove(key);
+  }
+
+  Stream<String?> watchAvatar() {
+    return _rxPreferences.getStringStream(STORAGE_AVATAR).asBroadcastStream();
   }
 
   RxSharedPreferences get rxSharedPreferences => _rxPreferences;

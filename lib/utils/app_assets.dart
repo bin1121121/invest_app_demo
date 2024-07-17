@@ -31,4 +31,5 @@ class AppAssets {
   static const String ic_doc = "assets/icons/ic_doc.svg";
   static const String ic_setting = "assets/icons/ic_setting.svg";
   static const String ic_edit_2 = "assets/icons/ic_edit_2.svg";
+  static const String ic_logout = "assets/icons/ic_logout.svg";
 }

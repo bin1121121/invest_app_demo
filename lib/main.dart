@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invest_app_flutter_test/core/local/app_database.dart';
+import 'package:invest_app_flutter_test/core/remote/services/app_services.dart';
 import 'package:invest_app_flutter_test/core/routes/route.dart';
 import 'package:invest_app_flutter_test/core/routes/route_name.dart';
 import 'package:invest_app_flutter_test/utils/app_shared.dart';
 import 'package:invest_app_flutter_test/utils/app_theme.dart';
+import 'package:dio/dio.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -17,11 +19,18 @@ void main() {
         Provider<AppDatabase>(
           create: (_) => AppDatabase(),
         ),
-
-        // ChangeNotifierProvider<CreateAccountViewmodel>(
-        //   create: (_) => CreateAccountViewmodel(),
-        // ),
-        // ChangeNotifierProvider<HomeViewmodel>(create: (_) => HomeViewmodel()),
+        Provider<AppServices>(
+          create: (_) => AppServices(
+            Dio(
+              BaseOptions(
+                headers: {
+                  "Content-Type": "application/json",
+                  "Accept": "application/json"
+                },
+              ),
+            ),
+          ),
+        ),
       ],
       child: const MyApp(),
     ),

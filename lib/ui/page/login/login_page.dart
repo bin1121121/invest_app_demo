@@ -61,7 +61,6 @@ class LoginPage extends StatelessWidget {
                     child: customButtom(
                       backgroundColor: AppColors.green,
                       onPressed: () {
-                        print("tap");
                         viewModel.onSignIn();
                       },
                       child: Center(

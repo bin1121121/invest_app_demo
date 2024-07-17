@@ -63,24 +63,33 @@ class AccountPage extends StatelessWidget {
                         .pushNamed(RouteName.contactInfoPage),
                   ),
                   SizedBox(height: 10.w),
-                  const AccountCardWidget(
+                  AccountCardWidget(
                     preIcon: AppAssets.ic_funding,
                     title: AppString.sourceOfFoundingInfo,
                   ),
                   SizedBox(height: 10.w),
-                  const AccountCardWidget(
+                  AccountCardWidget(
                     preIcon: AppAssets.ic_bank,
                     title: AppString.bankAccountInfo,
                   ),
                   SizedBox(height: 10.w),
-                  const AccountCardWidget(
+                  AccountCardWidget(
                     preIcon: AppAssets.ic_doc,
                     title: AppString.documentInfo,
                   ),
                   SizedBox(height: 10.w),
-                  const AccountCardWidget(
+                  AccountCardWidget(
                     preIcon: AppAssets.ic_setting,
                     title: AppString.settings,
+                  ),
+                  SizedBox(height: 10.w),
+                  AccountCardWidget(
+                    preIcon: AppAssets.ic_logout,
+                    title: AppString.logout,
+                    color: AppColors.red,
+                    onTap: () {
+                      viewModel.logOut();
+                    },
                   ),
                 ],
               ),

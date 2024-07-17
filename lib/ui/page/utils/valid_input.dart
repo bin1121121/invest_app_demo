@@ -1,5 +1,5 @@
 bool isUserNameValid(String userName) {
-  return userName.length >= 6;
+  return userName.length >= 2;
 }
 
 bool isEmailValid(String email) {

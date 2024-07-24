@@ -4,20 +4,18 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:invest_app_flutter_test/core/models/user_profile.dart';
-import 'package:invest_app_flutter_test/core/remote/services/app_services.dart';
+import 'package:invest_app_flutter_test/core/remote/request/auth_request.dart';
+import 'package:invest_app_flutter_test/core/remote/services/resource_type.dart';
+import 'package:invest_app_flutter_test/core/repository/auth_repository.dart';
+import 'package:invest_app_flutter_test/ui/widgets/custom_toast.dart';
 import 'package:provider/provider.dart';
 import 'package:rxdart/rxdart.dart';
-
-import 'package:invest_app_flutter_test/core/routes/route_name.dart';
 import 'package:invest_app_flutter_test/ui/base/base_viewmodel.dart';
 import 'package:invest_app_flutter_test/ui/page/utils/valid_input.dart';
-import 'package:invest_app_flutter_test/ui/widgets/custom_toast.dart';
-import 'package:invest_app_flutter_test/utils/app_colors.dart';
-import 'package:invest_app_flutter_test/utils/app_const.dart';
-import 'package:invest_app_flutter_test/utils/app_shared.dart';
-import 'package:invest_app_flutter_test/utils/app_string.dart';
+import 'package:invest_app_flutter_test/utils/app_languages.dart';
 
 class CreateAccountViewModel extends BaseViewModel {
+  late final AuthRepository _authRepository;
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -43,6 +41,10 @@ class CreateAccountViewModel extends BaseViewModel {
   // void dispose() {
   //   _isAllInputsValidStreamController.close();
   // }
+
+  void onInit() {
+    _authRepository = Provider.of<AuthRepository>(context, listen: false);
+  }
 
   void changePasswordVisibility() {
     _isPasswordVisible = !_isPasswordVisible;
@@ -81,35 +83,35 @@ class CreateAccountViewModel extends BaseViewModel {
 
   String? validEmail(String? value) {
     if (!isEmailValid(value ?? "")) {
-      return AppString.emailError;
+      return AppLanguages.emailError;
     }
     return null;
   }
 
   String? validFirstName(String? value) {
     if (!isUserNameValid(value ?? "")) {
-      return AppString.firstNameError;
+      return AppLanguages.firstNameError;
     }
     return null;
   }
 
   String? validLastName(String? value) {
     if (!isUserNameValid(value ?? "")) {
-      return AppString.lastNameError;
+      return AppLanguages.lastNameError;
     }
     return null;
   }
 
   String? validPassword(String? value) {
     if (!isPasswordValid(value ?? "")) {
-      return AppString.passwordError;
+      return AppLanguages.passwordError;
     }
     return null;
   }
 
   String? validConfirmPassword(String? value) {
     if (value != _registerObj.password) {
-      return AppString.confirmPasswordError;
+      return AppLanguages.confirmPasswordError;
     }
     return null;
   }
@@ -134,33 +136,21 @@ class CreateAccountViewModel extends BaseViewModel {
   }
 
   Future onRegister() async {
-    AppServices appServices = Provider.of<AppServices>(context, listen: false);
-    await appServices
-        .registerUser(
-      _registerObj.firstName,
-      _registerObj.lastName,
-      _registerObj.gender,
-      _registerObj.email,
-      _registerObj.password,
-    )
-        .then(
-      (value) async {
-        print("Id: ${value.toString()}");
-        final AppShared appShared =
-            Provider.of<AppShared>(context, listen: false);
-        await appShared.setString(STORAGE_USER_NAME,
-            "${_registerObj.firstName}  ${_registerObj.lastName}");
-        await appShared.setString(STORAGE_EMAIL, _registerObj.email);
-        await appShared.setString(STORAGE_GENDER, _registerObj.gender);
-        Navigator.pushReplacementNamed(context, RouteName.applicationPage);
-        customToast(
-          message: AppString.createAccount,
-          backgroundColor: AppColors.green,
-        );
-      },
-    ).catchError((error) {
-      print("Error: ${error}");
-    });
+    final RegisterRequest registerRequest = RegisterRequest(
+      firstName: _registerObj.firstName,
+      lastName: _registerObj.lastName,
+      email: _registerObj.email,
+      gender: _registerObj.gender,
+      password: _registerObj.password,
+    );
+    final response = await _authRepository.registerUser(registerRequest);
+    if (response.code == ResourceType.REQUEST_SUCCESS) {
+      customToast(
+          message: AppLanguages.registerSuccess, backgroundColor: Colors.green);
+      // Navigator.pushNamedAndRemoveUntil(context, RouteName.applicationPage, predicate)
+    } else {
+      customToast(message: response.message, backgroundColor: Colors.red);
+    }
   }
 
   Stream<bool> get isAllInputsValidStream =>

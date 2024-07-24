@@ -2,11 +2,11 @@ import 'package:invest_app_flutter_test/core/remote/response/authentication_resp
 import 'package:invest_app_flutter_test/utils/app_const.dart';
 import 'package:retrofit/http.dart';
 import 'package:dio/dio.dart';
-part 'app_services.g.dart';
+part 'auth_services.g.dart';
 
-@RestApi(baseUrl: BASE_URL)
-abstract class AppServices {
-  factory AppServices(Dio dio, {String baseUrl}) = _AppServices;
+@RestApi(baseUrl: AppConstants.BASE_URL)
+abstract class AuthServices {
+  factory AuthServices(Dio dio, {String baseUrl}) = _AuthServices;
 
   @POST("/users/add")
   Future<AuthenticationResponse> registerUser(
@@ -21,8 +21,9 @@ abstract class AppServices {
   Future<AuthenticationResponse> login(
     @Field("username") String email,
     @Field("password") String password,
+    @Field("expiresInMins") int expiresInMins,
   );
 
-  @GET("/users/1")
-  Future<AuthenticationResponse> getUser();
+  @GET("/auth/me")
+  Future<AuthenticationResponse> getCurrentAuthUser();
 }

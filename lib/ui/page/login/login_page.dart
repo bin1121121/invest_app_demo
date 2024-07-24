@@ -8,7 +8,7 @@ import 'package:invest_app_flutter_test/ui/widgets/custom_text_button.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_style.dart';
 import 'package:invest_app_flutter_test/utils/app_assets.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
-import 'package:invest_app_flutter_test/utils/app_string.dart';
+import 'package:invest_app_flutter_test/utils/app_languages.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -16,6 +16,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseWidget<LoginViewModel>(
+      onViewModelReady: (viewModel) => viewModel.onInit(),
       viewModel: LoginViewModel(),
       builder: (context, viewModel, child) {
         return Scaffold(
@@ -31,17 +32,17 @@ class LoginPage extends StatelessWidget {
                   ),
                   SizedBox(height: 63.w),
                   TextFormField(
-                    controller: viewModel.emailController,
+                    controller: viewModel.userNameTextEditingController,
                     decoration: const InputDecoration(
-                      labelText: AppString.email,
+                      labelText: AppLanguages.userName,
                     ),
                   ),
                   SizedBox(height: 20.w),
                   TextFormField(
                     obscureText: viewModel.isPasswordVisible,
-                    controller: viewModel.passwordController,
+                    controller: viewModel.passwordTextEditingController,
                     decoration: InputDecoration(
-                      labelText: AppString.password,
+                      labelText: AppLanguages.password,
                       suffixIcon: IconButton(
                         onPressed: () {
                           viewModel.changePasswordVisibility();
@@ -58,14 +59,14 @@ class LoginPage extends StatelessWidget {
                   SizedBox(height: 90.w),
                   SizedBox(
                     height: 60.w,
-                    child: customButtom(
+                    child: customButton(
                       backgroundColor: AppColors.green,
                       onPressed: () {
-                        viewModel.onSignIn();
+                        viewModel.onLogin();
                       },
                       child: Center(
                         child: Text(
-                          AppString.login,
+                          AppLanguages.login,
                           style: customContentTextStyle(
                             color: AppColors.white,
                           ),
@@ -75,7 +76,7 @@ class LoginPage extends StatelessWidget {
                   ),
                   SizedBox(height: 30.w),
                   customTextButton(
-                    text: AppString.iDontHaveAnAccount,
+                    text: AppLanguages.iDontHaveAnAccount,
                     onPressed: () {
                       Navigator.of(context)
                           .pushNamed(RouteName.createAccountPage);

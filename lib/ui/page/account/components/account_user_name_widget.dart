@@ -16,15 +16,18 @@ class AccountUserNameWidget extends StatelessWidget {
     return StreamBuilder<String?>(
       stream: _viewModel.userStream,
       builder: (context, snapshot) {
-        return Text(
-          snapshot.data ?? "",
-          style: customContentTextStyle(
-            color: AppColors.black,
-            fontSize: 22,
-            fontWeight: FontWeight.w600,
-            fontFamily: AppFonts.SF_Compact_Display,
-          ),
-        );
+        if (snapshot.hasData) {
+          return Text(
+            snapshot.data ?? "",
+            style: customContentTextStyle(
+              color: AppColors.black,
+              fontSize: 22,
+              fontWeight: FontWeight.w600,
+              fontFamily: AppFonts.SF_Compact_Display,
+            ),
+          );
+        }
+        return CircularProgressIndicator();
       },
     );
   }

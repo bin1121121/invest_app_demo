@@ -8,7 +8,7 @@ import 'package:invest_app_flutter_test/ui/page/sign_up/sign_up_viewmodel.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_style.dart';
 import 'package:invest_app_flutter_test/utils/app_assets.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
-import 'package:invest_app_flutter_test/utils/app_string.dart';
+import 'package:invest_app_flutter_test/utils/app_languages.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});
@@ -34,7 +34,7 @@ class SignUpPage extends StatelessWidget {
                   right: 19.sp,
                 ),
                 child: Text(
-                  AppString.stayOnTop,
+                  AppLanguages.stayOnTop,
                   style: customHeaderTextStyle(color: AppColors.black),
                   textAlign: TextAlign.center,
                 ),
@@ -48,7 +48,7 @@ class SignUpPage extends StatelessWidget {
                   right: 19.sp,
                 ),
                 child: Text(
-                  AppString.weAreYourNewFinancial,
+                  AppLanguages.weAreYourNewFinancial,
                   style: customContentTextStyle(
                     color: AppColors.grey1,
                   ),
@@ -65,7 +65,7 @@ class SignUpPage extends StatelessWidget {
                   Navigator.of(context).pushNamed(RouteName.loginPage);
                 },
                 child: Text(
-                  AppString.login,
+                  AppLanguages.login,
                   style: customContentTextStyle(
                     color: AppColors.green,
                   ),

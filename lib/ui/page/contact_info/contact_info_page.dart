@@ -10,7 +10,7 @@ import 'package:invest_app_flutter_test/ui/page/create_account/components/icon_b
 import 'package:invest_app_flutter_test/ui/widgets/custom_button.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_style.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
-import 'package:invest_app_flutter_test/utils/app_string.dart';
+import 'package:invest_app_flutter_test/utils/app_languages.dart';
 
 class ContactInfoPage extends StatelessWidget {
   const ContactInfoPage({super.key});
@@ -37,7 +37,7 @@ class ContactInfoPage extends StatelessWidget {
                         Expanded(
                           child: Center(
                             child: Text(
-                              AppString.contactInfo,
+                              AppLanguages.contactInfo,
                               style:
                                   customContentTextStyle(color: Colors.black),
                             ),
@@ -54,14 +54,14 @@ class ContactInfoPage extends StatelessWidget {
                     SizedBox(height: 30.w),
                     InputTextFormFieldWidget(
                       textEditingController: viewModel.userNameTextController,
-                      labelText: AppString.name,
+                      labelText: AppLanguages.name,
                       validator: (value) => viewModel.validUserName(value),
                     ),
                     //birthdate
                     SizedBox(height: 30.w),
                     InputTextFormFieldWidget(
                       textEditingController: viewModel.birthDateTextController,
-                      labelText: AppString.birthDate,
+                      labelText: AppLanguages.birthDate,
                       readOnly: true,
                       onTap: () async {
                         DateTime? date = await selectedDate(context);
@@ -73,7 +73,7 @@ class ContactInfoPage extends StatelessWidget {
                     SizedBox(height: 30.w),
                     InputTextFormFieldWidget(
                       textEditingController: viewModel.genderTextController,
-                      labelText: AppString.gender,
+                      labelText: AppLanguages.gender,
                       readOnly: true,
                       onTap: () {
                         showGenderPicker(context, viewModel);
@@ -84,7 +84,7 @@ class ContactInfoPage extends StatelessWidget {
                     SizedBox(height: 30.w),
                     InputTextFormFieldWidget(
                       textEditingController: viewModel.emailTextController,
-                      labelText: AppString.email,
+                      labelText: AppLanguages.email,
                       validator: (value) => viewModel.validEmail(value),
                     ),
                     //phone
@@ -92,7 +92,7 @@ class ContactInfoPage extends StatelessWidget {
                     InputTextFormFieldWidget(
                       textEditingController:
                           viewModel.phoneNumberTextController,
-                      labelText: AppString.phoneNumber,
+                      labelText: AppLanguages.phoneNumber,
                       keyboardType: TextInputType.number,
                       validator: (value) => viewModel.validPhoneNumber(value),
                     ),
@@ -101,11 +101,11 @@ class ContactInfoPage extends StatelessWidget {
                       margin: EdgeInsets.only(bottom: 40.w),
                       height: 60.w,
                       width: double.infinity,
-                      child: customButtom(
+                      child: customButton(
                         backgroundColor: AppColors.green,
                         onPressed: () => viewModel.onSave(),
                         child: Text(
-                          AppString.save,
+                          AppLanguages.save,
                           style: customContentTextStyle(color: AppColors.white),
                         ),
                       ),

@@ -8,8 +8,8 @@ class InvestGuideList extends StatelessWidget {
   final HomeViewmodel _homeViewmodel;
   const InvestGuideList({
     super.key,
-    required HomeViewmodel homeViewmodel,
-  }) : _homeViewmodel = homeViewmodel;
+    required HomeViewmodel homeViewModel,
+  }) : _homeViewmodel = homeViewModel;
 
   @override
   Widget build(BuildContext context) {

@@ -15,6 +15,8 @@ AuthenticationResponse _$AuthenticationResponseFromJson(
       email: json['email'] as String?,
       gender: json['gender'] as String?,
       image: json['image'] as String?,
+      token: json['token'] as String?,
+      refreshToken: json['refreshToken'] as String?,
     );
 
 Map<String, dynamic> _$AuthenticationResponseToJson(
@@ -26,4 +28,6 @@ Map<String, dynamic> _$AuthenticationResponseToJson(
       'email': instance.email,
       'gender': instance.gender,
       'image': instance.image,
+      'token': instance.token,
+      'refreshToken': instance.refreshToken,
     };

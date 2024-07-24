@@ -4,7 +4,7 @@ import 'package:invest_app_flutter_test/ui/page/create_account/create_account_vi
 import 'package:invest_app_flutter_test/ui/widgets/custom_button.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_style.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
-import 'package:invest_app_flutter_test/utils/app_string.dart';
+import 'package:invest_app_flutter_test/utils/app_languages.dart';
 
 class ButtonCreate extends StatelessWidget {
   const ButtonCreate({
@@ -25,7 +25,7 @@ class ButtonCreate extends StatelessWidget {
         return SizedBox(
           height: 60.w,
           width: MediaQuery.of(context).size.width,
-          child: customButtom(
+          child: customButton(
             backgroundColor:
                 snapshot.data == true ? AppColors.green : AppColors.grey2,
             onPressed: snapshot.data == true
@@ -36,7 +36,7 @@ class ButtonCreate extends StatelessWidget {
                   }
                 : () {},
             child: Text(
-              AppString.createAccount,
+              AppLanguages.createAccount,
               style: customContentTextStyle(
                 color: AppColors.white,
               ),

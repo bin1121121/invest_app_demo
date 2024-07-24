@@ -12,18 +12,29 @@ class NotificationListViewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      itemCount: _viewModel.notifications.length,
-      separatorBuilder: (context, index) => const SizedBox(height: 20),
-      itemBuilder: (context, index) {
-        NotificationLocalData notification = _viewModel.notifications[index];
-        return NotificationCardWidget(
-          thumbnail: notification.thumbnail,
-          description: notification.description,
-          createdAt: notification.createdAt,
-          onDelete: () => _viewModel.deleteNotificationById(notification.id),
-        );
-      },
-    );
+    return StreamBuilder<bool>(
+        stream: _viewModel.loadingSubject.stream,
+        builder: (context, snapshot) {
+          if (snapshot.data == true) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          return ListView.separated(
+            itemCount: _viewModel.notifications.length,
+            separatorBuilder: (context, index) => const SizedBox(height: 20),
+            itemBuilder: (context, index) {
+              NotificationLocalData notification =
+                  _viewModel.notifications[index];
+              return NotificationCardWidget(
+                thumbnail: notification.thumbnail,
+                description: notification.description,
+                createdAt: notification.createdAt,
+                onDelete: () =>
+                    _viewModel.deleteNotificationById(notification.id),
+              );
+            },
+          );
+        });
   }
 }

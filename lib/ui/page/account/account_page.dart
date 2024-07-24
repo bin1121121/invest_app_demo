@@ -10,7 +10,7 @@ import 'package:invest_app_flutter_test/ui/widgets/custom_text_style.dart';
 import 'package:invest_app_flutter_test/utils/app_assets.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
 import 'package:invest_app_flutter_test/utils/app_fonts.dart';
-import 'package:invest_app_flutter_test/utils/app_string.dart';
+import 'package:invest_app_flutter_test/utils/app_languages.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});
@@ -33,7 +33,7 @@ class AccountPage extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      AppString.profile,
+                      AppLanguages.profile,
                       style: customHeaderTextStyle(color: AppColors.black),
                     ),
                   ),
@@ -47,7 +47,7 @@ class AccountPage extends StatelessWidget {
                   ),
                   SizedBox(height: 10.w),
                   Text(
-                    AppString.expert,
+                    AppLanguages.expert,
                     style: customContentTextStyle(
                       color: AppColors.black,
                       fontSize: 14,
@@ -58,34 +58,37 @@ class AccountPage extends StatelessWidget {
                   SizedBox(height: 20.w),
                   AccountCardWidget(
                     preIcon: AppAssets.ic_contact,
-                    title: AppString.contactInfo,
+                    title: AppLanguages.contactInfo,
                     onTap: () => Navigator.of(context)
                         .pushNamed(RouteName.contactInfoPage),
                   ),
                   SizedBox(height: 10.w),
                   AccountCardWidget(
                     preIcon: AppAssets.ic_funding,
-                    title: AppString.sourceOfFoundingInfo,
+                    title: AppLanguages.sourceOfFoundingInfo,
+                    onTap: () async {
+                      await viewModel.getCurrentAuthUser();
+                    },
                   ),
                   SizedBox(height: 10.w),
                   AccountCardWidget(
                     preIcon: AppAssets.ic_bank,
-                    title: AppString.bankAccountInfo,
+                    title: AppLanguages.bankAccountInfo,
                   ),
                   SizedBox(height: 10.w),
                   AccountCardWidget(
                     preIcon: AppAssets.ic_doc,
-                    title: AppString.documentInfo,
+                    title: AppLanguages.documentInfo,
                   ),
                   SizedBox(height: 10.w),
                   AccountCardWidget(
                     preIcon: AppAssets.ic_setting,
-                    title: AppString.settings,
+                    title: AppLanguages.settings,
                   ),
                   SizedBox(height: 10.w),
                   AccountCardWidget(
                     preIcon: AppAssets.ic_logout,
-                    title: AppString.logout,
+                    title: AppLanguages.logout,
                     color: AppColors.red,
                     onTap: () {
                       viewModel.logOut();

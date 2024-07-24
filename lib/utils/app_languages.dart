@@ -1,9 +1,10 @@
-class AppString {
+class AppLanguages {
   //login page
   static const String stayOnTop = "Stay on top of your finance with us.";
   static const String weAreYourNewFinancial =
       "We are your new financial Advisors to recommed the best investments for you.";
   static const String iDontHaveAnAccount = "I don't have an account";
+  static const String userName = "User Name";
   //toast message
   static const String loginSuccess = "Login Success";
   static const String createSuccess = "Create Success";
@@ -21,6 +22,7 @@ class AppString {
   static const String password = "Password";
   static const String confirmPassword = "Confirm Password";
   static const String alreadyHaveAnCount = "Already have an account?";
+  static const String registerSuccess = "Register Success";
 
   //application page
   static const String home = "Home";
@@ -69,4 +71,24 @@ class AppString {
   static const String phoneNumberError = "Invalid phone number";
   static const String birthDateError = "Invalid birth date";
   static const String genderError = "Invalid gender";
+
+  //API status codes
+  static const String SUCCESS = "Success";
+  static const String NULL_DATA = "Success with no content";
+  static const String BAD_REQUEST = "Bad request, try again later";
+  static const String FORBIDDEN = "Forbidden request, try again later";
+  static const String UNAUTHORIZED = "User is unauthorized, try again later";
+  static const String NOT_FOUND = "Url is not found, try again later";
+  static const String INTERNAL_SERVER_ERROR =
+      "Some thing went wrong, try again later";
+
+  //local status code
+  static const String DEFAULT = "Some thing went wrong, try again later";
+  static const String CONNECT_TIMEOUT = "Time out error, try again later";
+  static const String CANCEL = "Request was cancelled, try again later";
+  static const String RECEIVE_TIMEOUT = "Time out error, try again later";
+  static const String SEND_TIMEOUT = "Time out error, try again later";
+  static const String CACHE_ERROR = "Cache error, try again later";
+  static const String NO_INTERNET_CONNECTION =
+      "Please check your internet connection";
 }

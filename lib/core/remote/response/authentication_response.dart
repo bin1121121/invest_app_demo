@@ -10,6 +10,8 @@ class AuthenticationResponse {
   String? email;
   String? gender;
   String? image;
+  String? token;
+  String? refreshToken;
   AuthenticationResponse({
     this.id,
     this.firstName,
@@ -17,6 +19,8 @@ class AuthenticationResponse {
     this.email,
     this.gender,
     this.image,
+    this.token,
+    this.refreshToken,
   });
   factory AuthenticationResponse.fromJson(Map<String, dynamic> json) =>
       _$AuthenticationResponseFromJson(json);

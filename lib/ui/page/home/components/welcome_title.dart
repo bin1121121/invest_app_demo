@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invest_app_flutter_test/ui/page/home/home_viewmodel.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_style.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
-import 'package:invest_app_flutter_test/utils/app_string.dart';
+import 'package:invest_app_flutter_test/utils/app_languages.dart';
 
 class WelcomeTitle extends StatelessWidget {
   const WelcomeTitle({
@@ -18,14 +18,16 @@ class WelcomeTitle extends StatelessWidget {
     return StreamBuilder<String?>(
       stream: _homeViewmodel.userNameStream,
       builder: (context, snapshot) {
-        return Padding(
+        return Container(
+          width: double.infinity,
           padding: EdgeInsets.only(
             right: 30.w,
             left: 30.w,
           ),
           child: FittedBox(
+            fit: BoxFit.scaleDown,
             child: Text(
-              "${AppString.welcome} ${snapshot.data ?? ""}",
+              "${AppLanguages.welcome} ${snapshot.data ?? ""}",
               style: customHeaderTextStyle(color: AppColors.black),
               textAlign: TextAlign.start,
             ),

@@ -9,7 +9,7 @@ import 'package:invest_app_flutter_test/ui/page/home/components/welcome_title.da
 import 'package:invest_app_flutter_test/ui/page/home/home_viewmodel.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_style.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
-import 'package:invest_app_flutter_test/utils/app_string.dart';
+import 'package:invest_app_flutter_test/utils/app_languages.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -36,7 +36,7 @@ class HomePage extends StatelessWidget {
                 child: WelcomeTitle(homeViewmodel: viewModel),
               ),
               SliverPadding(padding: EdgeInsets.only(top: 34.w)),
-              SliverToBoxAdapter(
+              const SliverToBoxAdapter(
                 child: TotalAsset(),
               ),
               SliverPadding(padding: EdgeInsets.only(top: 20.w)),
@@ -47,14 +47,14 @@ class HomePage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        AppString.bestPlans,
+                        AppLanguages.bestPlans,
                         style: customHeaderTextStyle(
                             fontSize: 22.w, color: AppColors.black),
                       ),
                       RichText(
                         text: TextSpan(
                           children: [
-                            TextSpan(text: AppString.seeAll),
+                            const TextSpan(text: AppLanguages.seeAll),
                             WidgetSpan(
                               child: Icon(
                                 Icons.arrow_forward,
@@ -83,7 +83,7 @@ class HomePage extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(left: 30.w),
                   child: Text(
-                    AppString.InvestmentGuide,
+                    AppLanguages.InvestmentGuide,
                     style: customHeaderTextStyle(
                         fontSize: 22, color: AppColors.black),
                     textAlign: TextAlign.start,
@@ -93,7 +93,7 @@ class HomePage extends StatelessWidget {
               SliverPadding(padding: EdgeInsets.only(top: 10.w)),
               SliverToBoxAdapter(
                 child: InvestGuideList(
-                  homeViewmodel: viewModel,
+                  homeViewModel: viewModel,
                 ),
               )
             ],

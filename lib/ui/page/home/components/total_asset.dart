@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_button.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_style.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
-import 'package:invest_app_flutter_test/utils/app_string.dart';
+import 'package:invest_app_flutter_test/utils/app_languages.dart';
 
 class TotalAsset extends StatelessWidget {
   const TotalAsset({
@@ -41,7 +41,7 @@ class TotalAsset extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            AppString.yourTotalAsset,
+            AppLanguages.yourTotalAsset,
             style: customContentTextStyle(
               color: AppColors.white,
               fontSize: 16,
@@ -56,12 +56,12 @@ class TotalAsset extends StatelessWidget {
                 style: customContentTextStyle(
                     color: AppColors.white, fontSize: 32.w),
               ),
-              customButtom(
+              customButton(
                 backgroundColor: AppColors.white,
                 onPressed: () {},
                 radius: 15.w,
                 child: Text(
-                  AppString.investNow,
+                  AppLanguages.investNow,
                   style: customContentTextStyle(
                     color: AppColors.green1,
                     fontSize: 14,

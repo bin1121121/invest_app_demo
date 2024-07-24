@@ -7,7 +7,6 @@ import 'package:invest_app_flutter_test/utils/app_colors.dart';
 import 'package:invest_app_flutter_test/utils/app_const.dart';
 import 'package:invest_app_flutter_test/utils/app_shared.dart';
 import 'package:provider/provider.dart';
-import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
 class HomeViewmodel extends BaseViewModel {
   late final AppShared _appShared;
@@ -63,21 +62,18 @@ class HomeViewmodel extends BaseViewModel {
   ];
   late Stream<String?> _userNameStream;
 
-  void onInit() {
+  void _getUser() {
+    _appShared.getString(AppConstants.STORAGE_ACCESS_TOKEN).then((value) {});
+  }
+
+  void onInit() async {
     _appShared = Provider.of<AppShared>(context, listen: false);
-    _userNameStream = _appShared.rxSharedPreferences
-        .getStringStream(STORAGE_USER_NAME)
-        .asBroadcastStream();
+    _userNameStream = _appShared.watchName();
   }
 
   List<StockCard> get cardStockList => _cardStockList;
   List<InvestGuideCard> get investGuideCardList => _investGuideCardList;
   Stream<String?> get userNameStream => _userNameStream;
-
-  // void onLogout() {
-  //   // _appShared.remove(STORAGE_USER_NAME);
-  //   Navigator.of(context).pushReplacementNamed(RouteName.signUpPage);
-  // }
 }
 
 class StockCard {

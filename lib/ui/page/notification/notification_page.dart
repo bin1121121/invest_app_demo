@@ -6,7 +6,7 @@ import 'package:invest_app_flutter_test/ui/page/notification/components/notifica
 import 'package:invest_app_flutter_test/ui/page/notification/notification_viewmodel.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_style.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
-import 'package:invest_app_flutter_test/utils/app_string.dart';
+import 'package:invest_app_flutter_test/utils/app_languages.dart';
 
 class NotificationPage extends StatelessWidget {
   const NotificationPage({super.key});
@@ -15,7 +15,7 @@ class NotificationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseWidget<NotificationViewModel>(
       viewModel: NotificationViewModel(),
-      onViewModelReady: (viewModel) => viewModel.onInit(),
+      onViewModelReady: (viewModel) async => viewModel.onInit(),
       builder: (context, viewModel, child) {
         return Scaffold(
           body: Padding(
@@ -28,7 +28,7 @@ class NotificationPage extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    AppString.notification,
+                    AppLanguages.notification,
                     style: customHeaderTextStyle(
                       color: AppColors.black,
                     ),

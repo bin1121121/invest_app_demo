@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'app_services.dart';
+part of 'auth_services.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'app_services.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element
 
-class _AppServices implements AppServices {
-  _AppServices(
+class _AuthServices implements AuthServices {
+  _AuthServices(
     this._dio, {
     this.baseUrl,
   }) {
@@ -63,6 +63,7 @@ class _AppServices implements AppServices {
   Future<AuthenticationResponse> login(
     String email,
     String password,
+    int expiresInMins,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -70,6 +71,7 @@ class _AppServices implements AppServices {
     final _data = {
       'username': email,
       'password': password,
+      'expiresInMins': expiresInMins,
     };
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<AuthenticationResponse>(Options(
@@ -93,7 +95,7 @@ class _AppServices implements AppServices {
   }
 
   @override
-  Future<AuthenticationResponse> getUser() async {
+  Future<AuthenticationResponse> getCurrentAuthUser() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -106,7 +108,7 @@ class _AppServices implements AppServices {
     )
             .compose(
               _dio.options,
-              '/users/1',
+              '/auth/me',
               queryParameters: queryParameters,
               data: _data,
             )

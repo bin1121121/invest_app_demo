@@ -5,13 +5,13 @@ import 'package:invest_app_flutter_test/ui/page/account/account_page.dart';
 import 'package:invest_app_flutter_test/ui/page/home/home_page.dart';
 import 'package:invest_app_flutter_test/utils/app_assets.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
-import 'package:invest_app_flutter_test/utils/app_string.dart';
+import 'package:invest_app_flutter_test/utils/app_languages.dart';
 
 class ApplicationViewModel extends BaseViewModel {
   final List<BottomNavigationBarItem> _bottomNavigationBarItems = [
     BottomNavigationBarItem(
       icon: SvgPicture.asset(AppAssets.ic_home),
-      label: AppString.home,
+      label: AppLanguages.home,
       activeIcon: SvgPicture.asset(
         AppAssets.ic_home,
         colorFilter: ColorFilter.mode(AppColors.green, BlendMode.srcIn),
@@ -20,7 +20,7 @@ class ApplicationViewModel extends BaseViewModel {
     ),
     BottomNavigationBarItem(
       icon: SvgPicture.asset(AppAssets.ic_search_outline),
-      label: AppString.product,
+      label: AppLanguages.product,
       activeIcon: SvgPicture.asset(
         AppAssets.ic_search_outline,
         colorFilter: ColorFilter.mode(AppColors.green, BlendMode.srcIn),
@@ -28,7 +28,7 @@ class ApplicationViewModel extends BaseViewModel {
     ),
     BottomNavigationBarItem(
       icon: SvgPicture.asset(AppAssets.ic_transaction_outline),
-      label: AppString.transaction,
+      label: AppLanguages.transaction,
       activeIcon: SvgPicture.asset(
         AppAssets.ic_transaction_outline,
         colorFilter: ColorFilter.mode(AppColors.green, BlendMode.srcIn),
@@ -36,7 +36,7 @@ class ApplicationViewModel extends BaseViewModel {
     ),
     BottomNavigationBarItem(
       icon: SvgPicture.asset(AppAssets.ic_profile_outline),
-      label: AppString.account,
+      label: AppLanguages.account,
       activeIcon: SvgPicture.asset(
         AppAssets.ic_profile_outline,
         colorFilter: ColorFilter.mode(AppColors.green, BlendMode.srcIn),

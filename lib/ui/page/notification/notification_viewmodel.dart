@@ -8,12 +8,14 @@ class NotificationViewModel extends BaseViewModel {
   List<NotificationLocalData> _notifications = [];
   late final AppDatabase _appDatabase;
   Future onInit() async {
+    setLoading(true);
     _appDatabase = Provider.of<AppDatabase>(context, listen: false);
     await _appDatabase.notificationLocalDao.deleteAllNotifications();
     await _appDatabase.notificationLocalDao
         .insertAllNotifications(_generateNotification());
     _notifications =
         await _appDatabase.notificationLocalDao.getAllNotifications();
+    setLoading(false);
     notifyListeners();
   }
 

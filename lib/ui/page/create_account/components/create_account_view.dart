@@ -9,7 +9,7 @@ import 'package:invest_app_flutter_test/ui/page/create_account/create_account_vi
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_button.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_style.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
-import 'package:invest_app_flutter_test/utils/app_string.dart';
+import 'package:invest_app_flutter_test/utils/app_languages.dart';
 
 class CreateAccountView extends StatelessWidget {
   final CreateAccountViewModel _viewModel;
@@ -29,13 +29,13 @@ class CreateAccountView extends StatelessWidget {
             const IconButtonPrePage(),
             SizedBox(height: 20.w),
             Text(
-              AppString.createAccount,
+              AppLanguages.createAccount,
               style: customHeaderTextStyle(color: AppColors.black),
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 8.w),
             Text(
-              AppString.investAndDouble,
+              AppLanguages.investAndDouble,
               style: customContentTextStyle(color: AppColors.grey1),
             ),
             SizedBox(height: 87.w),
@@ -43,7 +43,7 @@ class CreateAccountView extends StatelessWidget {
             TextFormField(
               controller: _viewModel.firstNameController,
               decoration: const InputDecoration(
-                labelText: AppString.firstName,
+                labelText: AppLanguages.firstName,
               ),
               validator: (value) => _viewModel.validFirstName(value),
               onChanged: (value) => _viewModel.setFirstName(value),
@@ -52,7 +52,7 @@ class CreateAccountView extends StatelessWidget {
             TextFormField(
               controller: _viewModel.lastNameController,
               decoration: const InputDecoration(
-                labelText: AppString.lastName,
+                labelText: AppLanguages.lastName,
               ),
               validator: (value) => _viewModel.validLastName(value),
               onChanged: (value) => _viewModel.setLastName(value),
@@ -65,7 +65,7 @@ class CreateAccountView extends StatelessWidget {
             TextFormField(
               controller: _viewModel.emailController,
               decoration: const InputDecoration(
-                labelText: AppString.email,
+                labelText: AppLanguages.email,
               ),
               validator: (value) => _viewModel.validEmail(value),
               onChanged: (value) => _viewModel.setEmail(value),
@@ -75,7 +75,7 @@ class CreateAccountView extends StatelessWidget {
             InPutPasswordTextField(
               texEditingController: _viewModel.passwordController,
               isVisible: _viewModel.isPasswordVisible,
-              labelText: AppString.password,
+              labelText: AppLanguages.password,
               onChangeVisibility: () => _viewModel.changePasswordVisibility(),
               validator: (value) => _viewModel.validPassword(value),
               onChangeTextField: (value) => _viewModel.setPassword(value),
@@ -85,7 +85,7 @@ class CreateAccountView extends StatelessWidget {
             InPutPasswordTextField(
               texEditingController: _viewModel.confirmPasswordController,
               isVisible: _viewModel.isConfirmPasswordVisible,
-              labelText: AppString.confirmPassword,
+              labelText: AppLanguages.confirmPassword,
               onChangeVisibility: () =>
                   _viewModel.changeConfirmPasswordVisibility(),
               validator: (value) => _viewModel.validConfirmPassword(value),
@@ -101,7 +101,7 @@ class CreateAccountView extends StatelessWidget {
             SizedBox(height: 20.w),
             //text button
             customTextButton(
-              text: AppString.alreadyHaveAnCount,
+              text: AppLanguages.alreadyHaveAnCount,
               onPressed: () {
                 Navigator.of(context).pushNamed(RouteName.loginPage);
               },

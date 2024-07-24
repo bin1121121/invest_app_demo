@@ -13,8 +13,9 @@ class SplashViewModel extends BaseViewModel {
       () async {
         final appShared = Provider.of<AppShared>(context, listen: false);
         await appShared.getSharedPreference().then((_) async {
-          await appShared.getString(STORAGE_USER_NAME).then(
+          await appShared.getString(AppConstants.STORAGE_USER_NAME).then(
             (value) {
+              print(value);
               if (value != null && value.isNotEmpty) {
                 Navigator.pushReplacementNamed(
                     context, RouteName.applicationPage);

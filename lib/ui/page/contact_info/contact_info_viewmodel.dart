@@ -11,7 +11,7 @@ import 'package:invest_app_flutter_test/ui/widgets/custom_toast.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
 import 'package:invest_app_flutter_test/utils/app_const.dart';
 import 'package:invest_app_flutter_test/utils/app_shared.dart';
-import 'package:invest_app_flutter_test/utils/app_string.dart';
+import 'package:invest_app_flutter_test/utils/app_languages.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
@@ -34,14 +34,15 @@ class ContactInfoViewModel extends BaseViewModel {
     _avatarStream = _appShared.watchAvatar();
     // _image = File(await _appShared.getString(STORAGE_AVATAR) ?? "");
     _userNameTextController.text =
-        await _appShared.getString(STORAGE_USER_NAME) ?? "";
+        await _appShared.getString(AppConstants.STORAGE_USER_NAME) ?? "";
     _birthDateTextController.text =
-        await _appShared.getString(STORAGE_BIRTH_DATE) ?? "";
+        await _appShared.getString(AppConstants.STORAGE_BIRTH_DATE) ?? "";
     _genderTextController.text =
-        await _appShared.getString(STORAGE_GENDER) ?? "";
-    _emailTextController.text = await _appShared.getString(STORAGE_EMAIL) ?? "";
+        await _appShared.getString(AppConstants.STORAGE_GENDER) ?? "";
+    _emailTextController.text =
+        await _appShared.getString(AppConstants.STORAGE_EMAIL) ?? "";
     _phoneNumberTextController.text =
-        await _appShared.getString(STORAGE_PHONE_NUMBER) ?? "";
+        await _appShared.getString(AppConstants.STORAGE_PHONE_NUMBER) ?? "";
   }
 
   Future<bool> _requestPermission(ImageSource imageSource) async {
@@ -90,35 +91,35 @@ class ContactInfoViewModel extends BaseViewModel {
 
   String? validUserName(String? value) {
     if (!isUserNameValid(value ?? "")) {
-      return AppString.firstNameError;
+      return AppLanguages.firstNameError;
     }
     return null;
   }
 
   String? validEmail(String? value) {
     if (!isEmailValid(value ?? "")) {
-      return AppString.emailError;
+      return AppLanguages.emailError;
     }
     return null;
   }
 
   String? validPhoneNumber(String? value) {
     if (!isPhoneNumberValid(value ?? "")) {
-      return AppString.phoneNumberError;
+      return AppLanguages.phoneNumberError;
     }
     return null;
   }
 
   String? validBirthDate(String? value) {
     if (value == null || value.isEmpty) {
-      return AppString.birthDateError;
+      return AppLanguages.birthDateError;
     }
     return null;
   }
 
   String? validGender(String? value) {
     if (value == null || value.isEmpty) {
-      return AppString.genderError;
+      return AppLanguages.genderError;
     }
     return null;
   }
@@ -126,11 +127,12 @@ class ContactInfoViewModel extends BaseViewModel {
   Future onSave() async {
     UserProfile oldUserProfile = UserProfile(
       // avatar: await _appShared.getString(STORAGE_AVATAR),
-      name: await _appShared.getString(STORAGE_USER_NAME),
-      email: await _appShared.getString(STORAGE_EMAIL),
-      birthDate: await _appShared.getString(STORAGE_BIRTH_DATE),
-      gender: await _appShared.getString(STORAGE_GENDER),
-      phoneNumber: await _appShared.getString(STORAGE_PHONE_NUMBER),
+      name: await _appShared.getString(AppConstants.STORAGE_USER_NAME),
+      email: await _appShared.getString(AppConstants.STORAGE_EMAIL),
+      birthDate: await _appShared.getString(AppConstants.STORAGE_BIRTH_DATE),
+      gender: await _appShared.getString(AppConstants.STORAGE_GENDER),
+      phoneNumber:
+          await _appShared.getString(AppConstants.STORAGE_PHONE_NUMBER),
     );
     UserProfile newUserProfile = UserProfile(
       // avatar: _image.path,
@@ -143,12 +145,16 @@ class ContactInfoViewModel extends BaseViewModel {
     if (_formKey.currentState!.validate() &&
         (oldUserProfile != newUserProfile)) {
       // await _appShared.setString(STORAGE_AVATAR, _image.path);
-      await _appShared.setString(STORAGE_USER_NAME, newUserProfile.name);
-      await _appShared.setString(STORAGE_EMAIL, newUserProfile.email);
-      await _appShared.setString(STORAGE_BIRTH_DATE, newUserProfile.birthDate);
-      await _appShared.setString(STORAGE_GENDER, newUserProfile.gender);
       await _appShared.setString(
-          STORAGE_PHONE_NUMBER, newUserProfile.phoneNumber);
+          AppConstants.STORAGE_USER_NAME, newUserProfile.name);
+      await _appShared.setString(
+          AppConstants.STORAGE_EMAIL, newUserProfile.email);
+      await _appShared.setString(
+          AppConstants.STORAGE_BIRTH_DATE, newUserProfile.birthDate);
+      await _appShared.setString(
+          AppConstants.STORAGE_GENDER, newUserProfile.gender);
+      await _appShared.setString(
+          AppConstants.STORAGE_PHONE_NUMBER, newUserProfile.phoneNumber);
       customToast(message: "Update Success", backgroundColor: AppColors.green);
     } else {
       print("Something went wrong");

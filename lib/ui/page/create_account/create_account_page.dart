@@ -12,6 +12,7 @@ class CreateAccountPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseWidget<CreateAccountViewModel>(
       viewModel: CreateAccountViewModel(),
+      onViewModelReady: (viewModel) => viewModel.onInit(),
       builder: (context, viewModel, child) {
         return Scaffold(
           body: Padding(

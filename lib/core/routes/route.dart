@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:invest_app_flutter_test/ui/page/application/application_page.dart';
-import 'package:invest_app_flutter_test/ui/page/contact_info/contact_info_page.dart';
-import 'package:invest_app_flutter_test/ui/page/create_account/create_account_page.dart';
-import 'package:invest_app_flutter_test/ui/page/login/login_page.dart';
-import 'package:invest_app_flutter_test/ui/page/notification/notification_page.dart';
-import 'package:invest_app_flutter_test/ui/page/sign_up/sign_up_page.dart';
-import 'package:invest_app_flutter_test/ui/page/splash/splash_page.dart';
+import 'package:invest_app_flutter_test/ui/application/application_page.dart';
+import 'package:invest_app_flutter_test/ui/contact_info/contact_info_page.dart';
+import 'package:invest_app_flutter_test/ui/create_account/create_account_page.dart';
+import 'package:invest_app_flutter_test/ui/login/login_page.dart';
+import 'package:invest_app_flutter_test/ui/notification/notification_page.dart';
+import 'package:invest_app_flutter_test/ui/sign_up/sign_up_page.dart';
+import 'package:invest_app_flutter_test/ui/splash/splash_page.dart';
 import 'package:invest_app_flutter_test/core/routes/route_name.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {

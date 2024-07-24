@@ -63,6 +63,8 @@ class AppLanguages {
       "First name must be at least 2 characters long";
   static const String lastNameError =
       "Last name must be at least 2 characters long";
+  static const String userNameError =
+      "Last name must be at least 2 characters long";
   static const String emailError = "Invalid email";
   static const String passwordError =
       "Password must be at least 6 characters long and least one special character";

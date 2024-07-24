@@ -27,6 +27,7 @@ class AppTheme {
 
       //input decoration theme
       inputDecorationTheme: InputDecorationTheme(
+        errorMaxLines: 2,
         contentPadding: EdgeInsets.only(top: 20, bottom: 20, left: 25),
         hintStyle: customContentTextStyle(
             color: AppColors.grey2, fontWeight: FontWeight.w400),

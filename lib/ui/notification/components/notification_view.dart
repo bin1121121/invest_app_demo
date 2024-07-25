@@ -31,7 +31,7 @@ class NotificationView extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20.w),
-            const Expanded(
+            Expanded(
               child: NotificationListViewWidget(),
             ),
           ],

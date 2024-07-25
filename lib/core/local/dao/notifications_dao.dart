@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:drift/drift.dart';
 import 'package:invest_app_flutter_test/core/local/app_database.dart';
+import 'package:invest_app_flutter_test/core/local/table/notification_local.dart';
 
 part 'notifications_dao.g.dart';
 

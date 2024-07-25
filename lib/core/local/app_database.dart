@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:invest_app_flutter_test/core/local/dao/notifications_dao.dart';
+import 'package:invest_app_flutter_test/core/local/table/notification_local.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 import 'package:sqlite3/sqlite3.dart';
@@ -10,23 +11,16 @@ import 'package:sqlite3_flutter_libs/sqlite3_flutter_libs.dart';
 
 part 'app_database.g.dart';
 
-class NotificationLocal extends Table {
-  TextColumn get id => text()();
-  TextColumn get thumbnail => text()();
-  TextColumn get description => text()();
-  DateTimeColumn get createdAt => dateTime()();
-}
-
 @DriftDatabase(tables: [NotificationLocal], daos: [NotificationLocalDao])
 class AppDatabase extends _$AppDatabase {
-  AppDatabase() : super(_onpenConnection());
+  AppDatabase() : super(_openConnection());
 
   @override
   // TODO: implement schemaVersion
   int get schemaVersion => 1;
 }
 
-LazyDatabase _onpenConnection() {
+LazyDatabase _openConnection() {
   return LazyDatabase(() async {
     final dbFolder = await getApplicationDocumentsDirectory();
     final file = File(p.join(dbFolder.path, 'user.db'));

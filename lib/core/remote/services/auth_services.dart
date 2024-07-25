@@ -1,6 +1,7 @@
 import 'package:invest_app_flutter_test/core/remote/response/authentication_response.dart';
 import 'package:invest_app_flutter_test/utils/app_const.dart';
 import 'package:retrofit/http.dart';
+// ignore: depend_on_referenced_packages
 import 'package:dio/dio.dart';
 part 'auth_services.g.dart';
 

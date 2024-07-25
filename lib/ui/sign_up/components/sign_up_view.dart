@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invest_app_flutter_test/core/models/sign_up_viewmodel.dart';
+import 'package:invest_app_flutter_test/ui/sign_up/sign_up_viewmodel.dart';
 import 'package:invest_app_flutter_test/ui/sign_up/components/create_account_button.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_style.dart';
 import 'package:invest_app_flutter_test/ui/widgets/exnpanded_child_scroll_view.dart';
@@ -62,7 +62,7 @@ class SignUpView extends StatelessWidget {
             const CreateAccountButton(),
             SizedBox(height: 17.w),
             GestureDetector(
-              onTap: () => viewModel.onNavigateToLogin(),
+              onTap: viewModel.onNavigateToLogin,
               child: Text(
                 AppLanguages.login,
                 style: customContentTextStyle(

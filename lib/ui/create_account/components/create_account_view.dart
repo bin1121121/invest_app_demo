@@ -4,7 +4,7 @@ import 'package:invest_app_flutter_test/ui/create_account/components/button_crea
 import 'package:invest_app_flutter_test/ui/create_account/components/create_account_option_gender.dart';
 import 'package:invest_app_flutter_test/ui/create_account/components/icon_button_pre_page.dart';
 import 'package:invest_app_flutter_test/ui/create_account/components/input_password_text_field.dart';
-import 'package:invest_app_flutter_test/core/models/create_account_viewmodel.dart';
+import 'package:invest_app_flutter_test/ui/create_account/create_account_viewmodel.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_button.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_field.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_style.dart';

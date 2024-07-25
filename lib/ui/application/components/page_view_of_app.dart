@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:invest_app_flutter_test/core/models/application_viewmodel.dart';
+import 'package:invest_app_flutter_test/ui/application/application_viewmodel.dart';
 import 'package:provider/provider.dart';
 
 class PageViewOfApp extends StatelessWidget {

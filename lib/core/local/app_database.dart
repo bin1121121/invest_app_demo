@@ -33,8 +33,8 @@ LazyDatabase _onpenConnection() {
     if (Platform.isAndroid) {
       await applyWorkaroundToOpenSqlite3OnOldAndroidVersions();
     }
-    final cachebase = (await getTemporaryDirectory()).path;
-    sqlite3.tempDirectory = cachebase;
+    final cacheBase = (await getTemporaryDirectory()).path;
+    sqlite3.tempDirectory = cacheBase;
     return NativeDatabase.createInBackground(file);
   });
 }

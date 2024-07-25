@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invest_app_flutter_test/core/models/account_viewmodel.dart';
+import 'package:invest_app_flutter_test/ui/account/account_viewmodel.dart';
 import 'package:invest_app_flutter_test/ui/account/components/account_avatar_widget.dart';
 import 'package:invest_app_flutter_test/ui/account/components/account_card_widget.dart';
 import 'package:invest_app_flutter_test/ui/account/components/account_user_name_widget.dart';
@@ -82,9 +82,7 @@ class AccountView extends StatelessWidget {
               preIcon: AppAssets.ic_logout,
               title: AppLanguages.logout,
               color: AppColors.red,
-              onTap: () {
-                viewModel.onLogOut();
-              },
+              onTap: viewModel.onLogOut,
             ),
           ],
         ),

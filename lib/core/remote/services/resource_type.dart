@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 class ResourceType {
   static const int REQUEST_DISCONNECT = -1;
   static const int REQUEST_NULL_DATA = 0;

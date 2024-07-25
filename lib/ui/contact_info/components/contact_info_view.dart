@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invest_app_flutter_test/core/helper/phone_input_formatter.dart';
+import 'package:invest_app_flutter_test/core/helper/input_formatter.dart';
 import 'package:invest_app_flutter_test/ui/contact_info/components/contract_info_avatar_widget.dart';
 import 'package:invest_app_flutter_test/ui/contact_info/components/selected_date.dart';
 import 'package:invest_app_flutter_test/ui/contact_info/components/show_gender_picker.dart';
-import 'package:invest_app_flutter_test/core/models/contact_info_viewmodel.dart';
+import 'package:invest_app_flutter_test/ui/contact_info/contact_info_viewmodel.dart';
 import 'package:invest_app_flutter_test/ui/create_account/components/icon_button_pre_page.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_button.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_field.dart';
@@ -24,26 +24,24 @@ class ContactInfoView extends StatelessWidget {
     final viewModel = context.read<ContactInfoViewModel>();
     return Scaffold(
       backgroundColor: AppColors.background,
+      appBar: AppBar(
+        backgroundColor: AppColors.background,
+        leading: Padding(
+          padding: EdgeInsets.only(left: 30.w),
+          child: IconButtonPrePage(),
+        ),
+        title: Text(
+          AppLanguages.contactInfo,
+          style: customContentTextStyle(color: Colors.black),
+        ),
+        centerTitle: true,
+      ),
       body: ExpandedChildScrollView(
         padding: EdgeInsets.fromLTRB(30.w, 0.w, 30.w, 20.w),
         child: Form(
           key: viewModel.formKey,
           child: Column(
             children: [
-              SizedBox(height: 50.w),
-              Row(
-                children: [
-                  const IconButtonPrePage(),
-                  Expanded(
-                    child: Center(
-                      child: Text(
-                        AppLanguages.contactInfo,
-                        style: customContentTextStyle(color: Colors.black),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
               SizedBox(height: 50.w),
               //avatar
               const ContactInfoAvatarWidget(),
@@ -91,9 +89,7 @@ class ContactInfoView extends StatelessWidget {
                 hintText: AppLanguages.phoneNumber,
                 keyboardType: TextInputType.number,
                 validator: (value) => viewModel.validPhoneNumber(value),
-                inputFormatters: [
-                  ...inputFormatters,
-                ],
+                inputFormatters: inputFormattersForNumberPhone,
               ),
               SizedBox(height: 60.w),
               SizedBox(

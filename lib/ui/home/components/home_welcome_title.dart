@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invest_app_flutter_test/core/models/home_viewmodel.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_style.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
 import 'package:invest_app_flutter_test/utils/app_languages.dart';
-import 'package:provider/provider.dart';
+import 'package:invest_app_flutter_test/utils/app_shared.dart';
 
 class HomeWelcomeTitle extends StatelessWidget {
   const HomeWelcomeTitle({
@@ -13,9 +12,10 @@ class HomeWelcomeTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.read<HomeViewModel>();
     return StreamBuilder<String?>(
-      stream: viewModel.userNameStream,
+      stream: AppShared()
+          .watchUserProfile()
+          .map((userProfile) => userProfile?.name ?? ""),
       builder: (context, snapshot) {
         return Container(
           width: double.infinity,

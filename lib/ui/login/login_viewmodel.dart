@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:invest_app_flutter_test/core/helper/validation.dart';
-import 'package:invest_app_flutter_test/core/remote/request/auth_request.dart';
+import 'package:invest_app_flutter_test/core/remote/request/login_request.dart';
 import 'package:invest_app_flutter_test/core/remote/services/resource_type.dart';
 import 'package:invest_app_flutter_test/core/repository/auth_repository.dart';
 import 'package:invest_app_flutter_test/core/helper/route_name.dart';
@@ -9,11 +9,13 @@ import 'package:invest_app_flutter_test/ui/widgets/custom_show_loading.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_toast.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
 import 'package:invest_app_flutter_test/utils/app_languages.dart';
-import 'package:provider/provider.dart';
 import 'package:rxdart/rxdart.dart';
 
 class LoginViewModel extends BaseViewModel {
-  late final AuthRepository _authRepository;
+  LoginViewModel({
+    required this.authRepository,
+  });
+  final AuthRepository authRepository;
   final TextEditingController _userNameTextEditingController =
       TextEditingController();
   final TextEditingController _passwordTextEditingController =
@@ -22,20 +24,19 @@ class LoginViewModel extends BaseViewModel {
   final BehaviorSubject<bool> _isAllValidInput =
       BehaviorSubject<bool>.seeded(false);
 
-  LoginObj _loginObj = LoginObj(userName: "", password: "");
+  LoginRequest _loginObj = LoginRequest(
+    userName: "",
+    password: "",
+  );
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  void onInit() {
-    _authRepository = Provider.of<AuthRepository>(context, listen: false);
-  }
 
   Future onLogin() async {
     customShowLoading(context);
     final LoginRequest loginRequest = LoginRequest(
-      email: _userNameTextEditingController.text,
+      userName: _userNameTextEditingController.text,
       password: _passwordTextEditingController.text,
     );
-    final response = await _authRepository.login(loginRequest);
+    final response = await authRepository.login(loginRequest);
     if (response.code == ResourceType.REQUEST_SUCCESS) {
       customToast(
           message: AppLanguages.loginSuccess, backgroundColor: AppColors.green);
@@ -94,6 +95,14 @@ class LoginViewModel extends BaseViewModel {
     notifyListeners();
   }
 
+  @override
+  void dispose() {
+    _userNameTextEditingController.dispose();
+    _passwordTextEditingController.dispose();
+    _isAllValidInput.close();
+    super.dispose();
+  }
+
   TextEditingController get userNameTextEditingController =>
       _userNameTextEditingController;
   TextEditingController get passwordTextEditingController =>
@@ -101,24 +110,4 @@ class LoginViewModel extends BaseViewModel {
   bool get isPasswordVisible => _isPasswordVisible;
   Stream<bool> get isAllValidInput => _isAllValidInput.stream;
   GlobalKey<FormState> get formKey => _formKey;
-}
-
-class LoginObj {
-  final String userName;
-  final String password;
-
-  LoginObj({
-    required this.userName,
-    required this.password,
-  });
-
-  LoginObj copyWith({
-    String? userName,
-    String? password,
-  }) {
-    return LoginObj(
-      userName: userName ?? this.userName,
-      password: password ?? this.password,
-    );
-  }
 }

@@ -1,4 +1,6 @@
-import 'package:invest_app_flutter_test/core/remote/request/auth_request.dart';
+import 'package:invest_app_flutter_test/core/models/user_profile.dart';
+import 'package:invest_app_flutter_test/core/remote/request/login_request.dart';
+import 'package:invest_app_flutter_test/core/remote/request/register_request.dart';
 import 'package:invest_app_flutter_test/core/remote/response/authentication_response.dart';
 import 'package:invest_app_flutter_test/core/remote/services/auth_services.dart';
 import 'package:invest_app_flutter_test/core/remote/services/network_bound_resource.dart';
@@ -16,20 +18,20 @@ class AuthRepository {
     return await NetworkBoundResource<AuthenticationResponse,
         AuthenticationResponse>(
       createSerializedCall: () => _authServices.login(
-        loginRequest.email,
+        loginRequest.userName,
         loginRequest.password,
         1,
       ),
-      saveCallResult: (result) async {
-        await AppShared().setUserName(
-          "${result.firstName} ${result.lastName}",
+      saveCallResult: (authResponse) async {
+        UserProfile userProfile = UserProfile(
+          name: "${authResponse.firstName} ${authResponse.lastName}",
+          email: authResponse.email,
+          avatar: authResponse.image,
+          gender: authResponse.gender,
         );
-        await AppShared().setAccessToken(result.token ?? "");
-        await AppShared().setAvatar(result.image ?? "");
-        await AppShared().setGender(result.gender ?? "");
-        await AppShared().setEmail(result.email ?? "");
-        await AppShared().setAccessToken(result.token ?? "");
-        await AppShared().setRefreshToken(result.refreshToken ?? "");
+        await AppShared().setUserProfile(userProfile);
+        await AppShared().setAccessToken(authResponse.token ?? "");
+        await AppShared().setRefreshToken(authResponse.refreshToken ?? "");
       },
     ).getAsFuture();
   }

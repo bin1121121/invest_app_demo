@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invest_app_flutter_test/core/models/sign_up_viewmodel.dart';
+import 'package:invest_app_flutter_test/ui/sign_up/sign_up_viewmodel.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_button.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_style.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
@@ -21,7 +21,7 @@ class CreateAccountButton extends StatelessWidget {
       ),
       child: customButton(
         backgroundColor: AppColors.green,
-        onPressed: () => viewModel.onNavigateToCreateAccount(),
+        onPressed: viewModel.onNavigateToCreateAccount,
         child: Center(
           child: Text(
             AppLanguages.createAccount,

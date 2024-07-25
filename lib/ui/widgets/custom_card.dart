@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_style.dart';
@@ -10,7 +9,7 @@ class CustomCard extends StatelessWidget {
   final String tile;
   final String content;
   final String imgUrl;
-  CustomCard({
+  const CustomCard({
     Key? key,
     required this.color1,
     required this.color2,

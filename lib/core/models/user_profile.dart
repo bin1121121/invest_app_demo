@@ -1,15 +1,15 @@
 import 'package:equatable/equatable.dart';
 
-enum Gender { Male, Female }
+enum Gender { male, female }
 
 class UserProfile extends Equatable {
-  String _avatar;
-  String _name;
-  String _email;
-  String _birthDate;
-  String _gender;
-  String _phoneNumber;
-  UserProfile({
+  final String _avatar;
+  final String _name;
+  final String _email;
+  final String _birthDate;
+  final String _gender;
+  final String _phoneNumber;
+  const UserProfile({
     String? avatar,
     String? name,
     String? email,
@@ -22,25 +22,52 @@ class UserProfile extends Equatable {
         _birthDate = birthDate ?? "",
         _phoneNumber = phoneNumber ?? "",
         _gender = gender ?? "";
-  String get name => this._name;
 
-  set name(String value) => this._name = value;
+  UserProfile copyWith({
+    String? avatar,
+    String? name,
+    String? email,
+    String? gender,
+    String? birthDate,
+    String? phoneNumber,
+  }) {
+    return UserProfile(
+      avatar: avatar ?? _avatar,
+      name: name ?? _name,
+      email: email ?? _email,
+      birthDate: birthDate ?? _birthDate,
+      phoneNumber: phoneNumber ?? _phoneNumber,
+    );
+  }
 
-  get email => this._email;
+  String get name => _name;
+  String get email => _email;
+  String get birthDate => _birthDate;
+  String get gender => _gender;
+  String get phoneNumber => _phoneNumber;
+  String get avatar => _avatar;
 
-  set email(value) => this._email = value;
+  factory UserProfile.fromJson(Map<String, dynamic> json) {
+    return UserProfile(
+      avatar: json['avatar'],
+      name: json['name'],
+      email: json['email'],
+      birthDate: json['birthDate'],
+      phoneNumber: json['phoneNumber'],
+      gender: json['gender'],
+    );
+  }
 
-  get birthDate => this._birthDate;
-
-  set birthDate(value) => this._birthDate = value;
-
-  get gender => this._gender;
-
-  set gender(value) => this._gender = value;
-
-  get phoneNumber => this._phoneNumber;
-
-  set phoneNumber(value) => this._phoneNumber = value;
+  Map<String, dynamic> toJson() {
+    return {
+      'avatar': _avatar,
+      'name': _name,
+      'email': _email,
+      'birthDate': _birthDate,
+      'phoneNumber': _phoneNumber,
+      'gender': gender,
+    };
+  }
 
   @override
   List<Object?> get props => [

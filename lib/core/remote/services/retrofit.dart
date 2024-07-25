@@ -1,24 +1,16 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:invest_app_flutter_test/core/remote/services/resource_type.dart';
 import 'package:invest_app_flutter_test/utils/app_const.dart';
 import 'package:invest_app_flutter_test/utils/app_shared.dart';
-// import 'package:vi_safe_user/src/type/resource_type.dart';
-// import 'package:vi_safe_user/src/utils/app_api_config.dart';
-// import 'package:vi_safe_user/src/utils/app_cache_store.dart';
-// import 'package:vi_safe_user/src/utils/app_constants.dart';
-// import 'package:vi_safe_user/src/utils/app_globals.dart';
-// import 'package:vi_safe_user/src/utils/app_remote_configs.dart';
-// import 'package:vi_safe_user/src/utils/app_shared.dart';
 
 class Retrofit extends DioForNative {
   static const String KEY_AUTH = "Authorization";
   static const String KEY_ACCEPT = "Accept";
   static const String KEY_CONTENT_TYPE = "Content-Type";
-  // static const String KEY_X_PLATFORM = "x-platform";
-  // static const String KEY_X_PACKAGE = "X-Package";
-  // static const String KEY_CITY = "city";
 
   Retrofit({
     String? baseUrl,
@@ -43,11 +35,7 @@ class Retrofit extends DioForNative {
 
       interceptors.add(DioCacheInterceptor(options: cacheOptions));
     }
-
-    // this.options.baseUrl = baseUrl ?? AppApiConfig.baseDomainAPI;
   }
-
-  // CancelToken cancelToken = CancelToken();
 
   void _requestInterceptor(
     RequestOptions options,
@@ -56,7 +44,6 @@ class Retrofit extends DioForNative {
     if (options.headers.containsKey(KEY_AUTH)) {
       options.headers.remove(KEY_AUTH);
     }
-    // options.cancelToken = cancelToken;
     options.headers[KEY_ACCEPT] = "application/json";
     options.headers[KEY_CONTENT_TYPE] = "application/json";
     String? accessToken = await AppShared().getAccessToken();
@@ -64,7 +51,6 @@ class Retrofit extends DioForNative {
       handler.next(options);
       return;
     }
-    print("Method: ${options.method}, Path: ${options.path}");
     options.headers[KEY_AUTH] = "Bearer $accessToken";
     options.connectTimeout = const Duration(minutes: 1);
     options.receiveTimeout = const Duration(minutes: 1);
@@ -73,14 +59,8 @@ class Retrofit extends DioForNative {
 
   void _errorInterceptor(
       DioException error, ErrorInterceptorHandler handler) async {
-    print(
-        "Method: ${error.response?.statusCode}, Path: ${error.requestOptions.path}");
     if (error.response?.statusCode == ResourceType.REQUEST_ERROR_TOKEN) {
-      // try {} catch (e) {
-      //   print(e);
-      // }
       String? refreshToken = await AppShared().getRefreshToken();
-      print(refreshToken);
       String? newToken = await _refreshTokenFunction(refreshToken!);
       if (newToken != null) {
         error.requestOptions.headers["Authorization"] = "Bearer $newToken";
@@ -96,10 +76,8 @@ class Retrofit extends DioForNative {
       "expiresInMins": 1,
     });
     if (response.statusCode == 201 || response.statusCode == 200) {
-      AppShared()
-          .setString(AppConstants.STORAGE_ACCESS_TOKEN, response.data['token']);
-      AppShared().setString(
-          AppConstants.STORAGE_REFRESH_TOKEN, response.data['refreshToken']);
+      AppShared().setAccessToken(response.data['token']);
+      AppShared().setRefreshToken(response.data['refreshToken']);
       return response.data['token'];
     } else {
       return null;

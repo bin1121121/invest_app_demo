@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invest_app_flutter_test/ui/login/components/login_button.dart';
 import 'package:invest_app_flutter_test/ui/login/components/login_textfield_password.dart';
 import 'package:invest_app_flutter_test/ui/login/components/login_textfield_username.dart';
-import 'package:invest_app_flutter_test/core/models/login_viewmodel.dart';
+import 'package:invest_app_flutter_test/ui/login/login_viewmodel.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_button.dart';
 import 'package:invest_app_flutter_test/utils/app_assets.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:invest_app_flutter_test/core/models/application_viewmodel.dart';
+import 'package:invest_app_flutter_test/ui/application/application_viewmodel.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
 import 'package:provider/provider.dart';
 
@@ -17,19 +17,6 @@ class BottomNavBar extends StatelessWidget {
       selectedItemColor: AppColors.green,
       onTap: (value) => viewModel.onNavBarTap(value),
       currentIndex: viewModel.currentPage,
-
-      // selectedLabelStyle: customContentTextStyle(
-      //   color: AppColors.green,
-      //   fontSize: 12,
-      //   fontWeight: FontWeight.w500,
-      //   fontFamily: AppFonts.Catamaran,
-      // ),
-      // unselectedLabelStyle: customContentTextStyle(
-      //   color: AppColors.grey1,
-      //   fontSize: 12,
-      //   fontWeight: FontWeight.w500,
-      //   fontFamily: AppFonts.Catamaran,
-      // ),
     );
   }
 }

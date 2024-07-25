@@ -1,16 +1,10 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:invest_app_flutter_test/core/helper/route_name.dart';
 import 'package:invest_app_flutter_test/ui/base/base_viewmodel.dart';
 import 'package:invest_app_flutter_test/utils/app_assets.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
-import 'package:invest_app_flutter_test/utils/app_const.dart';
-import 'package:invest_app_flutter_test/utils/app_shared.dart';
-import 'package:provider/provider.dart';
 
 class HomeViewModel extends BaseViewModel {
-  late final AppShared _appShared;
   final List<StockCard> _cardStockList = [
     StockCard(
       color1: AppColors.yellow1,
@@ -61,16 +55,6 @@ class HomeViewModel extends BaseViewModel {
       image: AppAssets.img_eclipse_2,
     ),
   ];
-  late Stream<String?> _userNameStream;
-
-  void _getUser() {
-    _appShared.getString(AppConstants.STORAGE_ACCESS_TOKEN).then((value) {});
-  }
-
-  void onInit() async {
-    _appShared = Provider.of<AppShared>(context, listen: false);
-    _userNameStream = _appShared.watchName();
-  }
 
   void onNavigateToNotificationPage() {
     Navigator.of(context).pushNamed(RouteName.notificationPage);
@@ -78,7 +62,6 @@ class HomeViewModel extends BaseViewModel {
 
   List<StockCard> get cardStockList => _cardStockList;
   List<InvestGuideCard> get investGuideCardList => _investGuideCardList;
-  Stream<String?> get userNameStream => _userNameStream;
 }
 
 class StockCard {

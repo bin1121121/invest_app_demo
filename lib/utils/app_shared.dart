@@ -1,60 +1,30 @@
 import 'dart:async';
+import 'dart:convert';
 
+import 'package:invest_app_flutter_test/core/models/user_profile.dart';
 import 'package:invest_app_flutter_test/utils/app_const.dart';
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
 class AppShared {
-  // static final AppShared _instance = AppShared._internal();
-  // AppShared._internal();
-  // factory AppShared() => _instance;
+  static final RxSharedPreferences _rxPreferences =
+      RxSharedPreferences(SharedPreferences.getInstance());
 
-  static late SharedPreferences _preferences;
-  static late RxSharedPreferences _rxPreferences;
-
-  Future<AppShared> getSharedPreference() async {
-    _preferences = await SharedPreferences.getInstance();
-    _rxPreferences = await RxSharedPreferences(_preferences);
-    return this;
+  Future setUserProfile(UserProfile userProfile) async {
+    final json = jsonEncode(userProfile.toJson());
+    await _rxPreferences.setString(AppConstants.STORAGE_USER_PROFILE, json);
   }
 
-  Future<void> setString(String key, String value) async {
-    await _rxPreferences.setString(key, value);
+  Future<UserProfile?> getUserProfile() async {
+    String? json =
+        await _rxPreferences.getString(AppConstants.STORAGE_USER_PROFILE);
+    return UserProfile.fromJson(jsonDecode(json ?? ""));
   }
 
-  Future<String?> getString(String key) async {
-    return await _rxPreferences.getString(key);
-  }
-
-  Future<void> remove(String key) async {
-    await _rxPreferences.remove(key);
-  }
-
-  Stream<String?> watchAvatar() {
+  Stream<UserProfile?> watchUserProfile() {
     return _rxPreferences
-        .getStringStream(AppConstants.STORAGE_AVATAR)
+        .getStringStream(AppConstants.STORAGE_USER_PROFILE)
+        .map((json) => UserProfile.fromJson(jsonDecode(json ?? "")))
         .asBroadcastStream();
-  }
-
-  Stream<String?> watchName() {
-    return _rxPreferences
-        .getStringStream(AppConstants.STORAGE_USER_NAME)
-        .asBroadcastStream();
-  }
-
-  Future setUserName(String value) async {
-    await _rxPreferences.setString(AppConstants.STORAGE_USER_NAME, value);
-  }
-
-  Future setEmail(String value) async {
-    await _rxPreferences.setString(AppConstants.STORAGE_EMAIL, value);
-  }
-
-  Future setAvatar(String value) async {
-    await _rxPreferences.setString(AppConstants.STORAGE_AVATAR, value);
-  }
-
-  Future setGender(String value) async {
-    await _rxPreferences.setString(AppConstants.STORAGE_GENDER, value);
   }
 
   Future setAccessToken(String value) async {
@@ -71,6 +41,21 @@ class AppShared {
 
   Future<String?> getRefreshToken() async {
     return await _rxPreferences.getString(AppConstants.STORAGE_REFRESH_TOKEN);
+  }
+
+  Future<void> _removeKey(String key) async {
+    await _rxPreferences.remove(key);
+  }
+
+  Future<void> logOut() async {
+    await _removeKey(AppConstants.STORAGE_USER_PROFILE);
+    await _removeKey(AppConstants.STORAGE_ACCESS_TOKEN);
+    await _removeKey(AppConstants.STORAGE_REFRESH_TOKEN);
+    await _removeKey(AppConstants.STORAGE_EXPIRED_TIME);
+  }
+
+  Future<void> clear() async {
+    await _rxPreferences.clear();
   }
 
   RxSharedPreferences get rxSharedPreferences => _rxPreferences;

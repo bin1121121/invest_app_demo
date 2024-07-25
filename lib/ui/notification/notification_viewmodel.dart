@@ -1,20 +1,19 @@
 import 'package:invest_app_flutter_test/core/local/app_database.dart';
 import 'package:invest_app_flutter_test/ui/base/base_viewmodel.dart';
 import 'package:invest_app_flutter_test/utils/app_assets.dart';
-import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
 class NotificationViewModel extends BaseViewModel {
+  NotificationViewModel({required this.appDatabase});
   List<NotificationLocalData> _notifications = [];
-  late final AppDatabase _appDatabase;
+  final AppDatabase appDatabase;
   Future onInit() async {
     setLoading(true);
-    _appDatabase = Provider.of<AppDatabase>(context, listen: false);
-    await _appDatabase.notificationLocalDao.deleteAllNotifications();
-    await _appDatabase.notificationLocalDao
+    await appDatabase.notificationLocalDao.deleteAllNotifications();
+    await appDatabase.notificationLocalDao
         .insertAllNotifications(_generateNotification());
     _notifications =
-        await _appDatabase.notificationLocalDao.getAllNotifications();
+        await appDatabase.notificationLocalDao.getAllNotifications();
     setLoading(false);
     notifyListeners();
   }
@@ -32,8 +31,7 @@ class NotificationViewModel extends BaseViewModel {
       NotificationLocalData(
         id: uuid.v4(),
         thumbnail: AppAssets.img_notification_2,
-        description:
-            "Check out today\’s best inves-tor. You\’ll learn from him",
+        description: "Check out today’s best inves-tor. You’ll learn from him",
         createdAt: DateTime.now(),
       ),
       NotificationLocalData(
@@ -51,8 +49,7 @@ class NotificationViewModel extends BaseViewModel {
       NotificationLocalData(
         id: uuid.v4(),
         thumbnail: AppAssets.img_notification_2,
-        description:
-            "Check out today\’s best inves-tor. You\’ll learn from him",
+        description: "Check out today’s best inves-tor. You’ll learn from him",
         createdAt: DateTime.now(),
       ),
       NotificationLocalData(
@@ -70,8 +67,7 @@ class NotificationViewModel extends BaseViewModel {
       NotificationLocalData(
         id: uuid.v4(),
         thumbnail: AppAssets.img_notification_2,
-        description:
-            "Check out today\’s best inves-tor. You\’ll learn from him",
+        description: "Check out today’s best inves-tor. You’ll learn from him",
         createdAt: DateTime.now(),
       ),
       NotificationLocalData(
@@ -85,7 +81,7 @@ class NotificationViewModel extends BaseViewModel {
   }
 
   void deleteNotificationById(String id) {
-    _appDatabase.notificationLocalDao.deleteNotificationById(id);
+    appDatabase.notificationLocalDao.deleteNotificationById(id);
     _notifications.removeWhere((element) => element.id == id);
     notifyListeners();
   }

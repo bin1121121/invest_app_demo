@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invest_app_flutter_test/core/models/home_viewmodel.dart';
+import 'package:invest_app_flutter_test/ui/home/home_viewmodel.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_card.dart';
 import 'package:provider/provider.dart';
 
@@ -10,9 +10,8 @@ class HomeStockCarouselList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.read<HomeViewModel>();
-    return Container(
+    return SizedBox(
       height: 160.w,
-      // width: MediaQuery.of(context).size.width,
       child: ListView.separated(
         padding: EdgeInsets.symmetric(horizontal: 30.w),
         shrinkWrap: true,

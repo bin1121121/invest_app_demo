@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:invest_app_flutter_test/core/models/account_viewmodel.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_style.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
 import 'package:invest_app_flutter_test/utils/app_fonts.dart';
-import 'package:provider/provider.dart';
+import 'package:invest_app_flutter_test/utils/app_shared.dart';
 
 class AccountUserNameWidget extends StatelessWidget {
   const AccountUserNameWidget({
@@ -12,9 +11,10 @@ class AccountUserNameWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.read<AccountViewModel>();
     return StreamBuilder<String?>(
-      stream: viewModel.userStream,
+      stream: AppShared()
+          .watchUserProfile()
+          .map((userProfile) => userProfile?.name),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return Text(

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invest_app_flutter_test/core/models/account_viewmodel.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
-import 'package:provider/provider.dart';
+import 'package:invest_app_flutter_test/utils/app_shared.dart';
 
 class AccountAvatarWidget extends StatelessWidget {
   const AccountAvatarWidget({
@@ -12,9 +11,10 @@ class AccountAvatarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.read<AccountViewModel>();
     return StreamBuilder<String?>(
-      stream: viewModel.avatarStream,
+      stream: AppShared()
+          .watchUserProfile()
+          .map((userProfile) => userProfile?.avatar),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return CachedNetworkImage(

@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:invest_app_flutter_test/ui/contact_info/components/show_image_picker.dart';
-import 'package:invest_app_flutter_test/core/models/contact_info_viewmodel.dart';
+import 'package:invest_app_flutter_test/ui/contact_info/contact_info_viewmodel.dart';
 import 'package:invest_app_flutter_test/utils/app_assets.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
+import 'package:invest_app_flutter_test/utils/app_shared.dart';
 import 'package:provider/provider.dart';
 
 class ContactInfoAvatarWidget extends StatelessWidget {
@@ -34,7 +35,8 @@ class ContactInfoAvatarWidget extends StatelessWidget {
             ),
           if (viewModel.image.path.isEmpty)
             StreamBuilder<String?>(
-                stream: viewModel.avatarStream,
+                stream:
+                    AppShared().watchUserProfile().map((e) => e?.avatar ?? ""),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     return CachedNetworkImage(

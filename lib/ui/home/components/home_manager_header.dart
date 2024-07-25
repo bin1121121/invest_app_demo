@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:invest_app_flutter_test/core/models/home_viewmodel.dart';
+import 'package:invest_app_flutter_test/ui/home/home_viewmodel.dart';
 import 'package:invest_app_flutter_test/utils/app_assets.dart';
 import 'package:provider/provider.dart';
 
@@ -27,7 +27,7 @@ class HomeManagerHeader extends StatelessWidget {
             child: SvgPicture.asset(AppAssets.ic_menu),
           ),
           GestureDetector(
-            onTap: () => viewModel.onNavigateToNotificationPage(),
+            onTap: viewModel.onNavigateToNotificationPage,
             child: SvgPicture.asset(AppAssets.ic_notifications),
           ),
         ],

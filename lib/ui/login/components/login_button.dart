@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invest_app_flutter_test/core/models/login_viewmodel.dart';
+import 'package:invest_app_flutter_test/ui/login/login_viewmodel.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_button.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_style.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';

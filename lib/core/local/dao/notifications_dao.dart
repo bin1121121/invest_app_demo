@@ -8,6 +8,7 @@ part 'notifications_dao.g.dart';
 @DriftAccessor(tables: [NotificationLocal])
 class NotificationLocalDao extends DatabaseAccessor<AppDatabase>
     with _$NotificationLocalDaoMixin {
+  // ignore: use_super_parameters
   NotificationLocalDao(AppDatabase db) : super(db);
 
   Future<void> insertAllNotifications(

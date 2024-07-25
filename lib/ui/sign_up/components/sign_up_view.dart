@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invest_app_flutter_test/core/routes/route_name.dart';
+import 'package:invest_app_flutter_test/core/models/sign_up_viewmodel.dart';
 import 'package:invest_app_flutter_test/ui/sign_up/components/create_account_button.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_style.dart';
 import 'package:invest_app_flutter_test/ui/widgets/exnpanded_child_scroll_view.dart';
 import 'package:invest_app_flutter_test/utils/app_assets.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
 import 'package:invest_app_flutter_test/utils/app_languages.dart';
+import 'package:provider/provider.dart';
 
 class SignUpView extends StatelessWidget {
   const SignUpView({
@@ -15,6 +16,7 @@ class SignUpView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.read<SignUpViewModel>();
     return Scaffold(
       body: ExpandedChildScrollView(
         padding: EdgeInsets.only(bottom: 20.w),
@@ -60,9 +62,7 @@ class SignUpView extends StatelessWidget {
             const CreateAccountButton(),
             SizedBox(height: 17.w),
             GestureDetector(
-              onTap: () {
-                Navigator.of(context).pushNamed(RouteName.loginPage);
-              },
+              onTap: () => viewModel.onNavigateToLogin(),
               child: Text(
                 AppLanguages.login,
                 style: customContentTextStyle(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:invest_app_flutter_test/core/models/user_profile.dart';
-import 'package:invest_app_flutter_test/ui/contact_info/contact_info_viewmodel.dart';
+import 'package:invest_app_flutter_test/core/models/contact_info_viewmodel.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_style.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
 

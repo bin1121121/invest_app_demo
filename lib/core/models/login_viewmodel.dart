@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:invest_app_flutter_test/core/helper/validation.dart';
 import 'package:invest_app_flutter_test/core/remote/request/auth_request.dart';
 import 'package:invest_app_flutter_test/core/remote/services/resource_type.dart';
 import 'package:invest_app_flutter_test/core/repository/auth_repository.dart';
-import 'package:invest_app_flutter_test/core/routes/route_name.dart';
+import 'package:invest_app_flutter_test/core/helper/route_name.dart';
 import 'package:invest_app_flutter_test/ui/base/base_viewmodel.dart';
-import 'package:invest_app_flutter_test/ui/utils/valid_input.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_show_loading.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_toast.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
@@ -21,6 +21,7 @@ class LoginViewModel extends BaseViewModel {
   bool _isPasswordVisible = true;
   final BehaviorSubject<bool> _isAllValidInput =
       BehaviorSubject<bool>.seeded(false);
+
   LoginObj _loginObj = LoginObj(userName: "", password: "");
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -65,17 +66,27 @@ class LoginViewModel extends BaseViewModel {
   }
 
   String? validUserName(String? value) {
-    if (!isUserNameValid(value ?? "")) {
+    if (!ValidationHelper().isUserNameValid(value ?? "")) {
       return AppLanguages.userNameError;
     }
     return null;
   }
 
   String? validPassword(String? value) {
-    if (!isPasswordValid(value ?? "")) {
+    if (!ValidationHelper().isPasswordValid(value ?? "")) {
       return AppLanguages.passwordError;
     }
     return null;
+  }
+
+  void onValidForm() {
+    if (_formKey.currentState!.validate()) {
+      onLogin();
+    }
+  }
+
+  void onNavigateToCreateAccount() {
+    Navigator.of(context).pushNamed(RouteName.createAccountPage);
   }
 
   void changePasswordVisibility() {

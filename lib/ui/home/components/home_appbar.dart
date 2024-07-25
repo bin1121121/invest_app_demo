@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:invest_app_flutter_test/ui/home/components/manager_header.dart';
+import 'package:invest_app_flutter_test/ui/home/components/home_manager_header.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
 
 class HomeAppBar extends StatelessWidget {
@@ -13,7 +13,7 @@ class HomeAppBar extends StatelessWidget {
       backgroundColor: AppColors.background,
       pinned: true,
       floating: true,
-      flexibleSpace: const ManagerHeader(),
+      flexibleSpace: const HomeManagerHeader(),
       automaticallyImplyLeading: false,
     );
   }

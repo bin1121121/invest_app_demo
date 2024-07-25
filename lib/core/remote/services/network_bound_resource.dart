@@ -45,6 +45,7 @@ class NetworkBoundResource<RequestType, ResultType> {
     }
     // call request from network
     createSerializedCall.call().then((RequestType resource) async {
+      print("resource: ${resource.toString()}");
       ResultType? result;
 
       if (resource is ResultType) {

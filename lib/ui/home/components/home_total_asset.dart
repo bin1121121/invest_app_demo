@@ -5,8 +5,8 @@ import 'package:invest_app_flutter_test/ui/widgets/custom_text_style.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
 import 'package:invest_app_flutter_test/utils/app_languages.dart';
 
-class TotalAsset extends StatelessWidget {
-  const TotalAsset({
+class HomeTotalAsset extends StatelessWidget {
+  const HomeTotalAsset({
     super.key,
   });
 

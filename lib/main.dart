@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invest_app_flutter_test/core/manager/provider_setup.dart';
-import 'package:invest_app_flutter_test/core/routes/route.dart';
-import 'package:invest_app_flutter_test/core/routes/route_name.dart';
+import 'package:invest_app_flutter_test/core/helper/provider_setup.dart';
+import 'package:invest_app_flutter_test/core/helper/route.dart';
+import 'package:invest_app_flutter_test/core/helper/route_name.dart';
 import 'package:invest_app_flutter_test/utils/app_theme.dart';
 import 'package:provider/provider.dart';
 

@@ -24,10 +24,12 @@ class Retrofit extends DioForNative {
     String? baseUrl,
     BaseOptions? options,
   }) : super(options) {
-    interceptors.add(InterceptorsWrapper(
-      onRequest: _requestInterceptor,
-      onError: _errorInterceptor,
-    ));
+    interceptors.add(
+      InterceptorsWrapper(
+        onRequest: _requestInterceptor,
+        onError: _errorInterceptor,
+      ),
+    );
 
     if (baseUrl == AppConstants.BASE_URL) {
       final CacheOptions cacheOptions = CacheOptions(

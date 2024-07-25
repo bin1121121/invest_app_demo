@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invest_app_flutter_test/core/routes/route_name.dart';
-import 'package:invest_app_flutter_test/ui/account/account_viewmodel.dart';
+import 'package:invest_app_flutter_test/core/models/account_viewmodel.dart';
 import 'package:invest_app_flutter_test/ui/account/components/account_avatar_widget.dart';
 import 'package:invest_app_flutter_test/ui/account/components/account_card_widget.dart';
 import 'package:invest_app_flutter_test/ui/account/components/account_user_name_widget.dart';
@@ -10,16 +9,16 @@ import 'package:invest_app_flutter_test/utils/app_assets.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
 import 'package:invest_app_flutter_test/utils/app_fonts.dart';
 import 'package:invest_app_flutter_test/utils/app_languages.dart';
+import 'package:provider/provider.dart';
 
 class AccountView extends StatelessWidget {
-  final AccountViewModel _viewModel;
   const AccountView({
-    required AccountViewModel viewModel,
     super.key,
-  }) : _viewModel = viewModel;
+  });
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.read<AccountViewModel>();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.background,
@@ -36,13 +35,9 @@ class AccountView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(height: 30.w),
-            AccountAvatarWidget(
-              viewModel: _viewModel,
-            ),
+            const AccountAvatarWidget(),
             SizedBox(height: 20.w),
-            AccountUserNameWidget(
-              viewModel: _viewModel,
-            ),
+            const AccountUserNameWidget(),
             SizedBox(height: 10.w),
             Text(
               AppLanguages.expert,
@@ -57,8 +52,7 @@ class AccountView extends StatelessWidget {
             AccountCardWidget(
               preIcon: AppAssets.ic_contact,
               title: AppLanguages.contactInfo,
-              onTap: () =>
-                  Navigator.of(context).pushNamed(RouteName.contactInfoPage),
+              onTap: () => viewModel.onNavigateToContactInfoPage(),
             ),
             SizedBox(height: 10.w),
             AccountCardWidget(
@@ -89,7 +83,7 @@ class AccountView extends StatelessWidget {
               title: AppLanguages.logout,
               color: AppColors.red,
               onTap: () {
-                _viewModel.logOut();
+                viewModel.onLogOut();
               },
             ),
           ],

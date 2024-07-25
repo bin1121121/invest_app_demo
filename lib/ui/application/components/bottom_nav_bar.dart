@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:invest_app_flutter_test/ui/application/application_viewmodel.dart';
+import 'package:invest_app_flutter_test/core/models/application_viewmodel.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
+import 'package:provider/provider.dart';
 
 class BottomNavBar extends StatelessWidget {
-  final ApplicationViewModel _viewModel;
   const BottomNavBar({
     super.key,
-    required ApplicationViewModel viewModel,
-  }) : _viewModel = viewModel;
+  });
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.read<ApplicationViewModel>();
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
-      items: _viewModel.bottomNavigationBarItems,
+      items: viewModel.bottomNavigationBarItems,
       selectedItemColor: AppColors.green,
-      onTap: (value) => _viewModel.onNavBarTap(value),
-      currentIndex: _viewModel.currentPage,
+      onTap: (value) => viewModel.onNavBarTap(value),
+      currentIndex: viewModel.currentPage,
 
       // selectedLabelStyle: customContentTextStyle(
       //   color: AppColors.green,

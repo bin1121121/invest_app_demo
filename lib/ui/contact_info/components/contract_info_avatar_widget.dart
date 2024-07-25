@@ -3,38 +3,38 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:invest_app_flutter_test/ui/contact_info/components/show_image_picker.dart';
-import 'package:invest_app_flutter_test/ui/contact_info/contact_info_viewmodel.dart';
+import 'package:invest_app_flutter_test/core/models/contact_info_viewmodel.dart';
 import 'package:invest_app_flutter_test/utils/app_assets.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
+import 'package:provider/provider.dart';
 
 class ContactInfoAvatarWidget extends StatelessWidget {
-  final ContactInfoViewModel _viewModel;
   const ContactInfoAvatarWidget({
-    required ContactInfoViewModel viewModel,
     super.key,
-  }) : _viewModel = viewModel;
+  });
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.read<ContactInfoViewModel>();
     return GestureDetector(
-      onTap: () => showImagePicker(context, _viewModel),
+      onTap: () => showImagePicker(context, viewModel),
       child: Stack(
         children: [
-          if (_viewModel.image.path.isNotEmpty)
+          if (viewModel.image.path.isNotEmpty)
             Container(
               height: 150.w,
               width: 150.w,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
-                  image: FileImage(_viewModel.image),
+                  image: FileImage(viewModel.image),
                   fit: BoxFit.cover,
                 ),
               ),
             ),
-          if (_viewModel.image.path.isEmpty)
+          if (viewModel.image.path.isEmpty)
             StreamBuilder<String?>(
-                stream: _viewModel.avatarStream,
+                stream: viewModel.avatarStream,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     return CachedNetworkImage(

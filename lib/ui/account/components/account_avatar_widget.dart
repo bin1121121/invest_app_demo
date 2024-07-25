@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invest_app_flutter_test/ui/account/account_viewmodel.dart';
+import 'package:invest_app_flutter_test/core/models/account_viewmodel.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
+import 'package:provider/provider.dart';
 
 class AccountAvatarWidget extends StatelessWidget {
-  final AccountViewModel _viewModel;
   const AccountAvatarWidget({
     super.key,
-    required AccountViewModel viewModel,
-  }) : _viewModel = viewModel;
+  });
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.read<AccountViewModel>();
     return StreamBuilder<String?>(
-      stream: _viewModel.avatarStream,
+      stream: viewModel.avatarStream,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return CachedNetworkImage(

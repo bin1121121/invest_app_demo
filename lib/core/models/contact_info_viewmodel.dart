@@ -4,9 +4,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:invest_app_flutter_test/core/helper/validation.dart';
 import 'package:invest_app_flutter_test/core/models/user_profile.dart';
 import 'package:invest_app_flutter_test/ui/base/base_viewmodel.dart';
-import 'package:invest_app_flutter_test/ui/utils/valid_input.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_toast.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
 import 'package:invest_app_flutter_test/utils/app_const.dart';
@@ -90,21 +90,21 @@ class ContactInfoViewModel extends BaseViewModel {
   }
 
   String? validUserName(String? value) {
-    if (!isUserNameValid(value ?? "")) {
+    if (!ValidationHelper().isUserNameValid(value ?? "")) {
       return AppLanguages.firstNameError;
     }
     return null;
   }
 
   String? validEmail(String? value) {
-    if (!isEmailValid(value ?? "")) {
+    if (!ValidationHelper().isEmailValid(value ?? "")) {
       return AppLanguages.emailError;
     }
     return null;
   }
 
   String? validPhoneNumber(String? value) {
-    if (!isPhoneNumberValid(value ?? "")) {
+    if (!ValidationHelper().isPhoneNumberValid(value ?? "")) {
       return AppLanguages.phoneNumberError;
     }
     return null;

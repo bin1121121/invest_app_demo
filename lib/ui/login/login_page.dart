@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:invest_app_flutter_test/ui/base/base_widget.dart';
 import 'package:invest_app_flutter_test/ui/login/components/login_view.dart';
-import 'package:invest_app_flutter_test/ui/login/login_viewmodel.dart';
+import 'package:invest_app_flutter_test/core/models/login_viewmodel.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -12,9 +12,7 @@ class LoginPage extends StatelessWidget {
       onViewModelReady: (viewModel) => viewModel.onInit(),
       viewModel: LoginViewModel(),
       builder: (context, viewModel, child) {
-        return LoginView(
-          viewModel: viewModel,
-        );
+        return LoginView();
       },
     );
   }

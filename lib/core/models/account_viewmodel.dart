@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:invest_app_flutter_test/core/repository/auth_repository.dart';
+import 'package:invest_app_flutter_test/core/helper/route_name.dart';
 import 'package:invest_app_flutter_test/ui/base/base_viewmodel.dart';
 import 'package:invest_app_flutter_test/ui/utils/app_function.dart';
 import 'package:invest_app_flutter_test/utils/app_shared.dart';
@@ -15,8 +17,12 @@ class AccountViewModel extends BaseViewModel {
     _avatarStream = AppShared().watchAvatar();
   }
 
-  void logOut() {
+  void onLogOut() {
     AppFunction().logOut(context);
+  }
+
+  void onNavigateToContactInfoPage() {
+    Navigator.of(context).pushNamed(RouteName.contactInfoPage);
   }
 
   Future getCurrentAuthUser() async {

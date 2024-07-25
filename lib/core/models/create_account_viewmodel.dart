@@ -3,15 +3,16 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:invest_app_flutter_test/core/helper/validation.dart';
 import 'package:invest_app_flutter_test/core/models/user_profile.dart';
 import 'package:invest_app_flutter_test/core/remote/request/auth_request.dart';
 import 'package:invest_app_flutter_test/core/remote/services/resource_type.dart';
 import 'package:invest_app_flutter_test/core/repository/auth_repository.dart';
+import 'package:invest_app_flutter_test/core/helper/route_name.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_toast.dart';
 import 'package:provider/provider.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:invest_app_flutter_test/ui/base/base_viewmodel.dart';
-import 'package:invest_app_flutter_test/ui/utils/valid_input.dart';
 import 'package:invest_app_flutter_test/utils/app_languages.dart';
 
 class CreateAccountViewModel extends BaseViewModel {
@@ -82,28 +83,28 @@ class CreateAccountViewModel extends BaseViewModel {
   }
 
   String? validEmail(String? value) {
-    if (!isEmailValid(value ?? "")) {
+    if (!ValidationHelper().isEmailValid(value ?? "")) {
       return AppLanguages.emailError;
     }
     return null;
   }
 
   String? validFirstName(String? value) {
-    if (!isUserNameValid(value ?? "")) {
+    if (!ValidationHelper().isUserNameValid(value ?? "")) {
       return AppLanguages.firstNameError;
     }
     return null;
   }
 
   String? validLastName(String? value) {
-    if (!isUserNameValid(value ?? "")) {
+    if (!ValidationHelper().isUserNameValid(value ?? "")) {
       return AppLanguages.lastNameError;
     }
     return null;
   }
 
   String? validPassword(String? value) {
-    if (!isPasswordValid(value ?? "")) {
+    if (!ValidationHelper().isPasswordValid(value ?? "")) {
       return AppLanguages.passwordError;
     }
     return null;
@@ -133,6 +134,16 @@ class CreateAccountViewModel extends BaseViewModel {
     _genderValue = value;
     _registerObj = _registerObj.copyWith(gender: value.name);
     notifyListeners();
+  }
+
+  void onValidForm() {
+    if (_formKey.currentState!.validate()) {
+      onRegister();
+    }
+  }
+
+  void onNavigateToLogin() {
+    Navigator.of(context).pushNamed(RouteName.loginPage);
   }
 
   Future onRegister() async {

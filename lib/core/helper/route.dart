@@ -6,7 +6,7 @@ import 'package:invest_app_flutter_test/ui/login/login_page.dart';
 import 'package:invest_app_flutter_test/ui/notification/notification_page.dart';
 import 'package:invest_app_flutter_test/ui/sign_up/sign_up_page.dart';
 import 'package:invest_app_flutter_test/ui/splash/splash_page.dart';
-import 'package:invest_app_flutter_test/core/routes/route_name.dart';
+import 'package:invest_app_flutter_test/core/helper/route_name.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {

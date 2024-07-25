@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invest_app_flutter_test/ui/home/home_viewmodel.dart';
+import 'package:invest_app_flutter_test/core/models/home_viewmodel.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_style.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
+import 'package:provider/provider.dart';
 
-class InvestGuideList extends StatelessWidget {
-  final HomeViewModel _homeViewmodel;
-  const InvestGuideList({
+class HomeInvestGuideList extends StatelessWidget {
+  const HomeInvestGuideList({
     super.key,
-    required HomeViewModel homeViewModel,
-  }) : _homeViewmodel = homeViewModel;
+  });
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.read<HomeViewModel>();
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 30.w),
       child: ListView.separated(
         shrinkWrap: true,
         primary: false,
-        itemCount: _homeViewmodel.investGuideCardList.length,
-        separatorBuilder: (context, index) => Divider(),
+        itemCount: viewModel.investGuideCardList.length,
+        separatorBuilder: (context, index) => const Divider(),
         itemBuilder: (context, index) {
           InvestGuideCard investGuideCard =
-              _homeViewmodel.investGuideCardList[index];
+              viewModel.investGuideCardList[index];
           return Row(
             children: [
               Expanded(

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:invest_app_flutter_test/core/helper/routers.dart';
 import 'package:invest_app_flutter_test/core/helper/validation.dart';
 import 'package:invest_app_flutter_test/core/remote/request/login_request.dart';
 import 'package:invest_app_flutter_test/core/remote/services/resource_type.dart';
 import 'package:invest_app_flutter_test/core/repository/auth_repository.dart';
-import 'package:invest_app_flutter_test/core/helper/route_name.dart';
 import 'package:invest_app_flutter_test/ui/base/base_viewmodel.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_show_loading.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_toast.dart';
@@ -41,7 +41,7 @@ class LoginViewModel extends BaseViewModel {
       customToast(
           message: AppLanguages.loginSuccess, backgroundColor: AppColors.green);
       Navigator.pushNamedAndRemoveUntil(
-          context, RouteName.applicationPage, (route) => false);
+          context, Routers.application, (route) => false);
     } else {
       Navigator.pop(context);
       customToast(message: response.message, backgroundColor: AppColors.red);
@@ -87,7 +87,7 @@ class LoginViewModel extends BaseViewModel {
   }
 
   void onNavigateToCreateAccount() {
-    Navigator.of(context).pushNamed(RouteName.createAccountPage);
+    Navigator.of(context).pushNamed(Routers.createAccount);
   }
 
   void changePasswordVisibility() {

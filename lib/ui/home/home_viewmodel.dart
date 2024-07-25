@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:invest_app_flutter_test/core/helper/route_name.dart';
+import 'package:invest_app_flutter_test/core/helper/routers.dart';
 import 'package:invest_app_flutter_test/ui/base/base_viewmodel.dart';
 import 'package:invest_app_flutter_test/utils/app_assets.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
@@ -57,7 +57,7 @@ class HomeViewModel extends BaseViewModel {
   ];
 
   void onNavigateToNotificationPage() {
-    Navigator.of(context).pushNamed(RouteName.notificationPage);
+    Navigator.of(context).pushNamed(Routers.notification);
   }
 
   List<StockCard> get cardStockList => _cardStockList;

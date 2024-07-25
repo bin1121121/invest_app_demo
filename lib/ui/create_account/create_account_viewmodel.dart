@@ -2,12 +2,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:invest_app_flutter_test/core/helper/routers.dart';
 import 'package:invest_app_flutter_test/core/helper/validation.dart';
 import 'package:invest_app_flutter_test/core/models/user_profile.dart';
 import 'package:invest_app_flutter_test/core/remote/request/register_request.dart';
 import 'package:invest_app_flutter_test/core/remote/services/resource_type.dart';
 import 'package:invest_app_flutter_test/core/repository/auth_repository.dart';
-import 'package:invest_app_flutter_test/core/helper/route_name.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_toast.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:invest_app_flutter_test/ui/base/base_viewmodel.dart';
@@ -154,7 +154,7 @@ class CreateAccountViewModel extends BaseViewModel {
   }
 
   void onNavigateToLogin() {
-    Navigator.of(context).pushNamed(RouteName.loginPage);
+    Navigator.of(context).pushNamed(Routers.login);
   }
 
   @override

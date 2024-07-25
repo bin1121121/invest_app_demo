@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:invest_app_flutter_test/core/helper/route_func.dart';
 import 'package:invest_app_flutter_test/ui/application/application_page.dart';
 import 'package:invest_app_flutter_test/ui/contact_info/contact_info_page.dart';
 import 'package:invest_app_flutter_test/ui/create_account/create_account_page.dart';
@@ -11,36 +12,22 @@ import 'package:invest_app_flutter_test/core/helper/route_name.dart';
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case RouteName.splashPage:
-      return MaterialPageRoute(
-        builder: (_) => const SplashPage(),
-      );
+      return animRoute(SplashPage());
     case RouteName.signUpPage:
-      return MaterialPageRoute(
-        builder: (_) => const SignUpPage(),
-      );
+      return animRoute(SignUpPage());
     case RouteName.createAccountPage:
-      return MaterialPageRoute(
-        builder: (_) => const CreateAccountPage(),
-      );
+      return animRoute(CreateAccountPage());
     case RouteName.applicationPage:
-      return MaterialPageRoute(
-        builder: (_) => const ApplicationPage(),
-      );
+      return animRoute(ApplicationPage());
     case RouteName.loginPage:
-      return MaterialPageRoute(
-        builder: (_) => const LoginPage(),
-      );
+      return animRoute(LoginPage());
     case RouteName.contactInfoPage:
-      return MaterialPageRoute(
-        builder: (_) => const ContactInfoPage(),
-      );
+      return animRoute(ContactInfoPage());
     case RouteName.notificationPage:
-      return MaterialPageRoute(
-        builder: (_) => const NotificationPage(),
-      );
+      return animRoute(NotificationPage());
     default:
-      return MaterialPageRoute(
-        builder: (_) => Scaffold(
+      return animRoute(
+        Scaffold(
           body: Center(
             child: Text('No route defined for ${settings.name}'),
           ),

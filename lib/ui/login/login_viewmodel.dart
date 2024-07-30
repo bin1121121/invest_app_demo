@@ -73,17 +73,11 @@ class LoginViewModel extends BaseViewModel {
   }
 
   String? validUserName(String? value) {
-    if (!ValidationHelper().isUserNameValid(value ?? "")) {
-      return AppLanguages.userNameError;
-    }
-    return null;
+    return ValidationHelper().isUserNameValidMessage(value ?? "");
   }
 
   String? validPassword(String? value) {
-    if (!ValidationHelper().isPasswordValid(value ?? "")) {
-      return AppLanguages.passwordError;
-    }
-    return null;
+    return ValidationHelper().isPasswordValidMessage(value ?? "");
   }
 
   void onValidForm() {

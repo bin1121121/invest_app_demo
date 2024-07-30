@@ -80,24 +80,15 @@ class ContactInfoViewModel extends BaseViewModel {
   }
 
   String? validUserName(String? value) {
-    if (!ValidationHelper().isUserNameValid(value ?? "")) {
-      return AppLanguages.firstNameError;
-    }
-    return null;
+    return ValidationHelper().isUserNameValidMessage(value ?? "");
   }
 
   String? validEmail(String? value) {
-    if (!ValidationHelper().isEmailValid(value ?? "")) {
-      return AppLanguages.emailError;
-    }
-    return null;
+    return ValidationHelper().isEmailValidMessage(value ?? "");
   }
 
   String? validPhoneNumber(String? value) {
-    if (!ValidationHelper().isPhoneNumberValid(value ?? "")) {
-      return AppLanguages.phoneNumberError;
-    }
-    return null;
+    return ValidationHelper().isPhoneNumberValid(value ?? "");
   }
 
   String? validBirthDate(String? value) {
@@ -125,11 +116,14 @@ class ContactInfoViewModel extends BaseViewModel {
       birthDate: _birthDateTextController.text,
       gender: _genderTextController.text,
       phoneNumber: _phoneNumberTextController.text,
+      avatar: oldUserProfile.avatar,
     );
     if (_formKey.currentState!.validate() &&
         (oldUserProfile != newUserProfile)) {
       await AppShared().setUserProfile(newUserProfile);
-      customToast(message: "Update Success", backgroundColor: AppColors.green);
+      customToast(
+          message: AppLanguages.updateSuccess,
+          backgroundColor: AppColors.green);
       if (!context.mounted) return;
       Navigator.of(context).pop();
     } else {

@@ -75,31 +75,19 @@ class CreateAccountViewModel extends BaseViewModel {
   }
 
   String? validEmail(String? value) {
-    if (!ValidationHelper().isEmailValid(value ?? "")) {
-      return AppLanguages.emailError;
-    }
-    return null;
+    return ValidationHelper().isEmailValidMessage(value ?? "");
   }
 
   String? validFirstName(String? value) {
-    if (!ValidationHelper().isUserNameValid(value ?? "")) {
-      return AppLanguages.firstNameError;
-    }
-    return null;
+    return ValidationHelper().isFirstNameValidMessage(value ?? "");
   }
 
   String? validLastName(String? value) {
-    if (!ValidationHelper().isUserNameValid(value ?? "")) {
-      return AppLanguages.lastNameError;
-    }
-    return null;
+    return ValidationHelper().isLastNameValidMessage(value ?? "");
   }
 
   String? validPassword(String? value) {
-    if (!ValidationHelper().isPasswordValid(value ?? "")) {
-      return AppLanguages.passwordError;
-    }
-    return null;
+    return ValidationHelper().isPasswordValidMessage(value ?? "");
   }
 
   String? validConfirmPassword(String? value) {

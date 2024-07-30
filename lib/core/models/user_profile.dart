@@ -1,17 +1,18 @@
 import 'package:equatable/equatable.dart';
+import 'package:invest_app_flutter_test/core/type/gender_type.dart';
 
 class UserProfile extends Equatable {
   final String _avatar;
   final String _name;
   final String _email;
   final String _birthDate;
-  final String _gender;
+  final GenderType _gender;
   final String _phoneNumber;
   const UserProfile({
     String? avatar,
     String? name,
     String? email,
-    String? gender,
+    GenderType? gender,
     String? birthDate,
     String? phoneNumber,
   })  : _avatar = avatar ?? "",
@@ -19,7 +20,7 @@ class UserProfile extends Equatable {
         _email = email ?? "",
         _birthDate = birthDate ?? "",
         _phoneNumber = phoneNumber ?? "",
-        _gender = gender ?? "";
+        _gender = gender ?? GenderType.male;
 
   UserProfile copyWith({
     String? avatar,
@@ -41,7 +42,7 @@ class UserProfile extends Equatable {
   String get name => _name;
   String get email => _email;
   String get birthDate => _birthDate;
-  String get gender => _gender;
+  GenderType get gender => _gender;
   String get phoneNumber => _phoneNumber;
   String get avatar => _avatar;
 
@@ -52,7 +53,7 @@ class UserProfile extends Equatable {
       email: json['email'],
       birthDate: json['birthDate'],
       phoneNumber: json['phoneNumber'],
-      gender: json['gender'],
+      gender: GenderType.values.byName(json['gender']),
     );
   }
 
@@ -63,7 +64,7 @@ class UserProfile extends Equatable {
       'email': _email,
       'birthDate': _birthDate,
       'phoneNumber': _phoneNumber,
-      'gender': gender,
+      'gender': gender.name,
     };
   }
 

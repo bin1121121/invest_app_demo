@@ -28,13 +28,13 @@ class CreateAccountOptionGender extends StatelessWidget {
           contentPadding: EdgeInsets.zero,
           leading: Radio(
             activeColor: AppColors.green,
-            value: Gender.male,
+            value: GenderType.male,
             groupValue: viewModel.genderValue,
             onChanged: (value) =>
-                viewModel.onChangeSelectedGender(value as Gender),
+                viewModel.onChangeSelectedGender(value as GenderType),
           ),
           title: Text(
-            Gender.male.name,
+            GenderType.male.name,
             style: customContentTextStyle(
               color: Colors.black,
               fontWeight: FontWeight.w400,
@@ -45,13 +45,13 @@ class CreateAccountOptionGender extends StatelessWidget {
           contentPadding: EdgeInsets.zero,
           leading: Radio(
             activeColor: AppColors.green,
-            value: Gender.female,
+            value: GenderType.female,
             groupValue: viewModel.genderValue,
             onChanged: (value) =>
-                viewModel.onChangeSelectedGender(value as Gender),
+                viewModel.onChangeSelectedGender(value as GenderType),
           ),
           title: Text(
-            Gender.female.name,
+            GenderType.female.name,
             style: customContentTextStyle(
               color: Colors.black,
               fontWeight: FontWeight.w400,

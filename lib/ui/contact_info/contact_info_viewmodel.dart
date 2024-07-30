@@ -30,7 +30,7 @@ class ContactInfoViewModel extends BaseViewModel {
     await AppShared().getUserProfile().then((userProfile) {
       _userNameTextController.text = userProfile?.name ?? "";
       _birthDateTextController.text = userProfile?.birthDate ?? "";
-      _genderTextController.text = userProfile?.gender ?? "";
+      _genderTextController.text = userProfile?.gender.name ?? "";
       _emailTextController.text = userProfile?.email ?? "";
       _phoneNumberTextController.text = userProfile?.phoneNumber ?? "";
     });
@@ -74,7 +74,7 @@ class ContactInfoViewModel extends BaseViewModel {
     birthDateTextController.text = dateFormatted(date);
   }
 
-  void pickGender(Gender gender) {
+  void pickGender(GenderType gender) {
     _genderTextController.text = gender.name;
     Navigator.pop(context);
   }
@@ -123,7 +123,7 @@ class ContactInfoViewModel extends BaseViewModel {
       name: _userNameTextController.text,
       email: _emailTextController.text,
       birthDate: _birthDateTextController.text,
-      gender: _genderTextController.text,
+      gender: GenderType.values.byName(_genderTextController.text),
       phoneNumber: _phoneNumberTextController.text,
     );
     if (_formKey.currentState!.validate() &&

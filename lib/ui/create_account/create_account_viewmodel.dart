@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -25,14 +24,14 @@ class CreateAccountViewModel extends BaseViewModel {
   final TextEditingController _confirmPasswordController =
       TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  Gender _genderValue = Gender.male;
+  GenderType _genderValue = GenderType.male;
   RegisterRequest _registerRequest = RegisterRequest(
-      firstName: "",
-      lastName: "",
-      email: "",
-      gender: Gender.male.name,
-      password: "",
-      confirmPassword: "");
+    firstName: "",
+    lastName: "",
+    email: "",
+    gender: GenderType.male.name,
+    password: "",
+  );
   bool _isPasswordVisible = true;
   bool _isConfirmPasswordVisible = true;
 
@@ -50,27 +49,26 @@ class CreateAccountViewModel extends BaseViewModel {
   }
 
   void setFirstName(String value) {
-    _registerRequest = _registerRequest.copyWith(firstName: value);
+    _registerRequest.firstName = value;
     _isAllInputsValidSink();
   }
 
   void setLastName(String value) {
-    _registerRequest = _registerRequest.copyWith(lastName: value);
+    _registerRequest.lastName = value;
     _isAllInputsValidSink();
   }
 
   void setEmail(String value) {
-    _registerRequest = _registerRequest.copyWith(email: value);
+    _registerRequest.email = value;
     _isAllInputsValidSink();
   }
 
   void setPassword(String value) {
-    _registerRequest = _registerRequest.copyWith(password: value);
+    _registerRequest.password = value;
     _isAllInputsValidSink();
   }
 
   void setConfirmPassword(String value) {
-    _registerRequest = _registerRequest.copyWith(confirmPassword: value);
     _isAllInputsValidSink();
   }
 
@@ -115,16 +113,16 @@ class CreateAccountViewModel extends BaseViewModel {
         _registerRequest.password.isNotEmpty &&
         _registerRequest.lastName.isNotEmpty &&
         _registerRequest.gender.isNotEmpty &&
-        _registerRequest.confirmPassword.isNotEmpty) {
+        _confirmPasswordController.text.isNotEmpty) {
       _isAllInputsValidStreamController.add(true);
     } else {
       _isAllInputsValidStreamController.add(false);
     }
   }
 
-  void onChangeSelectedGender(Gender value) {
+  void onChangeSelectedGender(GenderType value) {
     _genderValue = value;
-    _registerRequest = _registerRequest.copyWith(gender: value.name);
+    _registerRequest.gender = value.name;
     notifyListeners();
   }
 
@@ -141,10 +139,10 @@ class CreateAccountViewModel extends BaseViewModel {
       email: _registerRequest.email,
       gender: _registerRequest.gender,
       password: _registerRequest.password,
-      confirmPassword: _registerRequest.confirmPassword,
     );
     final response = await authRepository.registerUser(registerRequest);
     if (response.code == ResourceType.requestSuccess) {
+      print(response.data.toString());
       customToast(
           message: AppLanguages.registerSuccess, backgroundColor: Colors.green);
       // Navigator.pushNamedAndRemoveUntil(context, RouteName.applicationPage, predicate)
@@ -173,7 +171,7 @@ class CreateAccountViewModel extends BaseViewModel {
 
   bool get isPasswordVisible => _isPasswordVisible;
   bool get isConfirmPasswordVisible => _isConfirmPasswordVisible;
-  Gender get genderValue => _genderValue;
+  GenderType get genderValue => _genderValue;
 
   TextEditingController get firstNameController => _firstNameController;
   TextEditingController get lastNameController => _lastNameController;

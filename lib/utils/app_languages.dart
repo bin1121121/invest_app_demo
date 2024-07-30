@@ -54,6 +54,8 @@ class AppLanguages {
   static const String phoneNumber = "Phone Number";
   static const String change = "Change";
   static const String save = "Save";
+  static const String camera = "Camera";
+  static const String gallery = "Gallery";
 
   //notification page
   static const String notification = "Notification";

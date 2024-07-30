@@ -12,8 +12,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseWidget<LoginViewModel>(
       viewModel: LoginViewModel(
-        authRepository: Provider.of<AuthRepository>(context, listen: false),
-      ),
+          authRepository: Provider.of<AuthRepository>(context, listen: false)),
       builder: (context, viewModel, child) {
         return LoginView();
       },

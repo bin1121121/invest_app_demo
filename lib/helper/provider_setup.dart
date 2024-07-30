@@ -1,6 +1,6 @@
 import 'package:invest_app_flutter_test/core/local/app_database.dart';
 import 'package:invest_app_flutter_test/core/remote/services/auth_services.dart';
-import 'package:invest_app_flutter_test/core/remote/services/retrofit.dart';
+import 'package:invest_app_flutter_test/core/retrofit.dart';
 import 'package:invest_app_flutter_test/core/repository/auth_repository.dart';
 import 'package:invest_app_flutter_test/utils/app_shared.dart';
 import 'package:provider/provider.dart';

@@ -15,8 +15,8 @@ class LoginTextFieldUserName extends StatelessWidget {
     return CustomTextField(
       hintText: AppLanguages.userName,
       controller: viewModel.userNameTextEditingController,
-      onChanged: (value) => viewModel.setUserName(value),
-      validator: (value) => viewModel.validUserName(value),
+      onChanged: viewModel.setUserName,
+      validator: viewModel.validUserName,
     );
   }
 }

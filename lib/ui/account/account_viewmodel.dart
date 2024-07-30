@@ -6,9 +6,7 @@ import 'package:invest_app_flutter_test/ui/utils/app_function.dart';
 
 class AccountViewModel extends BaseViewModel {
   final AuthRepository authRepository;
-  AccountViewModel({
-    required this.authRepository,
-  });
+  AccountViewModel({required this.authRepository});
 
   void onLogOut() {
     AppFunction().logOut(context);

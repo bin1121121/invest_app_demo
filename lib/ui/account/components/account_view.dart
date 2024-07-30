@@ -52,7 +52,7 @@ class AccountView extends StatelessWidget {
             AccountCardWidget(
               preIcon: AppAssets.icContact,
               title: AppLanguages.contactInfo,
-              onTap: () => viewModel.onNavigateToContactInfoPage(),
+              onTap: viewModel.onNavigateToContactInfoPage,
             ),
             SizedBox(height: 10.w),
             AccountCardWidget(

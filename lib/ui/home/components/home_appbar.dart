@@ -3,9 +3,7 @@ import 'package:invest_app_flutter_test/ui/home/components/home_manager_header.d
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
 
 class HomeAppBar extends StatelessWidget {
-  const HomeAppBar({
-    super.key,
-  });
+  const HomeAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {

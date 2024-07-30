@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:invest_app_flutter_test/core/manager/connectivity_manager.dart';
-import 'package:invest_app_flutter_test/core/remote/services/resource_type.dart';
+import 'package:invest_app_flutter_test/core/resource_type.dart';
 
 import 'resource.dart';
 

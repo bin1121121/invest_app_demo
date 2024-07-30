@@ -5,7 +5,7 @@ import 'package:invest_app_flutter_test/ui/contact_info/components/contract_info
 import 'package:invest_app_flutter_test/ui/contact_info/components/selected_date.dart';
 import 'package:invest_app_flutter_test/ui/contact_info/components/show_gender_picker.dart';
 import 'package:invest_app_flutter_test/ui/contact_info/contact_info_viewmodel.dart';
-import 'package:invest_app_flutter_test/ui/create_account/components/icon_button_pre_page.dart';
+import 'package:invest_app_flutter_test/ui/widgets/icon_button_pre_page.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_button.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_field.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_style.dart';
@@ -15,9 +15,7 @@ import 'package:invest_app_flutter_test/utils/app_languages.dart';
 import 'package:provider/provider.dart';
 
 class ContactInfoView extends StatelessWidget {
-  const ContactInfoView({
-    super.key,
-  });
+  const ContactInfoView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +48,7 @@ class ContactInfoView extends StatelessWidget {
               CustomTextField(
                 controller: viewModel.userNameTextController,
                 hintText: AppLanguages.name,
-                validator: (value) => viewModel.validUserName(value),
+                validator: viewModel.validUserName,
               ),
               //birthDate
               SizedBox(height: 30.w),
@@ -62,7 +60,7 @@ class ContactInfoView extends StatelessWidget {
                   DateTime? date = await selectedDate(context);
                   viewModel.dateFormatter(date);
                 },
-                validator: (value) => viewModel.validBirthDate(value),
+                validator: viewModel.validBirthDate,
               ),
               //gender
               SizedBox(height: 30.w),
@@ -73,14 +71,14 @@ class ContactInfoView extends StatelessWidget {
                 onTapToSelect: () {
                   showGenderPicker(context, viewModel);
                 },
-                validator: (value) => viewModel.validGender(value),
+                validator: viewModel.validGender,
               ),
               //email
               SizedBox(height: 30.w),
               CustomTextField(
                 controller: viewModel.emailTextController,
                 hintText: AppLanguages.email,
-                validator: (value) => viewModel.validEmail(value),
+                validator: viewModel.validEmail,
               ),
               //phone
               SizedBox(height: 30.w),
@@ -88,7 +86,7 @@ class ContactInfoView extends StatelessWidget {
                 controller: viewModel.phoneNumberTextController,
                 hintText: AppLanguages.phoneNumber,
                 keyboardType: TextInputType.number,
-                validator: (value) => viewModel.validPhoneNumber(value),
+                validator: viewModel.validPhoneNumber,
                 inputFormatters: inputFormattersForNumberPhone,
               ),
               SizedBox(height: 60.w),
@@ -97,7 +95,7 @@ class ContactInfoView extends StatelessWidget {
                 width: double.infinity,
                 child: customButton(
                   backgroundColor: AppColors.green,
-                  onPressed: () => viewModel.onSave(),
+                  onPressed: viewModel.onSave,
                   child: Text(
                     AppLanguages.save,
                     style: customContentTextStyle(color: AppColors.white),

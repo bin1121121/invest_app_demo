@@ -3,15 +3,13 @@ import 'package:invest_app_flutter_test/core/remote/request/login_request.dart';
 import 'package:invest_app_flutter_test/core/remote/request/register_request.dart';
 import 'package:invest_app_flutter_test/core/remote/response/authentication_response.dart';
 import 'package:invest_app_flutter_test/core/remote/services/auth_services.dart';
-import 'package:invest_app_flutter_test/core/remote/services/network_bound_resource.dart';
-import 'package:invest_app_flutter_test/core/remote/services/resource.dart';
+import 'package:invest_app_flutter_test/core/network_bound_resource.dart';
+import 'package:invest_app_flutter_test/core/resource.dart';
 import 'package:invest_app_flutter_test/utils/app_shared.dart';
 
 class AuthRepository {
   final AuthServices _authServices;
-  AuthRepository(
-    this._authServices,
-  );
+  AuthRepository(this._authServices);
 
   Future<Resource<AuthenticationResponse>> login(
       LoginRequest loginRequest) async {

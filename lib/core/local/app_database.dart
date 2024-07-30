@@ -1,15 +1,9 @@
 import 'package:drift/drift.dart';
 import 'package:drift_flutter/drift_flutter.dart';
 import 'package:invest_app_flutter_test/core/local/dao/notifications_dao.dart';
+import 'package:invest_app_flutter_test/core/local/table/notification_local.dart';
 
 part 'app_database.g.dart';
-
-class NotificationLocal extends Table {
-  TextColumn get id => text()();
-  TextColumn get thumbnail => text()();
-  TextColumn get description => text()();
-  DateTimeColumn get createdAt => dateTime()();
-}
 
 @DriftDatabase(
   tables: [NotificationLocal],

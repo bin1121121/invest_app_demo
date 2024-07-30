@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invest_app_flutter_test/helper/input_formatter.dart';
+import 'package:invest_app_flutter_test/helper/validation.dart';
 import 'package:invest_app_flutter_test/ui/contact_info/components/contract_info_avatar_widget.dart';
 import 'package:invest_app_flutter_test/ui/contact_info/components/selected_date.dart';
 import 'package:invest_app_flutter_test/ui/contact_info/components/show_gender_picker.dart';
@@ -50,7 +51,7 @@ class ContactInfoView extends StatelessWidget {
               CustomTextField(
                 controller: viewModel.userNameTextController,
                 hintText: AppLanguages.name,
-                validator: (value) => viewModel.validUserName(value),
+                validator: ValidationHelper().isUserNameValidMessage,
               ),
               //birthDate
               SizedBox(height: 30.w),
@@ -62,7 +63,7 @@ class ContactInfoView extends StatelessWidget {
                   DateTime? date = await selectedDate(context);
                   viewModel.dateFormatter(date);
                 },
-                validator: (value) => viewModel.validBirthDate(value),
+                validator: ValidationHelper().isBirthDateValidMessage,
               ),
               //gender
               SizedBox(height: 30.w),
@@ -73,14 +74,14 @@ class ContactInfoView extends StatelessWidget {
                 onTapToSelect: () {
                   showGenderPicker(context, viewModel);
                 },
-                validator: (value) => viewModel.validGender(value),
+                validator: ValidationHelper().isGenderValidMessage,
               ),
               //email
               SizedBox(height: 30.w),
               CustomTextField(
                 controller: viewModel.emailTextController,
                 hintText: AppLanguages.email,
-                validator: (value) => viewModel.validEmail(value),
+                validator: ValidationHelper().isEmailValidMessage,
               ),
               //phone
               SizedBox(height: 30.w),
@@ -88,7 +89,7 @@ class ContactInfoView extends StatelessWidget {
                 controller: viewModel.phoneNumberTextController,
                 hintText: AppLanguages.phoneNumber,
                 keyboardType: TextInputType.number,
-                validator: (value) => viewModel.validPhoneNumber(value),
+                validator: ValidationHelper().isPhoneNumberValid,
                 inputFormatters: inputFormattersForNumberPhone,
               ),
               SizedBox(height: 60.w),

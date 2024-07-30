@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:invest_app_flutter_test/core/type/gender_type.dart';
-import 'package:invest_app_flutter_test/helper/validation.dart';
 import 'package:invest_app_flutter_test/core/models/user_profile.dart';
 import 'package:invest_app_flutter_test/ui/base/base_viewmodel.dart';
 import 'package:invest_app_flutter_test/ui/utils/date_format.dart';
@@ -77,32 +76,6 @@ class ContactInfoViewModel extends BaseViewModel {
   void pickGender(Gender gender) {
     _genderTextController.text = gender.name;
     Navigator.pop(context);
-  }
-
-  String? validUserName(String? value) {
-    return ValidationHelper().isUserNameValidMessage(value ?? "");
-  }
-
-  String? validEmail(String? value) {
-    return ValidationHelper().isEmailValidMessage(value ?? "");
-  }
-
-  String? validPhoneNumber(String? value) {
-    return ValidationHelper().isPhoneNumberValid(value ?? "");
-  }
-
-  String? validBirthDate(String? value) {
-    if (value == null || value.isEmpty) {
-      return AppLanguages.birthDateError;
-    }
-    return null;
-  }
-
-  String? validGender(String? value) {
-    if (value == null || value.isEmpty) {
-      return AppLanguages.genderError;
-    }
-    return null;
   }
 
   Future onSave() async {

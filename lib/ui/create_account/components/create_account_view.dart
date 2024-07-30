@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:invest_app_flutter_test/helper/validation.dart';
 import 'package:invest_app_flutter_test/ui/create_account/components/button_create.dart';
 import 'package:invest_app_flutter_test/ui/create_account/components/create_account_option_gender.dart';
 import 'package:invest_app_flutter_test/ui/create_account/components/icon_button_pre_page.dart';
@@ -43,14 +44,14 @@ class CreateAccountView extends StatelessWidget {
             CustomTextField(
               controller: viewModel.firstNameController,
               hintText: AppLanguages.firstName,
-              validator: (value) => viewModel.validFirstName(value),
+              validator: ValidationHelper().isFirstNameValidMessage,
               onChanged: (value) => viewModel.setFirstName(value),
             ),
             SizedBox(height: 18.w),
             CustomTextField(
               controller: viewModel.lastNameController,
               hintText: AppLanguages.lastName,
-              validator: (value) => viewModel.validLastName(value),
+              validator: ValidationHelper().isLastNameValidMessage,
               onChanged: (value) => viewModel.setLastName(value),
             ),
             SizedBox(height: 18.w),
@@ -61,7 +62,8 @@ class CreateAccountView extends StatelessWidget {
             CustomTextField(
               controller: viewModel.emailController,
               hintText: AppLanguages.email,
-              validator: (value) => viewModel.validEmail(value),
+              validator: (value) =>
+                  ValidationHelper().isEmailValidMessage(value),
               onChanged: (value) => viewModel.setEmail(value),
             ),
             SizedBox(height: 18.w),
@@ -71,7 +73,7 @@ class CreateAccountView extends StatelessWidget {
               controller: viewModel.passwordController,
               isPasswordVisible: viewModel.isPasswordVisible,
               onChanged: (value) => viewModel.setPassword(value),
-              validator: (value) => viewModel.validPassword(value),
+              validator: ValidationHelper().isPasswordValidMessage,
               onPressedChangeVisibility: () =>
                   viewModel.changePasswordVisibility(),
             ),
@@ -83,7 +85,9 @@ class CreateAccountView extends StatelessWidget {
               labelText: AppLanguages.confirmPassword,
               onChangeVisibility: () =>
                   viewModel.changeConfirmPasswordVisibility(),
-              validator: (value) => viewModel.validConfirmPassword(value),
+              validator: (value) => ValidationHelper()
+                  .isConfirmPasswordValidMessage(
+                      viewModel.passwordController.text, value),
               onChangeTextField: (value) => viewModel.setConfirmPassword(value),
             ),
             SizedBox(height: 30.w),

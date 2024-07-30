@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:invest_app_flutter_test/helper/validation.dart';
 import 'package:invest_app_flutter_test/ui/login/login_viewmodel.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_field.dart';
 import 'package:invest_app_flutter_test/utils/app_languages.dart';
@@ -16,7 +17,7 @@ class LoginTextFieldUserName extends StatelessWidget {
       hintText: AppLanguages.userName,
       controller: viewModel.userNameTextEditingController,
       onChanged: (value) => viewModel.setUserName(value),
-      validator: (value) => viewModel.validUserName(value),
+      validator: ValidationHelper().isUserNameValidMessage,
     );
   }
 }

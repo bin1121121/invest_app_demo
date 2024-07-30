@@ -10,13 +10,13 @@ class CustomCard extends StatelessWidget {
   final String content;
   final String imgUrl;
   const CustomCard({
-    Key? key,
+    super.key,
     required this.color1,
     required this.color2,
     required this.tile,
     required this.content,
     required this.imgUrl,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

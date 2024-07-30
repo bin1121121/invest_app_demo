@@ -24,11 +24,11 @@ class HomeManagerHeader extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {},
-            child: SvgPicture.asset(AppAssets.ic_menu),
+            child: SvgPicture.asset(AppAssets.icMenu),
           ),
           GestureDetector(
             onTap: viewModel.onNavigateToNotificationPage,
-            child: SvgPicture.asset(AppAssets.ic_notifications),
+            child: SvgPicture.asset(AppAssets.icNotifications),
           ),
         ],
       ),

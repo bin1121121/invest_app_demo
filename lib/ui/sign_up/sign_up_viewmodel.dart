@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:invest_app_flutter_test/core/helper/routers.dart';
+import 'package:invest_app_flutter_test/helper/routers.dart';
 import 'package:invest_app_flutter_test/ui/base/base_viewmodel.dart';
 
 class SignUpViewModel extends BaseViewModel {

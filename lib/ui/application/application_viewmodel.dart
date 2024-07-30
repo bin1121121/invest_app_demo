@@ -10,35 +10,35 @@ import 'package:invest_app_flutter_test/utils/app_languages.dart';
 class ApplicationViewModel extends BaseViewModel {
   final List<BottomNavigationBarItem> _bottomNavigationBarItems = [
     BottomNavigationBarItem(
-      icon: SvgPicture.asset(AppAssets.ic_home),
+      icon: SvgPicture.asset(AppAssets.icHome),
       label: AppLanguages.home,
       activeIcon: SvgPicture.asset(
-        AppAssets.ic_home,
+        AppAssets.icHome,
         colorFilter: ColorFilter.mode(AppColors.green, BlendMode.srcIn),
         // fit: BoxFit.contain,
       ),
     ),
     BottomNavigationBarItem(
-      icon: SvgPicture.asset(AppAssets.ic_search_outline),
+      icon: SvgPicture.asset(AppAssets.icSearchOutline),
       label: AppLanguages.product,
       activeIcon: SvgPicture.asset(
-        AppAssets.ic_search_outline,
+        AppAssets.icSearchOutline,
         colorFilter: ColorFilter.mode(AppColors.green, BlendMode.srcIn),
       ),
     ),
     BottomNavigationBarItem(
-      icon: SvgPicture.asset(AppAssets.ic_transaction_outline),
+      icon: SvgPicture.asset(AppAssets.icTransactionOutline),
       label: AppLanguages.transaction,
       activeIcon: SvgPicture.asset(
-        AppAssets.ic_transaction_outline,
+        AppAssets.icTransactionOutline,
         colorFilter: ColorFilter.mode(AppColors.green, BlendMode.srcIn),
       ),
     ),
     BottomNavigationBarItem(
-      icon: SvgPicture.asset(AppAssets.ic_profile_outline),
+      icon: SvgPicture.asset(AppAssets.icProfileOutline),
       label: AppLanguages.account,
       activeIcon: SvgPicture.asset(
-        AppAssets.ic_profile_outline,
+        AppAssets.icProfileOutline,
         colorFilter: ColorFilter.mode(AppColors.green, BlendMode.srcIn),
       ),
     ),

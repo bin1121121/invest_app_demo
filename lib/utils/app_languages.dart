@@ -2,8 +2,8 @@ class AppLanguages {
   //login page
   static const String stayOnTop = "Stay on top of your finance with us.";
   static const String weAreYourNewFinancial =
-      "We are your new financial Advisors to recommed the best investments for you.";
-  static const String iDontHaveAnAccount = "I don't have an account";
+      "We are your new financial Advisors to recommend the best investments for you.";
+  static const String iDoNotHaveAnAccount = "I don't have an account";
   static const String userName = "User Name";
   //toast message
   static const String loginSuccess = "Login Success";
@@ -34,7 +34,7 @@ class AppLanguages {
   static const String welcome = "Welcome, ";
   static const String bestPlans = "Best Plans";
   static const String seeAll = "See All";
-  static const String InvestmentGuide = "Investment Guide";
+  static const String investmentGuide = "Investment Guide";
   static const String yourTotalAsset = "Your total asset portfolio";
   static const String investNow = "Invest Now";
 
@@ -75,22 +75,22 @@ class AppLanguages {
   static const String genderError = "Invalid gender";
 
   //API status codes
-  static const String SUCCESS = "Success";
-  static const String NULL_DATA = "Success with no content";
-  static const String BAD_REQUEST = "Bad request, try again later";
-  static const String FORBIDDEN = "Forbidden request, try again later";
-  static const String UNAUTHORIZED = "User is unauthorized, try again later";
-  static const String NOT_FOUND = "Url is not found, try again later";
-  static const String INTERNAL_SERVER_ERROR =
+  static const String success = "Success";
+  static const String nullData = "Success with no content";
+  static const String badRequest = "Bad request, try again later";
+  static const String forbidden = "Forbidden request, try again later";
+  static const String unauthorized = "User is unauthorized, try again later";
+  static const String notFound = "Url is not found, try again later";
+  static const String internalServerError =
       "Some thing went wrong, try again later";
 
   //local status code
-  static const String DEFAULT = "Some thing went wrong, try again later";
-  static const String CONNECT_TIMEOUT = "Time out error, try again later";
-  static const String CANCEL = "Request was cancelled, try again later";
-  static const String RECEIVE_TIMEOUT = "Time out error, try again later";
-  static const String SEND_TIMEOUT = "Time out error, try again later";
-  static const String CACHE_ERROR = "Cache error, try again later";
-  static const String NO_INTERNET_CONNECTION =
+  static const String defaultError = "Some thing went wrong, try again later";
+  static const String connectTimeout = "Time out error, try again later";
+  static const String cancel = "Request was cancelled, try again later";
+  static const String receiveTimeout = "Time out error, try again later";
+  static const String sendTimeout = "Time out error, try again later";
+  static const String cacheError = "Cache error, try again later";
+  static const String noInternetConnection =
       "Please check your internet connection";
 }

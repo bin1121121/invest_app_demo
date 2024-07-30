@@ -6,41 +6,42 @@ import 'package:invest_app_flutter_test/utils/app_const.dart';
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
 class AppShared {
-  static final RxSharedPreferences _rxPreferences =
-      RxSharedPreferences(SharedPreferences.getInstance());
+  static final RxSharedPreferences _rxPreferences = RxSharedPreferences(
+    SharedPreferences.getInstance(),
+  );
 
   Future setUserProfile(UserProfile userProfile) async {
     final json = jsonEncode(userProfile.toJson());
-    await _rxPreferences.setString(AppConstants.STORAGE_USER_PROFILE, json);
+    await _rxPreferences.setString(AppConstants.storageUserProfile, json);
   }
 
   Future<UserProfile?> getUserProfile() async {
     String? json =
-        await _rxPreferences.getString(AppConstants.STORAGE_USER_PROFILE);
+        await _rxPreferences.getString(AppConstants.storageUserProfile);
     return UserProfile.fromJson(jsonDecode(json ?? ""));
   }
 
   Stream<UserProfile?> watchUserProfile() {
     return _rxPreferences
-        .getStringStream(AppConstants.STORAGE_USER_PROFILE)
+        .getStringStream(AppConstants.storageUserProfile)
         .map((json) => UserProfile.fromJson(jsonDecode(json ?? "")))
         .asBroadcastStream();
   }
 
   Future setAccessToken(String value) async {
-    await _rxPreferences.setString(AppConstants.STORAGE_ACCESS_TOKEN, value);
+    await _rxPreferences.setString(AppConstants.storageAccessToken, value);
   }
 
   Future setRefreshToken(String value) async {
-    await _rxPreferences.setString(AppConstants.STORAGE_REFRESH_TOKEN, value);
+    await _rxPreferences.setString(AppConstants.storageRefreshToken, value);
   }
 
   Future<String?> getAccessToken() async {
-    return await _rxPreferences.getString(AppConstants.STORAGE_ACCESS_TOKEN);
+    return await _rxPreferences.getString(AppConstants.storageAccessToken);
   }
 
   Future<String?> getRefreshToken() async {
-    return await _rxPreferences.getString(AppConstants.STORAGE_REFRESH_TOKEN);
+    return await _rxPreferences.getString(AppConstants.storageRefreshToken);
   }
 
   Future<void> _removeKey(String key) async {
@@ -48,10 +49,9 @@ class AppShared {
   }
 
   Future<void> logOut() async {
-    await _removeKey(AppConstants.STORAGE_USER_PROFILE);
-    await _removeKey(AppConstants.STORAGE_ACCESS_TOKEN);
-    await _removeKey(AppConstants.STORAGE_REFRESH_TOKEN);
-    await _removeKey(AppConstants.STORAGE_EXPIRED_TIME);
+    await _removeKey(AppConstants.storageUserProfile);
+    await _removeKey(AppConstants.storageAccessToken);
+    await _removeKey(AppConstants.storageRefreshToken);
   }
 
   Future<void> clear() async {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:invest_app_flutter_test/core/helper/routers.dart';
-import 'package:invest_app_flutter_test/core/helper/validation.dart';
+import 'package:invest_app_flutter_test/helper/routers.dart';
+import 'package:invest_app_flutter_test/helper/validation.dart';
 import 'package:invest_app_flutter_test/core/remote/request/login_request.dart';
 import 'package:invest_app_flutter_test/core/remote/services/resource_type.dart';
 import 'package:invest_app_flutter_test/core/repository/auth_repository.dart';
@@ -37,14 +37,20 @@ class LoginViewModel extends BaseViewModel {
       password: _passwordTextEditingController.text,
     );
     final response = await authRepository.login(loginRequest);
-    if (response.code == ResourceType.REQUEST_SUCCESS) {
+    if (response.code == ResourceType.requestSuccess) {
       customToast(
           message: AppLanguages.loginSuccess, backgroundColor: AppColors.green);
+      if (!context.mounted) return;
       Navigator.pushNamedAndRemoveUntil(
-          context, Routers.application, (route) => false);
+        context,
+        Routers.application,
+        (route) => false,
+      );
     } else {
-      Navigator.pop(context);
-      customToast(message: response.message, backgroundColor: AppColors.red);
+      if (context.mounted) {
+        Navigator.pop(context);
+        customToast(message: response.message, backgroundColor: AppColors.red);
+      }
     }
   }
 

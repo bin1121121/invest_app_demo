@@ -3,7 +3,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:invest_app_flutter_test/core/helper/validation.dart';
+import 'package:invest_app_flutter_test/core/type/gender_type.dart';
+import 'package:invest_app_flutter_test/helper/validation.dart';
 import 'package:invest_app_flutter_test/core/models/user_profile.dart';
 import 'package:invest_app_flutter_test/ui/base/base_viewmodel.dart';
 import 'package:invest_app_flutter_test/ui/utils/date_format.dart';
@@ -64,7 +65,7 @@ class ContactInfoViewModel extends BaseViewModel {
         },
       );
     } catch (e) {
-      print("Failed to pick image: $e");
+      debugPrint("Error: $e");
     }
   }
 
@@ -129,9 +130,10 @@ class ContactInfoViewModel extends BaseViewModel {
         (oldUserProfile != newUserProfile)) {
       await AppShared().setUserProfile(newUserProfile);
       customToast(message: "Update Success", backgroundColor: AppColors.green);
+      if (!context.mounted) return;
       Navigator.of(context).pop();
     } else {
-      print("Something went wrong");
+      debugPrint("Something went wrong");
     }
   }
 

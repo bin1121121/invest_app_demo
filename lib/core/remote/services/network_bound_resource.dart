@@ -4,8 +4,6 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:invest_app_flutter_test/core/manager/connectivity_manager.dart';
 import 'package:invest_app_flutter_test/core/remote/services/resource_type.dart';
-// import 'package:vi_safe_user/src/core/manager/connectivity_manager.dart';
-// import 'package:vi_safe_user/src/type/resource_type.dart';
 
 import 'resource.dart';
 
@@ -39,13 +37,12 @@ class NetworkBoundResource<RequestType, ResultType> {
   }
 
   Future<void> _fetchFromServerWithSerialization() async {
-    if (!await (ConnectivityManager().isDisconnected)) {
+    if (!await (ConnectivityManager().isConnected)) {
       _result.complete(Resource.withDisconnect());
       return;
     }
     // call request from network
     createSerializedCall.call().then((RequestType resource) async {
-      print("resource: ${resource.toString()}");
       ResultType? result;
 
       if (resource is ResultType) {
@@ -74,13 +71,13 @@ class NetworkBoundResource<RequestType, ResultType> {
       } else if (error is SocketException) {
         _result.complete(Resource(
           message: error.osError?.message ?? error.message,
-          code: error.osError?.errorCode ?? ResourceType.REQUEST_DISCONNECT,
+          code: error.osError?.errorCode ?? ResourceType.requestDisconnect,
           data: data,
         ));
       } else {
         _result.complete(Resource(
           message: error.toString(),
-          code: ResourceType.REQUEST_RESPONSE,
+          code: ResourceType.requestResponse,
           data: data,
         ));
       }

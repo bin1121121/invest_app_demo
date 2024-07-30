@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invest_app_flutter_test/core/helper/input_formatter.dart';
+import 'package:invest_app_flutter_test/helper/input_formatter.dart';
 import 'package:invest_app_flutter_test/ui/contact_info/components/contract_info_avatar_widget.dart';
 import 'package:invest_app_flutter_test/ui/contact_info/components/selected_date.dart';
 import 'package:invest_app_flutter_test/ui/contact_info/components/show_gender_picker.dart';

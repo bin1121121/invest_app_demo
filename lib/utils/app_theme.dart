@@ -14,17 +14,6 @@ class AppTheme {
         buttonColor: AppColors.green,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       ),
-      // elevatedButtonTheme: ElevatedButtonThemeData(
-      //   style: ElevatedButton.styleFrom(
-      //     textStyle: customContentTextStyle(color: AppColors.white),
-      //     disabledBackgroundColor: AppColors.grey1,
-      //     backgroundColor: AppColors.green,
-      //     shape: RoundedRectangleBorder(
-      //       borderRadius: BorderRadius.circular(20),
-      //     ),
-      //   ),
-      // ),
-
       //input decoration theme
       inputDecorationTheme: InputDecorationTheme(
         errorMaxLines: 2,

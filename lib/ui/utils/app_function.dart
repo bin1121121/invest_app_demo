@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:invest_app_flutter_test/core/helper/routers.dart';
+import 'package:invest_app_flutter_test/helper/routers.dart';
 import 'package:invest_app_flutter_test/utils/app_shared.dart';
 
 class AppFunction {

@@ -24,7 +24,7 @@ class SignUpView extends StatelessWidget {
           children: [
             Padding(
               padding: EdgeInsets.fromLTRB(51.w, 155.w, 51.w, 0.w),
-              child: Image.asset(AppAssets.img_layer_1),
+              child: Image.asset(AppAssets.imgLayer1),
             ),
             SizedBox(
               height: 38.sp,

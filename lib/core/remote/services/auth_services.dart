@@ -1,11 +1,10 @@
 import 'package:invest_app_flutter_test/core/remote/response/authentication_response.dart';
 import 'package:invest_app_flutter_test/utils/app_const.dart';
 import 'package:retrofit/http.dart';
-// ignore: depend_on_referenced_packages
 import 'package:dio/dio.dart';
 part 'auth_services.g.dart';
 
-@RestApi(baseUrl: AppConstants.BASE_URL)
+@RestApi(baseUrl: AppConstants.baseUrl)
 abstract class AuthServices {
   factory AuthServices(Dio dio, {String baseUrl}) = _AuthServices;
 

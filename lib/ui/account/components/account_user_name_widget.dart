@@ -23,7 +23,7 @@ class AccountUserNameWidget extends StatelessWidget {
               color: AppColors.black,
               fontSize: 22,
               fontWeight: FontWeight.w600,
-              fontFamily: AppFonts.SF_Compact_Display,
+              fontFamily: AppFonts.sfCompactDisplayFont,
             ),
           );
         }

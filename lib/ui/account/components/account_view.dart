@@ -45,18 +45,18 @@ class AccountView extends StatelessWidget {
                 color: AppColors.black,
                 fontSize: 14,
                 fontWeight: FontWeight.w400,
-                fontFamily: AppFonts.Open_Sans,
+                fontFamily: AppFonts.openSansFont,
               ),
             ),
             SizedBox(height: 20.w),
             AccountCardWidget(
-              preIcon: AppAssets.ic_contact,
+              preIcon: AppAssets.icContact,
               title: AppLanguages.contactInfo,
               onTap: () => viewModel.onNavigateToContactInfoPage(),
             ),
             SizedBox(height: 10.w),
             AccountCardWidget(
-              preIcon: AppAssets.ic_funding,
+              preIcon: AppAssets.icFunding,
               title: AppLanguages.sourceOfFoundingInfo,
               onTap: () async {
                 // await _viewModel.getCurrentAuthUser();
@@ -64,22 +64,22 @@ class AccountView extends StatelessWidget {
             ),
             SizedBox(height: 10.w),
             AccountCardWidget(
-              preIcon: AppAssets.ic_bank,
+              preIcon: AppAssets.icBank,
               title: AppLanguages.bankAccountInfo,
             ),
             SizedBox(height: 10.w),
             AccountCardWidget(
-              preIcon: AppAssets.ic_doc,
+              preIcon: AppAssets.icDoc,
               title: AppLanguages.documentInfo,
             ),
             SizedBox(height: 10.w),
             AccountCardWidget(
-              preIcon: AppAssets.ic_setting,
+              preIcon: AppAssets.icSetting,
               title: AppLanguages.settings,
             ),
             SizedBox(height: 10.w),
             AccountCardWidget(
-              preIcon: AppAssets.ic_logout,
+              preIcon: AppAssets.icLogout,
               title: AppLanguages.logout,
               color: AppColors.red,
               onTap: viewModel.onLogOut,

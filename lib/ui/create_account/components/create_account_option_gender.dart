@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:invest_app_flutter_test/core/models/user_profile.dart';
+import 'package:invest_app_flutter_test/core/type/gender_type.dart';
 import 'package:invest_app_flutter_test/ui/create_account/create_account_viewmodel.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_style.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';

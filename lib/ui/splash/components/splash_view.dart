@@ -11,7 +11,7 @@ class SplashView extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Image.asset(
-          AppAssets.img_logo_group,
+          AppAssets.imgLogoGroup,
           width: 200,
           height: 200,
         ),

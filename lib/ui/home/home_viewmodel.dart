@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:invest_app_flutter_test/core/helper/routers.dart';
+import 'package:invest_app_flutter_test/helper/routers.dart';
 import 'package:invest_app_flutter_test/ui/base/base_viewmodel.dart';
 import 'package:invest_app_flutter_test/utils/app_assets.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
@@ -11,21 +11,21 @@ class HomeViewModel extends BaseViewModel {
       color2: AppColors.yellow2,
       title: "Gold",
       subTitle: "30% return",
-      image: AppAssets.img_gold,
+      image: AppAssets.imgGold,
     ),
     StockCard(
       color1: AppColors.grey3,
       color2: AppColors.grey4,
       title: "Silver",
       subTitle: "60% return",
-      image: AppAssets.img_silver,
+      image: AppAssets.imgSilver,
     ),
     StockCard(
       color1: AppColors.purple1,
       color2: AppColors.purple2,
       title: "Platinum",
       subTitle: "90% return",
-      image: AppAssets.img_gold,
+      image: AppAssets.imgGold,
     ),
   ];
 
@@ -34,25 +34,25 @@ class HomeViewModel extends BaseViewModel {
       title: "Basic type of investments",
       content:
           "This is how you set your foot for 2020 Stock market recession. What’s next...",
-      image: AppAssets.img_eclipse,
+      image: AppAssets.imgEclipse,
     ),
     InvestGuideCard(
       title: "How much can you start wit..",
       content:
           "What do you like to see? It’s a very different market from 2018. The way...",
-      image: AppAssets.img_eclipse_2,
+      image: AppAssets.imgEclipse2,
     ),
     InvestGuideCard(
       title: "How much can you start wit..",
       content:
           "What do you like to see? It’s a very different market from 2018. The way...",
-      image: AppAssets.img_eclipse_2,
+      image: AppAssets.imgEclipse2,
     ),
     InvestGuideCard(
       title: "How much can you start wit..",
       content:
           "What do you like to see? It’s a very different market from 2018. The way...",
-      image: AppAssets.img_eclipse_2,
+      image: AppAssets.imgEclipse2,
     ),
   ];
 

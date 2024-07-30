@@ -83,7 +83,7 @@ class ContactInfoAvatarWidget extends StatelessWidget {
           Positioned.fill(
             child: Align(
               alignment: Alignment.center,
-              child: SvgPicture.asset(AppAssets.ic_edit_2),
+              child: SvgPicture.asset(AppAssets.icEdit2),
             ),
           ),
         ],

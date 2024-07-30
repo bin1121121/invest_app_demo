@@ -23,21 +23,21 @@ class Resource<DataType> {
     switch (error.type) {
       case DioExceptionType.connectionError:
       case DioExceptionType.connectionTimeout:
-        code = ResourceType.REQUEST_CONNECT_TIMEOUT;
-        message = AppLanguages.CONNECT_TIMEOUT;
+        code = ResourceType.requestConnectTimeout;
+        message = AppLanguages.connectTimeout;
         break;
       case DioExceptionType.sendTimeout:
-        code = ResourceType.REQUEST_SEND_TIMEOUT;
-        message = AppLanguages.SEND_TIMEOUT;
+        code = ResourceType.requestSendTimeout;
+        message = AppLanguages.sendTimeout;
         break;
       case DioExceptionType.receiveTimeout:
-        code = ResourceType.REQUEST_RECEIVE_TIMEOUT;
-        message = AppLanguages.RECEIVE_TIMEOUT;
+        code = ResourceType.requestReceiveTimeout;
+        message = AppLanguages.receiveTimeout;
         break;
       case DioExceptionType.badResponse:
         Response? response = error.response;
-        code = response?.statusCode ?? ResourceType.REQUEST_RESPONSE;
-        if (response != null && code != ResourceType.REQUEST_ERROR_TOKEN) {
+        code = response?.statusCode ?? ResourceType.requestResponse;
+        if (response != null && code != ResourceType.requestErrorToken) {
           message = response.data is String
               ? response.data
               : response.data is Map<String, dynamic>
@@ -46,19 +46,19 @@ class Resource<DataType> {
         }
         break;
       case DioExceptionType.cancel:
-        code = ResourceType.REQUEST_CANCEL;
+        code = ResourceType.requestCancel;
         break;
       case DioExceptionType.badCertificate:
       case DioExceptionType.unknown:
-        code = ResourceType.REQUEST_ERROR_SERVER;
+        code = ResourceType.requestErrorServer;
         message = error.message ?? "";
         final err = error.error;
         if (err is HandshakeException) {
           message = err.osError?.message ?? err.message;
         } else if (message.contains("Network is unreachable")) {
-          message = AppLanguages.NO_INTERNET_CONNECTION;
+          message = AppLanguages.noInternetConnection;
         } else if (message.contains("Connection refused")) {
-          message = AppLanguages.INTERNAL_SERVER_ERROR;
+          message = AppLanguages.internalServerError;
         }
         break;
     }
@@ -67,28 +67,28 @@ class Resource<DataType> {
   }
 
   factory Resource.withDisconnect() => Resource(
-        message: AppLanguages.NO_INTERNET_CONNECTION,
-        code: ResourceType.REQUEST_DISCONNECT,
+        message: AppLanguages.noInternetConnection,
+        code: ResourceType.requestDisconnect,
       );
 
   factory Resource.withNoData() => Resource(
-        message: AppLanguages.NULL_DATA,
-        code: ResourceType.REQUEST_NULL_DATA,
+        message: AppLanguages.nullData,
+        code: ResourceType.requestNullData,
       );
 
   factory Resource.withHasData(DataType data) => Resource(
-        message: AppLanguages.SUCCESS,
-        code: ResourceType.REQUEST_SUCCESS,
+        message: AppLanguages.success,
+        code: ResourceType.requestSuccess,
         data: data,
       );
 
-  bool get isSuccess => code == ResourceType.REQUEST_SUCCESS;
+  bool get isSuccess => code == ResourceType.requestSuccess;
 
-  bool get isErrorToken => code == ResourceType.REQUEST_ERROR_TOKEN;
+  bool get isErrorToken => code == ResourceType.requestErrorToken;
 
-  bool get isError => code != ResourceType.REQUEST_SUCCESS;
+  bool get isError => code != ResourceType.requestSuccess;
 
   bool get isDisconnect =>
-      code == ResourceType.REQUEST_DISCONNECT ||
-      code == ResourceType.REQUEST_ERROR_SERVER;
+      code == ResourceType.requestDisconnect ||
+      code == ResourceType.requestErrorServer;
 }

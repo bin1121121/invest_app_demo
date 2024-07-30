@@ -1,15 +1,13 @@
-// ignore_for_file: constant_identifier_names
-
 class ResourceType {
-  static const int REQUEST_DISCONNECT = -1;
-  static const int REQUEST_NULL_DATA = 0;
-  static const int REQUEST_CONNECT_TIMEOUT = 1;
-  static const int REQUEST_SEND_TIMEOUT = 2;
-  static const int REQUEST_RECEIVE_TIMEOUT = 3;
-  static const int REQUEST_CANCEL = 4;
-  static const int REQUEST_RESPONSE = 5;
+  static const int requestDisconnect = -1;
+  static const int requestNullData = 0;
+  static const int requestConnectTimeout = 1;
+  static const int requestSendTimeout = 2;
+  static const int requestReceiveTimeout = 3;
+  static const int requestCancel = 4;
+  static const int requestResponse = 5;
 
-  static const int REQUEST_SUCCESS = 200;
-  static const int REQUEST_ERROR_SERVER = 500;
-  static const int REQUEST_ERROR_TOKEN = 401;
+  static const int requestSuccess = 200;
+  static const int requestErrorServer = 500;
+  static const int requestErrorToken = 401;
 }

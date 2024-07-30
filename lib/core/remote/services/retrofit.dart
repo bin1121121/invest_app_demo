@@ -1,5 +1,3 @@
-// ignore_for_file: constant_identifier_names
-
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
@@ -8,9 +6,9 @@ import 'package:invest_app_flutter_test/utils/app_const.dart';
 import 'package:invest_app_flutter_test/utils/app_shared.dart';
 
 class Retrofit extends DioForNative {
-  static const String KEY_AUTH = "Authorization";
-  static const String KEY_ACCEPT = "Accept";
-  static const String KEY_CONTENT_TYPE = "Content-Type";
+  static const String keyAuth = "Authorization";
+  static const String keyAccept = "Accept";
+  static const String keyContentType = "Content-Type";
 
   Retrofit({
     String? baseUrl,
@@ -23,7 +21,7 @@ class Retrofit extends DioForNative {
       ),
     );
 
-    if (baseUrl == AppConstants.BASE_URL) {
+    if (baseUrl == AppConstants.baseUrl) {
       final CacheOptions cacheOptions = CacheOptions(
         // store: AppCacheStore.cacheStore,
         store: MemCacheStore(),
@@ -41,17 +39,17 @@ class Retrofit extends DioForNative {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    if (options.headers.containsKey(KEY_AUTH)) {
-      options.headers.remove(KEY_AUTH);
+    if (options.headers.containsKey(keyAuth)) {
+      options.headers.remove(keyAuth);
     }
-    options.headers[KEY_ACCEPT] = "application/json";
-    options.headers[KEY_CONTENT_TYPE] = "application/json";
+    options.headers[keyAccept] = "application/json";
+    options.headers[keyContentType] = "application/json";
     String? accessToken = await AppShared().getAccessToken();
     if (accessToken == null) {
       handler.next(options);
       return;
     }
-    options.headers[KEY_AUTH] = "Bearer $accessToken";
+    options.headers[keyAuth] = "Bearer $accessToken";
     options.connectTimeout = const Duration(minutes: 1);
     options.receiveTimeout = const Duration(minutes: 1);
     handler.next(options); //continue
@@ -59,12 +57,12 @@ class Retrofit extends DioForNative {
 
   void _errorInterceptor(
       DioException error, ErrorInterceptorHandler handler) async {
-    if (error.response?.statusCode == ResourceType.REQUEST_ERROR_TOKEN) {
+    if (error.response?.statusCode == ResourceType.requestErrorToken) {
       String? refreshToken = await AppShared().getRefreshToken();
       String? newToken = await _refreshTokenFunction(refreshToken!);
       if (newToken != null) {
         error.requestOptions.headers["Authorization"] = "Bearer $newToken";
-        return handler.resolve(await this.fetch(error.requestOptions));
+        return handler.resolve(await fetch(error.requestOptions));
       }
     }
     return handler.next(error); //continue

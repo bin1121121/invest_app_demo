@@ -73,7 +73,7 @@ class HomeView extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.only(left: 30.w),
               child: Text(
-                AppLanguages.InvestmentGuide,
+                AppLanguages.investmentGuide,
                 style:
                     customHeaderTextStyle(fontSize: 22, color: AppColors.black),
                 textAlign: TextAlign.start,

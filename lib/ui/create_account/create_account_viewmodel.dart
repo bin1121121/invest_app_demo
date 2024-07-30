@@ -2,9 +2,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:invest_app_flutter_test/core/helper/routers.dart';
-import 'package:invest_app_flutter_test/core/helper/validation.dart';
-import 'package:invest_app_flutter_test/core/models/user_profile.dart';
+import 'package:invest_app_flutter_test/core/type/gender_type.dart';
+import 'package:invest_app_flutter_test/helper/routers.dart';
+import 'package:invest_app_flutter_test/helper/validation.dart';
 import 'package:invest_app_flutter_test/core/remote/request/register_request.dart';
 import 'package:invest_app_flutter_test/core/remote/services/resource_type.dart';
 import 'package:invest_app_flutter_test/core/repository/auth_repository.dart';
@@ -144,7 +144,7 @@ class CreateAccountViewModel extends BaseViewModel {
       confirmPassword: _registerRequest.confirmPassword,
     );
     final response = await authRepository.registerUser(registerRequest);
-    if (response.code == ResourceType.REQUEST_SUCCESS) {
+    if (response.code == ResourceType.requestSuccess) {
       customToast(
           message: AppLanguages.registerSuccess, backgroundColor: Colors.green);
       // Navigator.pushNamedAndRemoveUntil(context, RouteName.applicationPage, predicate)

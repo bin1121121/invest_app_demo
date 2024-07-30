@@ -1,7 +1,5 @@
 import 'package:equatable/equatable.dart';
 
-enum Gender { male, female }
-
 class UserProfile extends Equatable {
   final String _avatar;
   final String _name;

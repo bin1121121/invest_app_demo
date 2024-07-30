@@ -29,7 +29,7 @@ class LoginView extends StatelessWidget {
                 SizedBox(height: 106.w),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 100.w),
-                  child: Image.asset(AppAssets.img_logo_group),
+                  child: Image.asset(AppAssets.imgLogoGroup),
                 ),
                 SizedBox(height: 63.w),
                 const LoginTextFieldUserName(),
@@ -40,7 +40,7 @@ class LoginView extends StatelessWidget {
                 const LoginButton(),
                 SizedBox(height: 30.w),
                 customTextButton(
-                  text: AppLanguages.iDontHaveAnAccount,
+                  text: AppLanguages.iDoNotHaveAnAccount,
                   onPressed: () => viewModel.onNavigateToCreateAccount(),
                   color: AppColors.green,
                 )

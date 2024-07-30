@@ -51,7 +51,7 @@ class AccountCardWidget extends StatelessWidget {
                 ],
               ),
               SvgPicture.asset(
-                AppAssets.ic_next,
+                AppAssets.icNext,
                 colorFilter: ColorFilter.mode(_color, BlendMode.srcIn),
               ),
             ],

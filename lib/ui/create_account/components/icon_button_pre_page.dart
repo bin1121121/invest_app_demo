@@ -15,7 +15,7 @@ class IconButtonPrePage extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(5.w),
         alignment: Alignment.centerLeft,
-        child: SvgPicture.asset(AppAssets.ic_pre),
+        child: SvgPicture.asset(AppAssets.icPre),
       ),
     );
   }

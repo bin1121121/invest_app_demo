@@ -21,19 +21,16 @@ class LoginViewModel extends BaseViewModel {
   final BehaviorSubject<bool> _isAllValidInput =
       BehaviorSubject<bool>.seeded(false);
 
-  LoginRequest _loginObj = LoginRequest(
-    userName: "",
+  final LoginRequest _loginObj = LoginRequest(
+    username: "",
     password: "",
+    expiresInMins: 1,
   );
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Future onLogin() async {
     customShowLoading(context);
-    final LoginRequest loginRequest = LoginRequest(
-      userName: _userNameTextEditingController.text,
-      password: _passwordTextEditingController.text,
-    );
-    final response = await authRepository.login(loginRequest);
+    final response = await authRepository.login(_loginObj);
     if (response.code == ResourceType.requestSuccess) {
       customToast(
           message: AppLanguages.loginSuccess, backgroundColor: AppColors.green);
@@ -47,22 +44,23 @@ class LoginViewModel extends BaseViewModel {
       if (context.mounted) {
         Navigator.pop(context);
         customToast(message: response.message, backgroundColor: AppColors.red);
+        print(response.message);
       }
     }
   }
 
   void setUserName(String value) {
-    _loginObj = _loginObj.copyWith(userName: value);
+    _loginObj.username = value;
     _isAllValidInputSink();
   }
 
   void setPassword(String value) {
-    _loginObj = _loginObj.copyWith(password: value);
+    _loginObj.password = value;
     _isAllValidInputSink();
   }
 
   void _isAllValidInputSink() {
-    if (_loginObj.userName.isNotEmpty && _loginObj.password.isNotEmpty) {
+    if (_loginObj.username.isNotEmpty && _loginObj.password.isNotEmpty) {
       _isAllValidInput.add(true);
     } else {
       _isAllValidInput.add(false);

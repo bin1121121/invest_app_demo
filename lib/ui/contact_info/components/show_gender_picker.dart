@@ -12,13 +12,13 @@ void showGenderPicker(BuildContext context, ContactInfoViewModel viewModel) {
         mainAxisSize: MainAxisSize.min,
         children: [
           ListTile(
-            onTap: () => viewModel.pickGender(Gender.male),
+            onTap: () => viewModel.pickGender(GenderType.male),
             leading: const Icon(
               Icons.male,
               color: Colors.blue,
             ),
             title: Text(
-              Gender.male.name,
+              GenderType.male.name,
               style: customContentTextStyle(
                 color: AppColors.black,
                 fontWeight: FontWeight.w400,
@@ -26,13 +26,13 @@ void showGenderPicker(BuildContext context, ContactInfoViewModel viewModel) {
             ),
           ),
           ListTile(
-            onTap: () => viewModel.pickGender(Gender.female),
+            onTap: () => viewModel.pickGender(GenderType.female),
             leading: const Icon(
               Icons.female,
               color: Colors.pink,
             ),
             title: Text(
-              Gender.female.name,
+              GenderType.female.name,
               style: customContentTextStyle(
                 color: AppColors.black,
                 fontWeight: FontWeight.w400,

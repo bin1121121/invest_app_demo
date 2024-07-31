@@ -21,23 +21,12 @@ class _AuthServices implements AuthServices {
   String? baseUrl;
 
   @override
-  Future<AuthenticationResponse> registerUser(
-    String firstName,
-    String lastName,
-    String gender,
-    String email,
-    String password,
-  ) async {
+  Future<AuthenticationResponse> registerUser(RegisterRequest request) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = {
-      'firstName': firstName,
-      'lastName': lastName,
-      'gender': gender,
-      'email': email,
-      'password': password,
-    };
+    final _data = <String, dynamic>{};
+    _data.addAll(request.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<AuthenticationResponse>(Options(
       method: 'POST',
@@ -60,19 +49,12 @@ class _AuthServices implements AuthServices {
   }
 
   @override
-  Future<AuthenticationResponse> login(
-    String email,
-    String password,
-    int expiresInMins,
-  ) async {
+  Future<AuthenticationResponse> login(LoginRequest request) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = {
-      'username': email,
-      'password': password,
-      'expiresInMins': expiresInMins,
-    };
+    final _data = <String, dynamic>{};
+    _data.addAll(request.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<AuthenticationResponse>(Options(
       method: 'POST',

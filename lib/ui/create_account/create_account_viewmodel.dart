@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:invest_app_flutter_test/core/type/gender_type.dart';
 import 'package:invest_app_flutter_test/helper/routers.dart';
 import 'package:invest_app_flutter_test/core/remote/request/register_request.dart';
-import 'package:invest_app_flutter_test/core/remote/services/resource_type.dart';
+import 'package:invest_app_flutter_test/core/resource_type.dart';
 import 'package:invest_app_flutter_test/core/repository/auth_repository.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_toast.dart';
 import 'package:rxdart/rxdart.dart';
@@ -13,9 +13,7 @@ import 'package:invest_app_flutter_test/ui/base/base_viewmodel.dart';
 import 'package:invest_app_flutter_test/utils/app_languages.dart';
 
 class CreateAccountViewModel extends BaseViewModel {
-  CreateAccountViewModel({
-    required this.authRepository,
-  });
+  CreateAccountViewModel({required this.authRepository});
   final AuthRepository authRepository;
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
@@ -86,9 +84,9 @@ class CreateAccountViewModel extends BaseViewModel {
     }
   }
 
-  void onChangeSelectedGender(Gender value) {
-    _genderValue = value;
-    _registerRequest = _registerRequest.copyWith(gender: value.name);
+  void onChangeSelectedGender(Gender? value) {
+    _genderValue = value ?? Gender.male;
+    _registerRequest = _registerRequest.copyWith(gender: value?.name);
     notifyListeners();
   }
 

@@ -47,6 +47,7 @@ class AppLanguages {
   static const String documentInfo = "Document Info";
   static const String settings = "Settings";
   static const String logout = "Logout";
+  static const updateSuccess = "Update Success";
 
   //contact info page
   static const String name = "Name";
@@ -54,7 +55,8 @@ class AppLanguages {
   static const String phoneNumber = "Phone Number";
   static const String change = "Change";
   static const String save = "Save";
-  static const String updateSuccess = "Update Success";
+  static const String camera = "Camera";
+  static const String gallery = "Gallery";
 
   //notification page
   static const String notification = "Notification";

@@ -6,9 +6,8 @@ import 'package:invest_app_flutter_test/utils/app_const.dart';
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
 class AppShared {
-  static final RxSharedPreferences _rxPreferences = RxSharedPreferences(
-    SharedPreferences.getInstance(),
-  );
+  static final RxSharedPreferences _rxPreferences =
+      RxSharedPreferences(SharedPreferences.getInstance());
 
   Future setUserProfile(UserProfile userProfile) async {
     final json = jsonEncode(userProfile.toJson());

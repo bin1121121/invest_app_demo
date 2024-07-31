@@ -4,9 +4,7 @@ import 'package:invest_app_flutter_test/utils/app_colors.dart';
 import 'package:provider/provider.dart';
 
 class BottomNavBar extends StatelessWidget {
-  const BottomNavBar({
-    super.key,
-  });
+  const BottomNavBar({super.key});
 
   @override
   Widget build(BuildContext context) {

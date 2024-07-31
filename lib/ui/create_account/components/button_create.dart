@@ -8,9 +8,7 @@ import 'package:invest_app_flutter_test/utils/app_languages.dart';
 import 'package:provider/provider.dart';
 
 class ButtonCreate extends StatelessWidget {
-  const ButtonCreate({
-    super.key,
-  });
+  const ButtonCreate({super.key});
 
   @override
   Widget build(BuildContext context) {

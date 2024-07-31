@@ -14,7 +14,7 @@ class AccountPage extends StatelessWidget {
       viewModel: AccountViewModel(
           authRepository: Provider.of<AuthRepository>(context, listen: false)),
       builder: (context, viewModel, child) {
-        return const AccountView();
+        return AccountView();
       },
     );
   }

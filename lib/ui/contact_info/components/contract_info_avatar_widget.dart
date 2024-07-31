@@ -10,9 +10,7 @@ import 'package:invest_app_flutter_test/utils/app_shared.dart';
 import 'package:provider/provider.dart';
 
 class ContactInfoAvatarWidget extends StatelessWidget {
-  const ContactInfoAvatarWidget({
-    super.key,
-  });
+  const ContactInfoAvatarWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

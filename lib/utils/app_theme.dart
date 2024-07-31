@@ -5,9 +5,7 @@ import 'package:invest_app_flutter_test/utils/app_colors.dart';
 class AppTheme {
   ThemeData getApplicationTheme() {
     return ThemeData().copyWith(
-      textSelectionTheme: TextSelectionThemeData(
-        cursorColor: AppColors.green,
-      ),
+      textSelectionTheme: TextSelectionThemeData(cursorColor: AppColors.green),
       //button theme
       buttonTheme: ButtonThemeData(
         disabledColor: AppColors.grey1,

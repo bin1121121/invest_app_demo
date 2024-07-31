@@ -10,9 +10,7 @@ import 'package:invest_app_flutter_test/utils/app_languages.dart';
 import 'package:provider/provider.dart';
 
 class SignUpView extends StatelessWidget {
-  const SignUpView({
-    super.key,
-  });
+  const SignUpView({super.key});
 
   @override
   Widget build(BuildContext context) {

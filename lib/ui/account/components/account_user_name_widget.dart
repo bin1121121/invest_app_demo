@@ -5,9 +5,7 @@ import 'package:invest_app_flutter_test/utils/app_fonts.dart';
 import 'package:invest_app_flutter_test/utils/app_shared.dart';
 
 class AccountUserNameWidget extends StatelessWidget {
-  const AccountUserNameWidget({
-    super.key,
-  });
+  const AccountUserNameWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

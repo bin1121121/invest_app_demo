@@ -6,9 +6,7 @@ import 'package:invest_app_flutter_test/utils/app_assets.dart';
 import 'package:provider/provider.dart';
 
 class HomeManagerHeader extends StatelessWidget {
-  const HomeManagerHeader({
-    super.key,
-  });
+  const HomeManagerHeader({super.key});
 
   @override
   Widget build(BuildContext context) {

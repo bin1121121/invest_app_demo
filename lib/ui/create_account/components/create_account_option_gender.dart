@@ -7,9 +7,7 @@ import 'package:invest_app_flutter_test/utils/app_languages.dart';
 import 'package:provider/provider.dart';
 
 class CreateAccountOptionGender extends StatelessWidget {
-  const CreateAccountOptionGender({
-    super.key,
-  });
+  const CreateAccountOptionGender({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +28,7 @@ class CreateAccountOptionGender extends StatelessWidget {
             activeColor: AppColors.green,
             value: Gender.male,
             groupValue: viewModel.genderValue,
-            onChanged: (value) =>
-                viewModel.onChangeSelectedGender(value as Gender),
+            onChanged: viewModel.onChangeSelectedGender,
           ),
           title: Text(
             Gender.male.name,
@@ -47,8 +44,7 @@ class CreateAccountOptionGender extends StatelessWidget {
             activeColor: AppColors.green,
             value: Gender.female,
             groupValue: viewModel.genderValue,
-            onChanged: (value) =>
-                viewModel.onChangeSelectedGender(value as Gender),
+            onChanged: viewModel.onChangeSelectedGender,
           ),
           title: Text(
             Gender.female.name,

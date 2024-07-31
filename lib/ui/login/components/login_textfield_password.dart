@@ -16,10 +16,10 @@ class LoginTextFieldPassword extends StatelessWidget {
     return CustomTextField(
       hintText: AppLanguages.password,
       controller: viewModel.passwordTextEditingController,
-      onChanged: (value) => viewModel.setPassword(value),
+      onChanged: viewModel.setPassword,
       validator: ValidationHelper().isPasswordValidMessage,
       isPasswordVisible: viewModel.isPasswordVisible,
-      onPressedChangeVisibility: () => viewModel.changePasswordVisibility(),
+      onPressedChangeVisibility: viewModel.changePasswordVisibility,
     );
   }
 }

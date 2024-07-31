@@ -6,9 +6,7 @@ import 'package:invest_app_flutter_test/utils/app_languages.dart';
 import 'package:invest_app_flutter_test/utils/app_shared.dart';
 
 class HomeWelcomeTitle extends StatelessWidget {
-  const HomeWelcomeTitle({
-    super.key,
-  });
+  const HomeWelcomeTitle({super.key});
 
   @override
   Widget build(BuildContext context) {

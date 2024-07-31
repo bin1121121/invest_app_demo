@@ -12,8 +12,7 @@ class NotificationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseWidget<NotificationViewModel>(
       viewModel: NotificationViewModel(
-        appDatabase: Provider.of<AppDatabase>(context, listen: false),
-      ),
+          appDatabase: Provider.of<AppDatabase>(context, listen: false)),
       onViewModelReady: (viewModel) async => viewModel.onInit(),
       builder: (context, viewModel, child) {
         return const NotificationView();

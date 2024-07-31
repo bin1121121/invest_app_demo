@@ -20,7 +20,6 @@ class NotificationViewModel extends BaseViewModel {
 
   List<NotificationLocalData> _generateNotification() {
     final Uuid uuid = Uuid();
-    // final String uuidV4 = uuid.v4();
     final List<NotificationLocalData> notifications = [
       NotificationLocalData(
         id: uuid.v4(),

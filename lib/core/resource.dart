@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:invest_app_flutter_test/core/remote/services/resource_type.dart';
+import 'package:invest_app_flutter_test/core/resource_type.dart';
 import 'package:invest_app_flutter_test/utils/app_languages.dart';
 
 class Resource<DataType> {

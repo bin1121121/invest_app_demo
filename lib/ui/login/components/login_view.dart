@@ -11,9 +11,7 @@ import 'package:invest_app_flutter_test/utils/app_languages.dart';
 import 'package:provider/provider.dart';
 
 class LoginView extends StatelessWidget {
-  const LoginView({
-    super.key,
-  });
+  const LoginView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,14 +32,13 @@ class LoginView extends StatelessWidget {
                 SizedBox(height: 63.w),
                 const LoginTextFieldUserName(),
                 SizedBox(height: 20.w),
-                // ignore: prefer_const_constructors
                 LoginTextFieldPassword(),
                 SizedBox(height: 90.w),
                 const LoginButton(),
                 SizedBox(height: 30.w),
                 customTextButton(
                   text: AppLanguages.iDoNotHaveAnAccount,
-                  onPressed: () => viewModel.onNavigateToCreateAccount(),
+                  onPressed: viewModel.onNavigateToCreateAccount,
                   color: AppColors.green,
                 )
               ],

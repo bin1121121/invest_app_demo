@@ -5,9 +5,7 @@ import 'package:invest_app_flutter_test/ui/notification/notification_viewmodel.d
 import 'package:provider/provider.dart';
 
 class NotificationListViewWidget extends StatelessWidget {
-  const NotificationListViewWidget({
-    super.key,
-  });
+  const NotificationListViewWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -6,7 +6,7 @@ import 'package:invest_app_flutter_test/ui/contact_info/components/contract_info
 import 'package:invest_app_flutter_test/ui/contact_info/components/selected_date.dart';
 import 'package:invest_app_flutter_test/ui/contact_info/components/show_gender_picker.dart';
 import 'package:invest_app_flutter_test/ui/contact_info/contact_info_viewmodel.dart';
-import 'package:invest_app_flutter_test/ui/create_account/components/icon_button_pre_page.dart';
+import 'package:invest_app_flutter_test/ui/widgets/icon_button_pre_page.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_button.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_field.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_style.dart';
@@ -16,9 +16,7 @@ import 'package:invest_app_flutter_test/utils/app_languages.dart';
 import 'package:provider/provider.dart';
 
 class ContactInfoView extends StatelessWidget {
-  const ContactInfoView({
-    super.key,
-  });
+  const ContactInfoView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +96,7 @@ class ContactInfoView extends StatelessWidget {
                 width: double.infinity,
                 child: customButton(
                   backgroundColor: AppColors.green,
-                  onPressed: () => viewModel.onSave(),
+                  onPressed: viewModel.onSave,
                   child: Text(
                     AppLanguages.save,
                     style: customContentTextStyle(color: AppColors.white),

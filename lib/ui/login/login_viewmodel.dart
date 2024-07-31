@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:invest_app_flutter_test/helper/routers.dart';
 import 'package:invest_app_flutter_test/core/remote/request/login_request.dart';
-import 'package:invest_app_flutter_test/core/remote/services/resource_type.dart';
+import 'package:invest_app_flutter_test/core/resource_type.dart';
 import 'package:invest_app_flutter_test/core/repository/auth_repository.dart';
 import 'package:invest_app_flutter_test/ui/base/base_viewmodel.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_show_loading.dart';
@@ -11,9 +11,7 @@ import 'package:invest_app_flutter_test/utils/app_languages.dart';
 import 'package:rxdart/rxdart.dart';
 
 class LoginViewModel extends BaseViewModel {
-  LoginViewModel({
-    required this.authRepository,
-  });
+  LoginViewModel({required this.authRepository});
   final AuthRepository authRepository;
   final TextEditingController _userNameTextEditingController =
       TextEditingController();

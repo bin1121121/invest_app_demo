@@ -3,9 +3,7 @@ import 'package:invest_app_flutter_test/ui/application/application_viewmodel.dar
 import 'package:provider/provider.dart';
 
 class PageViewOfApp extends StatelessWidget {
-  const PageViewOfApp({
-    super.key,
-  });
+  const PageViewOfApp({super.key});
 
   @override
   Widget build(BuildContext context) {

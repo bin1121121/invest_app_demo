@@ -13,7 +13,7 @@ class BottomNavBar extends StatelessWidget {
       type: BottomNavigationBarType.fixed,
       items: viewModel.bottomNavigationBarItems,
       selectedItemColor: AppColors.green,
-      onTap: (value) => viewModel.onNavBarTap(value),
+      onTap: viewModel.onNavBarTap,
       currentIndex: viewModel.currentPage,
     );
   }

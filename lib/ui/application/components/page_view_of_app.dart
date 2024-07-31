@@ -11,10 +11,8 @@ class PageViewOfApp extends StatelessWidget {
     return PageView(
       physics: const NeverScrollableScrollPhysics(),
       controller: viewModel.pageController,
+      onPageChanged: viewModel.onPageChanged,
       children: viewModel.pageList,
-      onPageChanged: (index) {
-        viewModel.onPageChanged(index);
-      },
     );
   }
 }

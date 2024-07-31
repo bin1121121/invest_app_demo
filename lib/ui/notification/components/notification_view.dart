@@ -23,9 +23,7 @@ class NotificationView extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: Text(
                 AppLanguages.notification,
-                style: customHeaderTextStyle(
-                  color: AppColors.black,
-                ),
+                style: customHeaderTextStyle(color: AppColors.black),
               ),
             ),
             SizedBox(height: 20.w),

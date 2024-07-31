@@ -5,9 +5,7 @@ import 'package:invest_app_flutter_test/utils/app_colors.dart';
 import 'package:invest_app_flutter_test/utils/app_shared.dart';
 
 class AccountAvatarWidget extends StatelessWidget {
-  const AccountAvatarWidget({
-    super.key,
-  });
+  const AccountAvatarWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

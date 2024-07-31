@@ -12,9 +12,7 @@ import 'package:invest_app_flutter_test/utils/app_languages.dart';
 import 'package:provider/provider.dart';
 
 class AccountView extends StatelessWidget {
-  const AccountView({
-    super.key,
-  });
+  const AccountView({super.key});
 
   @override
   Widget build(BuildContext context) {

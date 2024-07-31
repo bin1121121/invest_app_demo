@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:invest_app_flutter_test/helper/routers.dart';
-import 'package:invest_app_flutter_test/helper/validation.dart';
 import 'package:invest_app_flutter_test/core/remote/request/login_request.dart';
 import 'package:invest_app_flutter_test/core/remote/services/resource_type.dart';
 import 'package:invest_app_flutter_test/core/repository/auth_repository.dart';
@@ -70,20 +69,6 @@ class LoginViewModel extends BaseViewModel {
     } else {
       _isAllValidInput.add(false);
     }
-  }
-
-  String? validUserName(String? value) {
-    if (!ValidationHelper().isUserNameValid(value ?? "")) {
-      return AppLanguages.userNameError;
-    }
-    return null;
-  }
-
-  String? validPassword(String? value) {
-    if (!ValidationHelper().isPasswordValid(value ?? "")) {
-      return AppLanguages.passwordError;
-    }
-    return null;
   }
 
   void onValidForm() {

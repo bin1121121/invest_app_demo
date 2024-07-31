@@ -54,6 +54,7 @@ class AppLanguages {
   static const String phoneNumber = "Phone Number";
   static const String change = "Change";
   static const String save = "Save";
+  static const String updateSuccess = "Update Success";
 
   //notification page
   static const String notification = "Notification";
@@ -64,7 +65,7 @@ class AppLanguages {
   static const String lastNameError =
       "Last name must be at least 2 characters long";
   static const String userNameError =
-      "Last name must be at least 2 characters long";
+      "User name must be at least 2 characters long";
   static const String emailError = "Invalid email";
   static const String passwordError =
       "Password must be at least 6 characters long and least one special character";

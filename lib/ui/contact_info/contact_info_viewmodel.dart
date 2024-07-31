@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:invest_app_flutter_test/core/type/gender_type.dart';
-import 'package:invest_app_flutter_test/helper/validation.dart';
 import 'package:invest_app_flutter_test/core/models/user_profile.dart';
 import 'package:invest_app_flutter_test/ui/base/base_viewmodel.dart';
 import 'package:invest_app_flutter_test/ui/utils/date_format.dart';
@@ -79,41 +78,6 @@ class ContactInfoViewModel extends BaseViewModel {
     Navigator.pop(context);
   }
 
-  String? validUserName(String? value) {
-    if (!ValidationHelper().isUserNameValid(value ?? "")) {
-      return AppLanguages.firstNameError;
-    }
-    return null;
-  }
-
-  String? validEmail(String? value) {
-    if (!ValidationHelper().isEmailValid(value ?? "")) {
-      return AppLanguages.emailError;
-    }
-    return null;
-  }
-
-  String? validPhoneNumber(String? value) {
-    if (!ValidationHelper().isPhoneNumberValid(value ?? "")) {
-      return AppLanguages.phoneNumberError;
-    }
-    return null;
-  }
-
-  String? validBirthDate(String? value) {
-    if (value == null || value.isEmpty) {
-      return AppLanguages.birthDateError;
-    }
-    return null;
-  }
-
-  String? validGender(String? value) {
-    if (value == null || value.isEmpty) {
-      return AppLanguages.genderError;
-    }
-    return null;
-  }
-
   Future onSave() async {
     UserProfile oldUserProfile = UserProfile();
     await AppShared().getUserProfile().then((userProfile) {
@@ -125,11 +89,14 @@ class ContactInfoViewModel extends BaseViewModel {
       birthDate: _birthDateTextController.text,
       gender: _genderTextController.text,
       phoneNumber: _phoneNumberTextController.text,
+      avatar: oldUserProfile.avatar,
     );
     if (_formKey.currentState!.validate() &&
         (oldUserProfile != newUserProfile)) {
       await AppShared().setUserProfile(newUserProfile);
-      customToast(message: "Update Success", backgroundColor: AppColors.green);
+      customToast(
+          message: AppLanguages.updateSuccess,
+          backgroundColor: AppColors.green);
       if (!context.mounted) return;
       Navigator.of(context).pop();
     } else {

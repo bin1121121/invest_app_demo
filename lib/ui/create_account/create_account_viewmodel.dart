@@ -4,7 +4,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:invest_app_flutter_test/core/type/gender_type.dart';
 import 'package:invest_app_flutter_test/helper/routers.dart';
-import 'package:invest_app_flutter_test/helper/validation.dart';
 import 'package:invest_app_flutter_test/core/remote/request/register_request.dart';
 import 'package:invest_app_flutter_test/core/remote/services/resource_type.dart';
 import 'package:invest_app_flutter_test/core/repository/auth_repository.dart';
@@ -72,41 +71,6 @@ class CreateAccountViewModel extends BaseViewModel {
   void setConfirmPassword(String value) {
     _registerRequest = _registerRequest.copyWith(confirmPassword: value);
     _isAllInputsValidSink();
-  }
-
-  String? validEmail(String? value) {
-    if (!ValidationHelper().isEmailValid(value ?? "")) {
-      return AppLanguages.emailError;
-    }
-    return null;
-  }
-
-  String? validFirstName(String? value) {
-    if (!ValidationHelper().isUserNameValid(value ?? "")) {
-      return AppLanguages.firstNameError;
-    }
-    return null;
-  }
-
-  String? validLastName(String? value) {
-    if (!ValidationHelper().isUserNameValid(value ?? "")) {
-      return AppLanguages.lastNameError;
-    }
-    return null;
-  }
-
-  String? validPassword(String? value) {
-    if (!ValidationHelper().isPasswordValid(value ?? "")) {
-      return AppLanguages.passwordError;
-    }
-    return null;
-  }
-
-  String? validConfirmPassword(String? value) {
-    if (value != _registerRequest.password) {
-      return AppLanguages.confirmPasswordError;
-    }
-    return null;
   }
 
   void _isAllInputsValidSink() {

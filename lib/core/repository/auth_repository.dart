@@ -21,9 +21,11 @@ class AuthRepository {
       saveCallResult: (authResponse) async {
         UserProfile userProfile = UserProfile(
           name: "${authResponse.firstName} ${authResponse.lastName}",
-          email: authResponse.email,
-          avatar: authResponse.image,
+          email: authResponse.email ?? "",
+          avatar: authResponse.image ?? "",
           gender: GenderType.values.byName(authResponse.gender ?? ""),
+          birthDate: "",
+          phoneNumber: "",
         );
         await AppShared().setUserProfile(userProfile);
         await AppShared().setAccessToken(authResponse.token ?? "");

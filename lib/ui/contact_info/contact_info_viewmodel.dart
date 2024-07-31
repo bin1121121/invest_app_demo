@@ -29,7 +29,7 @@ class ContactInfoViewModel extends BaseViewModel {
     await AppShared().getUserProfile().then((userProfile) {
       _userNameTextController.text = userProfile?.name ?? "";
       _birthDateTextController.text = userProfile?.birthDate ?? "";
-      _genderTextController.text = userProfile?.gender.name ?? "";
+      _genderTextController.text = userProfile?.gender?.name ?? "";
       _emailTextController.text = userProfile?.email ?? "";
       _phoneNumberTextController.text = userProfile?.phoneNumber ?? "";
     });
@@ -79,9 +79,17 @@ class ContactInfoViewModel extends BaseViewModel {
   }
 
   Future onSave() async {
-    UserProfile oldUserProfile = UserProfile();
+    late UserProfile oldUserProfile;
     await AppShared().getUserProfile().then((userProfile) {
-      oldUserProfile = userProfile ?? UserProfile();
+      oldUserProfile = userProfile ??
+          UserProfile(
+            name: "",
+            email: "",
+            birthDate: "",
+            avatar: "",
+            gender: null,
+            phoneNumber: "",
+          );
     });
     UserProfile newUserProfile = UserProfile(
       name: _userNameTextController.text,

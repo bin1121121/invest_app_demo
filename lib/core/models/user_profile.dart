@@ -1,80 +1,57 @@
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
+
 import 'package:invest_app_flutter_test/core/type/gender_type.dart';
 
+part 'user_profile.g.dart';
+
+@JsonSerializable()
 class UserProfile extends Equatable {
-  final String _avatar;
-  final String _name;
-  final String _email;
-  final String _birthDate;
-  final GenderType _gender;
-  final String _phoneNumber;
+  final String avatar;
+  final String name;
+  final String email;
+  final String birthDate;
+  final GenderType? gender;
+  final String phoneNumber;
   const UserProfile({
-    String? avatar,
-    String? name,
-    String? email,
-    GenderType? gender,
-    String? birthDate,
-    String? phoneNumber,
-  })  : _avatar = avatar ?? "",
-        _name = name ?? "",
-        _email = email ?? "",
-        _birthDate = birthDate ?? "",
-        _phoneNumber = phoneNumber ?? "",
-        _gender = gender ?? GenderType.male;
+    required this.avatar,
+    required this.name,
+    required this.email,
+    required this.birthDate,
+    required this.gender,
+    required this.phoneNumber,
+  });
 
   UserProfile copyWith({
     String? avatar,
     String? name,
     String? email,
-    String? gender,
     String? birthDate,
+    GenderType? gender,
     String? phoneNumber,
   }) {
     return UserProfile(
-      avatar: avatar ?? _avatar,
-      name: name ?? _name,
-      email: email ?? _email,
-      birthDate: birthDate ?? _birthDate,
-      phoneNumber: phoneNumber ?? _phoneNumber,
+      avatar: avatar ?? this.avatar,
+      name: name ?? this.name,
+      email: email ?? this.email,
+      birthDate: birthDate ?? this.birthDate,
+      gender: gender ?? this.gender,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
     );
   }
 
-  String get name => _name;
-  String get email => _email;
-  String get birthDate => _birthDate;
-  GenderType get gender => _gender;
-  String get phoneNumber => _phoneNumber;
-  String get avatar => _avatar;
+  factory UserProfile.fromJson(Map<String, dynamic> json) =>
+      _$UserProfileFromJson(json);
 
-  factory UserProfile.fromJson(Map<String, dynamic> json) {
-    return UserProfile(
-      avatar: json['avatar'],
-      name: json['name'],
-      email: json['email'],
-      birthDate: json['birthDate'],
-      phoneNumber: json['phoneNumber'],
-      gender: GenderType.values.byName(json['gender']),
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'avatar': _avatar,
-      'name': _name,
-      'email': _email,
-      'birthDate': _birthDate,
-      'phoneNumber': _phoneNumber,
-      'gender': gender.name,
-    };
-  }
+  Map<String, dynamic> toJson() => _$UserProfileToJson(this);
 
   @override
   List<Object?> get props => [
-        _avatar,
-        _name,
-        _email,
-        _birthDate,
-        _gender,
-        _phoneNumber,
+        avatar,
+        name,
+        email,
+        birthDate,
+        gender,
+        phoneNumber,
       ];
 }

@@ -25,39 +25,39 @@ class CreateAccountView extends StatelessWidget {
             SizedBox(height: 20.w),
             Text(
               AppLanguages.createAccount,
-              style: customHeaderTextStyle(color: AppColors.black),
+              style: CustomTextStyle().headerTextStyle(color: AppColors.black),
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 8.w),
             Text(
               AppLanguages.investAndDouble,
-              style: customContentTextStyle(color: AppColors.grey1),
+              style: CustomTextStyle().contentTextStyle(color: AppColors.grey1),
             ),
-            SizedBox(height: 87.w),
+            SizedBox(height: 40.w),
             //input firstName
             CustomTextField(
               controller: viewModel.firstNameController,
               hintText: AppLanguages.firstName,
               validator: ValidationHelper().isFirstNameValidMessage,
-              onChanged: viewModel.setFirstName,
+              onChanged: (value) => viewModel.isAllInputsValidSink(),
             ),
             SizedBox(height: 18.w),
             CustomTextField(
               controller: viewModel.lastNameController,
               hintText: AppLanguages.lastName,
               validator: ValidationHelper().isLastNameValidMessage,
-              onChanged: viewModel.setLastName,
+              onChanged: (value) => viewModel.isAllInputsValidSink(),
             ),
             SizedBox(height: 18.w),
             //option gender
-            const CreateAccountOptionGender(),
+            CreateAccountOptionGender(),
             SizedBox(height: 18.w),
             //input email
             CustomTextField(
               controller: viewModel.emailController,
               hintText: AppLanguages.email,
               validator: ValidationHelper().isEmailValidMessage,
-              onChanged: viewModel.setEmail,
+              onChanged: (value) => viewModel.isAllInputsValidSink(),
             ),
             SizedBox(height: 18.w),
             //input password
@@ -65,7 +65,7 @@ class CreateAccountView extends StatelessWidget {
               hintText: AppLanguages.password,
               controller: viewModel.passwordController,
               isPasswordVisible: viewModel.isPasswordVisible,
-              onChanged: viewModel.setPassword,
+              onChanged: (value) => viewModel.isAllInputsValidSink(),
               validator: ValidationHelper().isPasswordValidMessage,
               onPressedChangeVisibility: viewModel.changePasswordVisibility,
             ),
@@ -75,7 +75,7 @@ class CreateAccountView extends StatelessWidget {
               hintText: AppLanguages.confirmPassword,
               controller: viewModel.confirmPasswordController,
               isPasswordVisible: viewModel.isConfirmPasswordVisible,
-              onChanged: viewModel.setConfirmPassword,
+              onChanged: (value) => viewModel.isAllInputsValidSink(),
               validator: (value) =>
                   ValidationHelper().isConfirmPasswordValidMessage(
                 viewModel.passwordController.text,
@@ -89,7 +89,7 @@ class CreateAccountView extends StatelessWidget {
             const ButtonCreate(),
             SizedBox(height: 20.w),
             //text button
-            customTextButton(
+            CustomTextButton(
               text: AppLanguages.alreadyHaveAnCount,
               onPressed: viewModel.onNavigateToLogin,
               color: AppColors.green,

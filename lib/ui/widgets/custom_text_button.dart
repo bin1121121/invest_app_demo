@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_style.dart';
 
-Widget customTextButton({
-  required String text,
-  required Function() onPressed,
-  required Color color,
-}) {
-  return TextButton(
-    onPressed: onPressed,
-    child: Text(
-      text,
-      style: customContentTextStyle(color: color),
-    ),
-  );
+class CustomTextButton extends StatelessWidget {
+  final String text;
+  final Function() onPressed;
+  final Color color;
+  const CustomTextButton({
+    super.key,
+    required this.text,
+    required this.onPressed,
+    required this.color,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: onPressed,
+      child: Text(
+        text,
+        style: CustomTextStyle().contentTextStyle(color: color),
+      ),
+    );
+  }
 }

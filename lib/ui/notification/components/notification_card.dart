@@ -5,12 +5,12 @@ import 'package:invest_app_flutter_test/ui/utils/date_format.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_style.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
 
-class NotificationCardWidget extends StatelessWidget {
+class NotificationCard extends StatelessWidget {
   final String _thumbnail;
   final String _description;
   final DateTime _createdAt;
   final Function _onDelete;
-  NotificationCardWidget({
+  NotificationCard({
     super.key,
     required String thumbnail,
     required String description,
@@ -61,7 +61,7 @@ class NotificationCardWidget extends StatelessWidget {
                       alignment: Alignment.centerRight,
                       child: Text(
                         dateFormatted(_createdAt),
-                        style: customContentTextStyle(
+                        style: CustomTextStyle().contentTextStyle(
                             color: AppColors.black,
                             fontSize: 13,
                             fontWeight: FontWeight.w400),
@@ -74,7 +74,7 @@ class NotificationCardWidget extends StatelessWidget {
                       ),
                       child: Text(
                         _description,
-                        style: customContentTextStyle(
+                        style: CustomTextStyle().contentTextStyle(
                           color: AppColors.black,
                           fontSize: 17,
                           fontWeight: FontWeight.w400,

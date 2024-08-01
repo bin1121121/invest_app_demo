@@ -14,12 +14,12 @@ class ButtonCreate extends StatelessWidget {
   Widget build(BuildContext context) {
     final viewModel = context.read<CreateAccountViewModel>();
     return StreamBuilder<bool>(
-      stream: viewModel.isAllInputsValidStream,
+      stream: viewModel.enableCreateButtonSubject,
       builder: (context, snapshot) {
         return SizedBox(
           height: 60.w,
           width: MediaQuery.of(context).size.width,
-          child: customButton(
+          child: CustomButton(
             backgroundColor:
                 snapshot.data == true ? AppColors.green : AppColors.grey2,
             onPressed: snapshot.data == true
@@ -29,7 +29,7 @@ class ButtonCreate extends StatelessWidget {
                 : () {},
             child: Text(
               AppLanguages.createAccount,
-              style: customContentTextStyle(
+              style: CustomTextStyle().contentTextStyle(
                 color: AppColors.white,
               ),
             ),

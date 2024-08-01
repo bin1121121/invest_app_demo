@@ -40,7 +40,7 @@ class HomeTotalAsset extends StatelessWidget {
         children: [
           Text(
             AppLanguages.yourTotalAsset,
-            style: customContentTextStyle(
+            style: CustomTextStyle().contentTextStyle(
               color: AppColors.white,
               fontSize: 16,
               fontWeight: FontWeight.w500,
@@ -51,16 +51,16 @@ class HomeTotalAsset extends StatelessWidget {
             children: [
               Text(
                 "N203,935",
-                style: customContentTextStyle(
-                    color: AppColors.white, fontSize: 32.w),
+                style: CustomTextStyle()
+                    .contentTextStyle(color: AppColors.white, fontSize: 32.w),
               ),
-              customButton(
+              CustomButton(
                 backgroundColor: AppColors.white,
                 onPressed: () {},
                 radius: 15.w,
                 child: Text(
                   AppLanguages.investNow,
-                  style: customContentTextStyle(
+                  style: CustomTextStyle().contentTextStyle(
                     color: AppColors.green1,
                     fontSize: 14,
                   ),

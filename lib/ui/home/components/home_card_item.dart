@@ -3,13 +3,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_style.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
 
-class CustomCard extends StatelessWidget {
+class HomeCardItem extends StatelessWidget {
   final Color color1;
   final Color color2;
   final String tile;
   final String content;
   final String imgUrl;
-  const CustomCard({
+  const HomeCardItem({
     super.key,
     required this.color1,
     required this.color2,
@@ -44,7 +44,7 @@ class CustomCard extends StatelessWidget {
               children: [
                 Text(
                   tile,
-                  style: customContentTextStyle(
+                  style: CustomTextStyle().contentTextStyle(
                     color: AppColors.white,
                     fontSize: 17,
                   ),
@@ -52,7 +52,7 @@ class CustomCard extends StatelessWidget {
                 SizedBox(height: 2.w),
                 Text(
                   content,
-                  style: customContentTextStyle(
+                  style: CustomTextStyle().contentTextStyle(
                     color: AppColors.white,
                     fontSize: 13,
                   ),

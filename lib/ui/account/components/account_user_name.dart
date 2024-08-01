@@ -4,8 +4,8 @@ import 'package:invest_app_flutter_test/utils/app_colors.dart';
 import 'package:invest_app_flutter_test/utils/app_fonts.dart';
 import 'package:invest_app_flutter_test/utils/app_shared.dart';
 
-class AccountUserNameWidget extends StatelessWidget {
-  const AccountUserNameWidget({super.key});
+class AccountUserName extends StatelessWidget {
+  const AccountUserName({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class AccountUserNameWidget extends StatelessWidget {
         if (snapshot.hasData) {
           return Text(
             snapshot.data ?? "",
-            style: customContentTextStyle(
+            style: CustomTextStyle().contentTextStyle(
               color: AppColors.black,
               fontSize: 22,
               fontWeight: FontWeight.w600,

@@ -12,7 +12,7 @@ class ContactInfoPage extends StatelessWidget {
       onViewModelReady: (viewModel) => viewModel.onInit(),
       viewModel: ContactInfoViewModel(),
       builder: (context, viewModel, child) {
-        return const ContactInfoView();
+        return ContactInfoView();
       },
     );
   }

@@ -5,12 +5,12 @@ import 'package:invest_app_flutter_test/ui/widgets/custom_text_style.dart';
 import 'package:invest_app_flutter_test/utils/app_assets.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
 
-class AccountCardWidget extends StatelessWidget {
+class AccountCard extends StatelessWidget {
   final String _preIcon;
   final String _title;
   final Function()? _onTap;
   final Color _color;
-  AccountCardWidget({
+  AccountCard({
     super.key,
     required String preIcon,
     required String title,
@@ -42,7 +42,7 @@ class AccountCardWidget extends StatelessWidget {
                   SizedBox(width: 35.w),
                   Text(
                     _title,
-                    style: customContentTextStyle(
+                    style: CustomTextStyle().contentTextStyle(
                       color: _color,
                       fontSize: 17,
                       fontWeight: FontWeight.w600,

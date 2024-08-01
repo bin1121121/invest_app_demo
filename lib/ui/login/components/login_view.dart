@@ -36,7 +36,7 @@ class LoginView extends StatelessWidget {
                 SizedBox(height: 90.w),
                 const LoginButton(),
                 SizedBox(height: 30.w),
-                customTextButton(
+                CustomTextButton(
                   text: AppLanguages.iDoNotHaveAnAccount,
                   onPressed: viewModel.onNavigateToCreateAccount,
                   color: AppColors.green,

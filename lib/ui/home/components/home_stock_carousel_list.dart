@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:invest_app_flutter_test/ui/home/components/home_card_item.dart';
 import 'package:invest_app_flutter_test/ui/home/home_viewmodel.dart';
-import 'package:invest_app_flutter_test/ui/widgets/custom_card.dart';
 import 'package:provider/provider.dart';
 
 class HomeStockCarouselList extends StatelessWidget {
@@ -20,7 +20,7 @@ class HomeStockCarouselList extends StatelessWidget {
         separatorBuilder: (context, index) => SizedBox(width: 20.w),
         itemBuilder: (context, index) {
           StockCard cardStock = viewModel.cardStockList[index];
-          return CustomCard(
+          return HomeCardItem(
               color1: cardStock.color2,
               color2: cardStock.color1,
               tile: cardStock.title,

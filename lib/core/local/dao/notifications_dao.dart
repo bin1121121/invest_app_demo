@@ -25,6 +25,10 @@ class NotificationLocalDao extends DatabaseAccessor<AppDatabase>
     return await select(db.notificationLocal).get();
   }
 
+  Stream<List<NotificationLocalData>> watchAllNotifications() {
+    return select(db.notificationLocal).watch();
+  }
+
   Future deleteAllNotifications() async {
     await delete(db.notificationLocal).go();
   }

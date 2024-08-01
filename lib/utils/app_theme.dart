@@ -16,11 +16,11 @@ class AppTheme {
       inputDecorationTheme: InputDecorationTheme(
         errorMaxLines: 2,
         contentPadding: EdgeInsets.only(top: 20, bottom: 20, left: 25),
-        hintStyle: customContentTextStyle(
+        hintStyle: CustomTextStyle().contentTextStyle(
             color: AppColors.grey2, fontWeight: FontWeight.w400),
-        labelStyle: customContentTextStyle(
+        labelStyle: CustomTextStyle().contentTextStyle(
             color: AppColors.grey2, fontWeight: FontWeight.w400),
-        errorStyle: customContentTextStyle(
+        errorStyle: CustomTextStyle().contentTextStyle(
           color: AppColors.red,
           fontWeight: FontWeight.w400,
           fontSize: 14,

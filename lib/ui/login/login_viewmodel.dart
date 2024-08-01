@@ -18,21 +18,20 @@ class LoginViewModel extends BaseViewModel {
   final TextEditingController _passwordTextEditingController =
       TextEditingController();
   bool _isPasswordVisible = true;
-  final BehaviorSubject<bool> _isAllValidInput =
+  final BehaviorSubject<bool> _enableLoginButtonSubject =
       BehaviorSubject<bool>.seeded(false);
 
-  final LoginRequest _loginObj = LoginRequest(
-    username: "",
-    password: "",
-    expiresInMins: 1,
-  );
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Future onLogin() async {
     customShowLoading(context);
-    final response = await authRepository.login(_loginObj);
+    LoginRequest loginRequest = LoginRequest(
+        username: _userNameTextEditingController.text,
+        password: _passwordTextEditingController.text,
+        expiresInMins: 1);
+    final response = await authRepository.login(loginRequest);
     if (response.code == ResourceType.requestSuccess) {
-      customToast(
+      CustomToast().toast(
           message: AppLanguages.loginSuccess, backgroundColor: AppColors.green);
       if (!context.mounted) return;
       Navigator.pushNamedAndRemoveUntil(
@@ -43,27 +42,18 @@ class LoginViewModel extends BaseViewModel {
     } else {
       if (context.mounted) {
         Navigator.pop(context);
-        customToast(message: response.message, backgroundColor: AppColors.red);
-        print(response.message);
+        CustomToast()
+            .toast(message: response.message, backgroundColor: AppColors.red);
       }
     }
   }
 
-  void setUserName(String value) {
-    _loginObj.username = value;
-    _isAllValidInputSink();
-  }
-
-  void setPassword(String value) {
-    _loginObj.password = value;
-    _isAllValidInputSink();
-  }
-
-  void _isAllValidInputSink() {
-    if (_loginObj.username.isNotEmpty && _loginObj.password.isNotEmpty) {
-      _isAllValidInput.add(true);
+  void isAllInputValidSink() {
+    if (_userNameTextEditingController.text.isNotEmpty &&
+        _passwordTextEditingController.text.isNotEmpty) {
+      _enableLoginButtonSubject.add(true);
     } else {
-      _isAllValidInput.add(false);
+      _enableLoginButtonSubject.add(false);
     }
   }
 
@@ -86,7 +76,7 @@ class LoginViewModel extends BaseViewModel {
   void dispose() {
     _userNameTextEditingController.dispose();
     _passwordTextEditingController.dispose();
-    _isAllValidInput.close();
+    _enableLoginButtonSubject.close();
     super.dispose();
   }
 
@@ -95,6 +85,7 @@ class LoginViewModel extends BaseViewModel {
   TextEditingController get passwordTextEditingController =>
       _passwordTextEditingController;
   bool get isPasswordVisible => _isPasswordVisible;
-  Stream<bool> get isAllValidInput => _isAllValidInput.stream;
+  BehaviorSubject<bool> get enableLoginButtonSubject =>
+      _enableLoginButtonSubject;
   GlobalKey<FormState> get formKey => _formKey;
 }

@@ -5,17 +5,11 @@ import 'package:uuid/uuid.dart';
 
 class NotificationViewModel extends BaseViewModel {
   NotificationViewModel({required this.appDatabase});
-  List<NotificationLocalData> _notifications = [];
   final AppDatabase appDatabase;
   Future onInit() async {
-    setLoading(true);
     await appDatabase.notificationLocalDao.deleteAllNotifications();
     await appDatabase.notificationLocalDao
         .insertAllNotifications(_generateNotification());
-    _notifications =
-        await appDatabase.notificationLocalDao.getAllNotifications();
-    setLoading(false);
-    notifyListeners();
   }
 
   List<NotificationLocalData> _generateNotification() {
@@ -81,9 +75,5 @@ class NotificationViewModel extends BaseViewModel {
 
   void deleteNotificationById(String id) {
     appDatabase.notificationLocalDao.deleteNotificationById(id);
-    _notifications.removeWhere((element) => element.id == id);
-    notifyListeners();
   }
-
-  List<NotificationLocalData> get notifications => _notifications;
 }

@@ -19,13 +19,13 @@ class CreateAccountButton extends StatelessWidget {
       margin: EdgeInsets.symmetric(
         horizontal: 26.sp,
       ),
-      child: customButton(
+      child: CustomButton(
         backgroundColor: AppColors.green,
         onPressed: viewModel.onNavigateToCreateAccount,
         child: Center(
           child: Text(
             AppLanguages.createAccount,
-            style: customContentTextStyle(color: AppColors.white),
+            style: CustomTextStyle().contentTextStyle(color: AppColors.white),
           ),
         ),
       ),

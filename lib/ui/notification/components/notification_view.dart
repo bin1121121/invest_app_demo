@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invest_app_flutter_test/ui/widgets/icon_button_pre_page.dart';
-import 'package:invest_app_flutter_test/ui/notification/components/notification_list_view_widget.dart';
+import 'package:invest_app_flutter_test/ui/notification/components/notification_list_view.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_style.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
 import 'package:invest_app_flutter_test/utils/app_languages.dart';
@@ -23,12 +23,13 @@ class NotificationView extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: Text(
                 AppLanguages.notification,
-                style: customHeaderTextStyle(color: AppColors.black),
+                style:
+                    CustomTextStyle().headerTextStyle(color: AppColors.black),
               ),
             ),
             SizedBox(height: 20.w),
             const Expanded(
-              child: NotificationListViewWidget(),
+              child: NotificationListView(),
             ),
           ],
         ),

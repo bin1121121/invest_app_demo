@@ -30,7 +30,7 @@ class HomeInvestGuideList extends StatelessWidget {
                   children: [
                     Text(
                       investGuideCard.title,
-                      style: customHeaderTextStyle(
+                      style: CustomTextStyle().headerTextStyle(
                         color: AppColors.grey1,
                         fontSize: 18,
                       ),
@@ -38,7 +38,7 @@ class HomeInvestGuideList extends StatelessWidget {
                     SizedBox(height: 5.w),
                     Text(
                       investGuideCard.content,
-                      style: customContentTextStyle(
+                      style: CustomTextStyle().contentTextStyle(
                           color: AppColors.grey1,
                           fontSize: 14,
                           fontWeight: FontWeight.w400),

@@ -12,7 +12,6 @@ class ApplicationPage extends StatelessWidget {
     return BaseWidget<ApplicationViewModel>(
       viewModel: ApplicationViewModel(),
       builder: (context, viewModel, child) {
-        // ignore: prefer_const_constructors
         return Scaffold(
           bottomNavigationBar: BottomNavBar(),
           body: PageViewOfApp(),

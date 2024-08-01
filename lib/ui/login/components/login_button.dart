@@ -14,11 +14,11 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final viewModel = context.read<LoginViewModel>();
     return StreamBuilder<bool>(
-      stream: viewModel.isAllValidInput,
+      stream: viewModel.enableLoginButtonSubject,
       builder: (context, snapshot) {
         return SizedBox(
           height: 60.w,
-          child: customButton(
+          child: CustomButton(
             backgroundColor:
                 snapshot.data == true ? AppColors.green : AppColors.grey2,
             onPressed: snapshot.data == true
@@ -29,7 +29,7 @@ class LoginButton extends StatelessWidget {
             child: Center(
               child: Text(
                 AppLanguages.login,
-                style: customContentTextStyle(
+                style: CustomTextStyle().contentTextStyle(
                   color: AppColors.white,
                 ),
               ),

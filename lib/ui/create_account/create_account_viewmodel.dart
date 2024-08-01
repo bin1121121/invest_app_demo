@@ -21,18 +21,11 @@ class CreateAccountViewModel extends BaseViewModel {
   final TextEditingController _confirmPasswordController =
       TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  GenderType? _genderValue = GenderType.male;
-  RegisterRequest _registerRequest = RegisterRequest(
-    firstName: "",
-    lastName: "",
-    email: "",
-    gender: GenderType.male.name,
-    password: "",
-  );
+  GenderType _genderValue = GenderType.male;
   bool _isPasswordVisible = true;
   bool _isConfirmPasswordVisible = true;
 
-  final BehaviorSubject<bool> _isAllInputsValidStreamController =
+  final BehaviorSubject<bool> _enableCreateButtonSubject =
       BehaviorSubject<bool>.seeded(false);
 
   void changePasswordVisibility() {
@@ -45,49 +38,21 @@ class CreateAccountViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void setFirstName(String value) {
-    _registerRequest.firstName = value;
-    _isAllInputsValidSink();
-  }
-
-  void setLastName(String value) {
-    _registerRequest.lastName = value;
-    _isAllInputsValidSink();
-  }
-
-  void setEmail(String value) {
-    _registerRequest.email = value;
-    _isAllInputsValidSink();
-  }
-
-  void setPassword(String value) {
-    _registerRequest.password = value;
-    _isAllInputsValidSink();
-  }
-
-  void setConfirmPassword(String value) {
-    _isAllInputsValidSink();
-  }
-
-  void _isAllInputsValidSink() {
-    if (_registerRequest.firstName.isNotEmpty &&
-        _registerRequest.email.isNotEmpty &&
-        _registerRequest.password.isNotEmpty &&
-        _registerRequest.lastName.isNotEmpty &&
-        _registerRequest.gender.isNotEmpty &&
+  void isAllInputsValidSink() {
+    if (_firstNameController.text.isNotEmpty &&
+        _emailController.text.isNotEmpty &&
+        _passwordController.text.isNotEmpty &&
+        _lastNameController.text.isNotEmpty &&
         _confirmPasswordController.text.isNotEmpty) {
-      _isAllInputsValidStreamController.add(true);
+      _enableCreateButtonSubject.add(true);
     } else {
-      _isAllInputsValidStreamController.add(false);
+      _enableCreateButtonSubject.add(false);
     }
   }
 
   void onChangeSelectedGender(GenderType? value) {
-    if (value != null) {
-      _genderValue = value;
-      _registerRequest.gender = value.name;
-      notifyListeners();
-    }
+    _genderValue = value ?? GenderType.male;
+    notifyListeners();
   }
 
   void onValidForm() {
@@ -98,20 +63,21 @@ class CreateAccountViewModel extends BaseViewModel {
 
   Future onRegister() async {
     RegisterRequest registerRequest = RegisterRequest(
-      firstName: _registerRequest.firstName,
-      lastName: _registerRequest.lastName,
-      email: _registerRequest.email,
-      gender: _registerRequest.gender,
-      password: _registerRequest.password,
+      firstName: _firstNameController.text,
+      lastName: _lastNameController.text,
+      email: _emailController.text,
+      gender: _genderValue.name,
+      password: _passwordController.text,
     );
     final response = await authRepository.registerUser(registerRequest);
     if (response.code == ResourceType.requestSuccess) {
       print(response.data.toString());
-      customToast(
+      CustomToast().toast(
           message: AppLanguages.registerSuccess, backgroundColor: Colors.green);
       // Navigator.pushNamedAndRemoveUntil(context, RouteName.applicationPage, predicate)
     } else {
-      customToast(message: response.message, backgroundColor: Colors.red);
+      CustomToast()
+          .toast(message: response.message, backgroundColor: Colors.red);
     }
   }
 
@@ -126,12 +92,12 @@ class CreateAccountViewModel extends BaseViewModel {
     _emailController.dispose();
     _passwordController.dispose();
     _confirmPasswordController.dispose();
-    _isAllInputsValidStreamController.close();
+    _enableCreateButtonSubject.close();
     super.dispose();
   }
 
-  Stream<bool> get isAllInputsValidStream =>
-      _isAllInputsValidStreamController.stream;
+  BehaviorSubject<bool> get enableCreateButtonSubject =>
+      _enableCreateButtonSubject;
 
   bool get isPasswordVisible => _isPasswordVisible;
   bool get isConfirmPasswordVisible => _isConfirmPasswordVisible;

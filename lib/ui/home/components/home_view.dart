@@ -36,7 +36,7 @@ class HomeView extends StatelessWidget {
                 children: [
                   Text(
                     AppLanguages.bestPlans,
-                    style: customHeaderTextStyle(
+                    style: CustomTextStyle().headerTextStyle(
                         fontSize: 22.w, color: AppColors.black),
                   ),
                   RichText(
@@ -51,7 +51,7 @@ class HomeView extends StatelessWidget {
                           ),
                         )
                       ],
-                      style: customContentTextStyle(
+                      style: CustomTextStyle().contentTextStyle(
                         color: Colors.red,
                         fontSize: 18,
                         fontWeight: FontWeight.w500,
@@ -72,8 +72,8 @@ class HomeView extends StatelessWidget {
               padding: EdgeInsets.only(left: 30.w),
               child: Text(
                 AppLanguages.investmentGuide,
-                style:
-                    customHeaderTextStyle(fontSize: 22, color: AppColors.black),
+                style: CustomTextStyle()
+                    .headerTextStyle(fontSize: 22, color: AppColors.black),
                 textAlign: TextAlign.start,
               ),
             ),

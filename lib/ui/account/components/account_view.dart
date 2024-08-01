@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invest_app_flutter_test/ui/account/account_viewmodel.dart';
-import 'package:invest_app_flutter_test/ui/account/components/account_avatar_widget.dart';
-import 'package:invest_app_flutter_test/ui/account/components/account_card_widget.dart';
-import 'package:invest_app_flutter_test/ui/account/components/account_user_name_widget.dart';
+import 'package:invest_app_flutter_test/ui/account/components/account_avatar.dart';
+import 'package:invest_app_flutter_test/ui/account/components/account_card.dart';
+import 'package:invest_app_flutter_test/ui/account/components/account_user_name.dart';
 import 'package:invest_app_flutter_test/ui/widgets/custom_text_style.dart';
 import 'package:invest_app_flutter_test/utils/app_assets.dart';
 import 'package:invest_app_flutter_test/utils/app_colors.dart';
@@ -22,7 +22,7 @@ class AccountView extends StatelessWidget {
         backgroundColor: AppColors.background,
         title: Text(
           AppLanguages.profile,
-          style: customHeaderTextStyle(color: AppColors.black),
+          style: CustomTextStyle().headerTextStyle(color: AppColors.black),
         ),
         centerTitle: false,
       ),
@@ -33,13 +33,13 @@ class AccountView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(height: 30.w),
-            const AccountAvatarWidget(),
+            const AccountAvatar(),
             SizedBox(height: 20.w),
-            const AccountUserNameWidget(),
+            const AccountUserName(),
             SizedBox(height: 10.w),
             Text(
               AppLanguages.expert,
-              style: customContentTextStyle(
+              style: CustomTextStyle().contentTextStyle(
                 color: AppColors.black,
                 fontSize: 14,
                 fontWeight: FontWeight.w400,
@@ -47,13 +47,13 @@ class AccountView extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20.w),
-            AccountCardWidget(
+            AccountCard(
               preIcon: AppAssets.icContact,
               title: AppLanguages.contactInfo,
               onTap: viewModel.onNavigateToContactInfoPage,
             ),
             SizedBox(height: 10.w),
-            AccountCardWidget(
+            AccountCard(
               preIcon: AppAssets.icFunding,
               title: AppLanguages.sourceOfFoundingInfo,
               onTap: () async {
@@ -61,22 +61,22 @@ class AccountView extends StatelessWidget {
               },
             ),
             SizedBox(height: 10.w),
-            AccountCardWidget(
+            AccountCard(
               preIcon: AppAssets.icBank,
               title: AppLanguages.bankAccountInfo,
             ),
             SizedBox(height: 10.w),
-            AccountCardWidget(
+            AccountCard(
               preIcon: AppAssets.icDoc,
               title: AppLanguages.documentInfo,
             ),
             SizedBox(height: 10.w),
-            AccountCardWidget(
+            AccountCard(
               preIcon: AppAssets.icSetting,
               title: AppLanguages.settings,
             ),
             SizedBox(height: 10.w),
-            AccountCardWidget(
+            AccountCard(
               preIcon: AppAssets.icLogout,
               title: AppLanguages.logout,
               color: AppColors.red,

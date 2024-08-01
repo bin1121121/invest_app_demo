@@ -16,7 +16,7 @@ class LoginTextFieldPassword extends StatelessWidget {
     return CustomTextField(
       hintText: AppLanguages.password,
       controller: viewModel.passwordTextEditingController,
-      onChanged: viewModel.setPassword,
+      onChanged: (value) => viewModel.isAllInputValidSink(),
       validator: ValidationHelper().isPasswordValidMessage,
       isPasswordVisible: viewModel.isPasswordVisible,
       onPressedChangeVisibility: viewModel.changePasswordVisibility,

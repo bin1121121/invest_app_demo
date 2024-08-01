@@ -18,7 +18,7 @@ class CreateAccountOptionGender extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: Text(
             AppLanguages.gender,
-            style: customContentTextStyle(
+            style: CustomTextStyle().contentTextStyle(
                 color: AppColors.grey2, fontWeight: FontWeight.w400),
           ),
         ),
@@ -32,7 +32,7 @@ class CreateAccountOptionGender extends StatelessWidget {
           ),
           title: Text(
             GenderType.male.name,
-            style: customContentTextStyle(
+            style: CustomTextStyle().contentTextStyle(
               color: Colors.black,
               fontWeight: FontWeight.w400,
             ),
@@ -48,7 +48,7 @@ class CreateAccountOptionGender extends StatelessWidget {
           ),
           title: Text(
             GenderType.female.name,
-            style: customContentTextStyle(
+            style: CustomTextStyle().contentTextStyle(
               color: Colors.black,
               fontWeight: FontWeight.w400,
             ),

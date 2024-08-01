@@ -37,7 +37,7 @@ class ValidationHelper {
 
   String? isPasswordValidMessage(String? password) {
     RegExp passwordRegExp = RegExp(r"^[A-Za-z0-9.!#$%&'*+_/=?^_{|}~]+");
-    if (!(passwordRegExp.hasMatch(password ?? "") && password!.length > 6)) {
+    if (!(passwordRegExp.hasMatch(password ?? "") && password!.length >= 6)) {
       return AppLanguages.passwordError;
     }
     return null;

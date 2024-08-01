@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:invest_app_flutter_test/core/type/gender_type.dart';
@@ -12,6 +11,7 @@ import 'package:invest_app_flutter_test/utils/app_colors.dart';
 import 'package:invest_app_flutter_test/utils/app_shared.dart';
 import 'package:invest_app_flutter_test/utils/app_languages.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:rxdart/rxdart.dart';
 
 class ContactInfoViewModel extends BaseViewModel {
   late GlobalKey<FormState> _formKey;
@@ -22,8 +22,9 @@ class ContactInfoViewModel extends BaseViewModel {
   final TextEditingController _emailTextController = TextEditingController();
   final TextEditingController _phoneNumberTextController =
       TextEditingController();
-  File _image = File("");
-
+  File? _imageFile;
+  final BehaviorSubject<bool> _enableSaveButtonSubject =
+      BehaviorSubject<bool>.seeded(false);
   Future onInit() async {
     _formKey = GlobalKey<FormState>();
     await AppShared().getUserProfile().then((userProfile) {
@@ -51,26 +52,44 @@ class ContactInfoViewModel extends BaseViewModel {
   }
 
   Future pickImage(ImageSource imageSource) async {
-    try {
-      _requestPermission(imageSource).then(
-        (value) async {
-          if (value == true) {
-            final XFile? image =
-                await ImagePicker().pickImage(source: imageSource);
-            if (image == null) return;
-            _image = File(image.path);
-            notifyListeners();
-          }
-        },
-      );
-    } catch (e) {
-      debugPrint("Error: $e");
+    _requestPermission(imageSource).then(
+      (value) async {
+        if (value == true) {
+          final XFile? image =
+              await ImagePicker().pickImage(source: imageSource);
+          if (image == null) return;
+          _imageFile = File(image.path);
+          notifyListeners();
+          isAllInputValidSink();
+        }
+      },
+    ).catchError((error) {
+      debugPrint("Error: $error");
+    });
+  }
+
+  void isAllInputValidSink() {
+    if (_userNameTextController.text.isNotEmpty &&
+            _birthDateTextController.text.isNotEmpty &&
+            _genderTextController.text.isNotEmpty &&
+            _emailTextController.text.isNotEmpty &&
+            _phoneNumberTextController.text.isNotEmpty ||
+        _imageFile != null) {
+      _enableSaveButtonSubject.add(true);
+    } else {
+      _enableSaveButtonSubject.add(false);
     }
   }
 
-  void dateFormatter(DateTime? date) {
-    if (date == null) return;
-    birthDateTextController.text = dateFormatted(date);
+  Future selectedDate() async {
+    final DateTime? dateTime = await showDatePicker(
+      context: context,
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+    );
+    if (dateTime != null) {
+      _birthDateTextController.text = dateFormatted(dateTime);
+    }
   }
 
   void pickGender(GenderType gender) {
@@ -94,7 +113,7 @@ class ContactInfoViewModel extends BaseViewModel {
     if (_formKey.currentState!.validate() &&
         (oldUserProfile != newUserProfile)) {
       await AppShared().setUserProfile(newUserProfile);
-      customToast(
+      CustomToast().toast(
           message: AppLanguages.updateSuccess,
           backgroundColor: AppColors.green);
       if (!context.mounted) return;
@@ -114,6 +133,8 @@ class ContactInfoViewModel extends BaseViewModel {
     super.dispose();
   }
 
+  BehaviorSubject<bool> get enableSaveButtonSubject => _enableSaveButtonSubject;
+
   GlobalKey<FormState> get formKey => _formKey;
   TextEditingController get userNameTextController => _userNameTextController;
   TextEditingController get birthDateTextController => _birthDateTextController;
@@ -122,5 +143,5 @@ class ContactInfoViewModel extends BaseViewModel {
   TextEditingController get phoneNumberTextController =>
       _phoneNumberTextController;
 
-  File get image => _image;
+  File? get imageFile => _imageFile;
 }

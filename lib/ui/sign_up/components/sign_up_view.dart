@@ -34,7 +34,8 @@ class SignUpView extends StatelessWidget {
               ),
               child: Text(
                 AppLanguages.stayOnTop,
-                style: customHeaderTextStyle(color: AppColors.black),
+                style:
+                    CustomTextStyle().headerTextStyle(color: AppColors.black),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -48,7 +49,8 @@ class SignUpView extends StatelessWidget {
               ),
               child: Text(
                 AppLanguages.weAreYourNewFinancial,
-                style: customContentTextStyle(color: AppColors.grey1),
+                style:
+                    CustomTextStyle().contentTextStyle(color: AppColors.grey1),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -61,7 +63,8 @@ class SignUpView extends StatelessWidget {
               onTap: viewModel.onNavigateToLogin,
               child: Text(
                 AppLanguages.login,
-                style: customContentTextStyle(color: AppColors.green),
+                style:
+                    CustomTextStyle().contentTextStyle(color: AppColors.green),
               ),
             )
           ],

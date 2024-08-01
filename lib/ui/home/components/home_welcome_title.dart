@@ -25,7 +25,7 @@ class HomeWelcomeTitle extends StatelessWidget {
             fit: BoxFit.scaleDown,
             child: Text(
               "${AppLanguages.welcome} ${snapshot.data ?? ""}",
-              style: customHeaderTextStyle(color: AppColors.black),
+              style: CustomTextStyle().headerTextStyle(color: AppColors.black),
               textAlign: TextAlign.start,
             ),
           ),
